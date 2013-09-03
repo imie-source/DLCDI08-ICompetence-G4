@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+#addUserForm {
+	width: 400px;
+	overflow: hidden;
+	border: solid 1px #000;
+	padding: 20px;
+	margin: 0px auto;
+}
+
+.formLibelle {
+	float: left;
+	width: 200px;
+	padding-bottom: 10px;
+}
+
+.formInput {
+	float: left;
+	width: 200px;
+	padding-bottom: 10px;
+}
+
+#selectcursus {
+	height: 30px;
+	width: 190px;
+	padding-top: 6px;
+}
+
+#submit {
+	height: 30px;
+	width: 75px;
+	margin-top: 10px;
+}

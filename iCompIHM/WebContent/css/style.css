@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: Arial;
+	background-color: #c3efff;
+}
+
+a {
+	color: #006;
+	text-decoration: none;
+}
+
+h1 {
+	letter-spacing: 3px;
+}
+
+#title {
+	background-color: #003b6f;
+	color: #fff;
+	height: 75px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 40px;
+}
+
+#wrapper {
+	background-color: #fff;
+	padding: 20px;
+	position: relative;
+}
+
+#footer {
+	background-color: #003b6f;
+	color: #fff;
+	height: 20px;
+	text-align: center;
+}
+
+.backlink {
+	color: #fff;
+	font-weight: bold;
+	margin-top: 7px;
+}
