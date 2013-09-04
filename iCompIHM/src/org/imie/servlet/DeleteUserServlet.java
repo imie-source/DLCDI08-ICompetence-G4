@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IUserService;
