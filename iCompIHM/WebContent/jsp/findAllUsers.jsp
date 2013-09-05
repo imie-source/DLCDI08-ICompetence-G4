@@ -157,7 +157,7 @@ jQuery(function($){
 								
 				<%-- Div Edit --%>
 				<div class="edit">
-					<img src=img/edit.png alt="Edit" title="Edit" />
+					<a href="./EditUser?login=<%=usr.getLogin()%>"><img src=img/edit.png alt="Edit" title="Edit" /></a>
 				</div>
 	
 				<%-- Div Delete --%>
@@ -183,6 +183,8 @@ jQuery(function($){
 	</div>
 	
 	<div id="popup1" class="popup_block">
+	
+		<h2>Ajouter un Utilisateur</h2>
 		
 		<%-- Div AddUserForm --%>
 			<div id = "addUserForm">
