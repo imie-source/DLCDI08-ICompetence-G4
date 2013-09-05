@@ -7,9 +7,8 @@ import java.util.List;
 
 import fr.imie.dto.Utilisateur;
 
-
 public class Main {
-
+	// classe principale
 	private static ScreenName currentScreen = null;
 	public static Utilisateur currentUser = null;
 	public static List<Utilisateur> currentUsers = null;
@@ -92,7 +91,6 @@ public class Main {
 					break;
 
 				}
-
 				break;
 
 			// COMPETENCES PAR UTILISATEUR

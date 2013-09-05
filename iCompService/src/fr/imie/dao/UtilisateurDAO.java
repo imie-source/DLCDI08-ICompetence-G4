@@ -156,7 +156,11 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 
 			pstmt.setString(1, user.getNom());
 			pstmt.setString(2, user.getPrenom());
-			pstmt.setDate(3, new java.sql.Date(user.getDateNaissance().getTime()));
+			if (user.getDateNaissance() == null){
+				pstmt.setNull(3, Types.DATE);
+			} else {
+				pstmt.setDate(3, new java.sql.Date(user.getDateNaissance().getTime()));
+			}
 			pstmt.setString(4, user.getMail());
 			pstmt.setString(5, user.getTel());
 			pstmt.setString(6, user.getFax());
@@ -410,7 +414,6 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	 */
 	@Override
 	public Utilisateur findUser(Utilisateur user2) throws TransactionalConnectionException {
-
 		String query = "SELECT * FROM UTILISATEUR U WHERE U.USR_ID = ? ORDER BY U.USR_ID";
 		Utilisateur user = new Utilisateur();
 		ResultSet rs = null;
