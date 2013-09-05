@@ -3,10 +3,12 @@ package fr.imie.factory;
 
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
+import fr.imie.dao.interfaces.IDomaineDAO;
 import fr.imie.dao.interfaces.IDroitDAO;
 import fr.imie.dao.interfaces.IFenetreDAO;
 import fr.imie.dao.interfaces.IFonctionDAO;
 import fr.imie.dao.interfaces.IGroupeDAO;
+import fr.imie.dao.interfaces.IKeywordDAO;
 import fr.imie.dao.interfaces.INatureDAO;
 import fr.imie.dao.interfaces.INiveauxDAO;
 import fr.imie.dao.interfaces.IProfilDAO;
@@ -79,6 +81,10 @@ public interface IFactory {
 	public abstract ISecurityService createSecurityService(ITransactional caller);
 
 	public abstract IProjectService createProjectService(ITransactional caller);
+
+	public abstract IDomaineDAO createDomaineDAO(ITransactional caller);
+
+	public abstract IKeywordDAO createKeywordDAO(ITransactional caller);
 
 	
 }

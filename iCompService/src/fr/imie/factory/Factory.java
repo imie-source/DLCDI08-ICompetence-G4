@@ -3,20 +3,24 @@ package fr.imie.factory;
 
 import fr.imie.dao.CompetenceDAO;
 import fr.imie.dao.CursusDAO;
+import fr.imie.dao.DomaineDAO;
 import fr.imie.dao.DroitDAO;
 import fr.imie.dao.FenetreDAO;
 import fr.imie.dao.FonctionDAO;
 import fr.imie.dao.GroupeDAO;
+import fr.imie.dao.KeywordDAO;
 import fr.imie.dao.NatureDAO;
 import fr.imie.dao.NiveauDAO;
 import fr.imie.dao.ProfilDAO;
 import fr.imie.dao.UtilisateurDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
+import fr.imie.dao.interfaces.IDomaineDAO;
 import fr.imie.dao.interfaces.IDroitDAO;
 import fr.imie.dao.interfaces.IFenetreDAO;
 import fr.imie.dao.interfaces.IFonctionDAO;
 import fr.imie.dao.interfaces.IGroupeDAO;
+import fr.imie.dao.interfaces.IKeywordDAO;
 import fr.imie.dao.interfaces.INatureDAO;
 import fr.imie.dao.interfaces.INiveauxDAO;
 import fr.imie.dao.interfaces.IProfilDAO;
@@ -157,5 +161,16 @@ public class Factory implements IFactory {
 		return fact.createTransactionalService(new DroitDAO(), caller);
 	}
 
+	@Override
+	public IDomaineDAO createDomaineDAO(ITransactional caller) {
+		TransactionalFactory<DomaineDAO> fact = (TransactionalFactory<DomaineDAO>) TransactionalFactory.getInstance();
+		return fact.createTransactionalService(new DomaineDAO(), caller);
+	}
+	
+	@Override
+	public IKeywordDAO createKeywordDAO(ITransactional caller) {
+		TransactionalFactory<KeywordDAO> fact = (TransactionalFactory<KeywordDAO>) TransactionalFactory.getInstance();
+		return fact.createTransactionalService(new KeywordDAO(), caller);
+	}
 
 }

@@ -52,7 +52,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		Statement stmt = null;
 		// déclaration de la variable de resultset
 		ResultSet rs = null;
-		String query = "SELECT * FROM UTILISATEUR U ORDER BY U.USR_ID";
+		String query = "SELECT * FROM UTILISATEUR ORDER BY USR_ID";
 
 		try {
 			// création du statement à partir de la connection
@@ -410,6 +410,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	 */
 	@Override
 	public Utilisateur findUser(Utilisateur user2) throws TransactionalConnectionException {
+
 		String query = "SELECT * FROM UTILISATEUR U WHERE U.USR_ID = ? ORDER BY U.USR_ID";
 		Utilisateur user = new Utilisateur();
 		ResultSet rs = null;
@@ -447,4 +448,6 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 
 		return user;
 	}
+	
+	
 }

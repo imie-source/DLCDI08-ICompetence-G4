@@ -12,6 +12,7 @@ import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.INiveauxDAO;
 import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.dto.Competence;
+import fr.imie.dto.Keyword;
 import fr.imie.dto.Niveau;
 import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
@@ -21,9 +22,8 @@ import fr.imie.transactionalFramework.TransactionalConnectionException;
 
 /**
  * DAO de la table compétences
- * 
  * @author imie
- * 
+ *
  */
 public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 	// SQL Fields
@@ -123,4 +123,42 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		}
 		return comList;
 	}
+	
+	
+	@Override
+	public List<Keyword> getCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException {
+		INiveauxDAO niveauxDAO = Factory.getInstance().createNiveauDAO(this);
+		List<Keyword> comList = new ArrayList<Keyword>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "SELECT * FROM COMPETENCE C INNER JOIN COM_USER CU ON C.COM_ID = CU.COM_ID INNER JOIN UTILISATEUR U ON U.USR_ID = CU.USR_ID WHERE U.USR_ID = ? ORDER BY C.COM_ID";
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setInt(1, keyword.getId());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Competence comp = new Competence();
+				comp.setId(rs.getInt(COM_ID));
+				comp.setLibelle(rs.getString(COM_LIBELLE));
+				//comList.add(comp);
+			}
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+		return comList;
+	}
+
 }
