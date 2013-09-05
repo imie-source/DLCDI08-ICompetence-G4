@@ -52,7 +52,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		Statement stmt = null;
 		// déclaration de la variable de resultset
 		ResultSet rs = null;
-		String query = "SELECT * FROM UTILISATEUR U ORDER BY U.USR_ID";
+		String query = "SELECT * FROM UTILISATEUR U ORDER BY U.USR_Nom";
 
 		try {
 			// création du statement à partir de la connection
