@@ -78,13 +78,14 @@ public class AddUserServlet extends HttpServlet {
 			if (prenom != null && prenom.length()<50) {
 				user.setPrenom(prenom);
 			}
-			if (dateNaissance != null) {
+			if (dateNaissance != null && dateNaissance != "") {
 				Date datenaissance = null;
 				try {
 					datenaissance = new SimpleDateFormat("dd/MM/yyyy").parse(dateNaissance);
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
+				System.out.println("DN" + datenaissance.getTime());
 				java.sql.Date d = new java.sql.Date(datenaissance.getTime());
 				user.setDateNaissance(d);
 			}

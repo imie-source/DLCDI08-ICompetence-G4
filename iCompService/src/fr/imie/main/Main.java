@@ -7,9 +7,8 @@ import java.util.List;
 
 import fr.imie.dto.Utilisateur;
 
-
 public class Main {
-	//classe principale
+	// classe principale
 	private static ScreenName currentScreen = null;
 	public static Utilisateur currentUser = null;
 	public static List<Utilisateur> currentUsers = null;
@@ -207,7 +206,7 @@ public class Main {
 
 				i = ScreenV2.competencesUser();
 
-				switch(i) {
+				switch (i) {
 
 				case 0:
 
