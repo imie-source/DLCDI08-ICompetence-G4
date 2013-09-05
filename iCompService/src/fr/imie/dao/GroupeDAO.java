@@ -83,9 +83,13 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 				pstmt.setNull(3, Type.CHAR);
 			} else {
 				pstmt.setString(3, groupeToInsert.getDescription());
-			};
+			}
 			
-			pstmt.setInt(4, groupeToInsert.getStatut().getId());
+			if (groupeToInsert.getStatut() == null) {
+				pstmt.setNull(4, Type.CHAR);
+			} else {
+				pstmt.setInt(4, groupeToInsert.getStatut().getId());
+			}
 					
 			
 			if (groupeToInsert.getChefProjet() == null) {
