@@ -10,6 +10,7 @@ import fr.imie.dao.GroupeDAO;
 import fr.imie.dao.NatureDAO;
 import fr.imie.dao.NiveauDAO;
 import fr.imie.dao.ProfilDAO;
+import fr.imie.dao.StatutDAO;
 import fr.imie.dao.UtilisateurDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
@@ -20,6 +21,7 @@ import fr.imie.dao.interfaces.IGroupeDAO;
 import fr.imie.dao.interfaces.INatureDAO;
 import fr.imie.dao.interfaces.INiveauxDAO;
 import fr.imie.dao.interfaces.IProfilDAO;
+import fr.imie.dao.interfaces.IStatutDAO;
 import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.service.ProjectService;
 import fr.imie.service.SecurityService;
@@ -157,5 +159,10 @@ public class Factory implements IFactory {
 		return fact.createTransactionalService(new DroitDAO(), caller);
 	}
 
+	@Override
+	public IStatutDAO createStatutDAO(ITransactional caller) {
+		TransactionalFactory<StatutDAO> fact = (TransactionalFactory<StatutDAO>) TransactionalFactory.getInstance();
+		return fact.createTransactionalService(new StatutDAO(), caller);
+	}
 
 }
