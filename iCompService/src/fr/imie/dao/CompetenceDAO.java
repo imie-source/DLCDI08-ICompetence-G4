@@ -126,12 +126,16 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 	
 	
 	@Override
-	public List<Keyword> getCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException {
-		INiveauxDAO niveauxDAO = Factory.getInstance().createNiveauDAO(this);
-		List<Keyword> comList = new ArrayList<Keyword>();
+	public List<Competence> getCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException {
+		
+		List<Competence> comList = new ArrayList<Competence>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "SELECT * FROM COMPETENCE C INNER JOIN COM_USER CU ON C.COM_ID = CU.COM_ID INNER JOIN UTILISATEUR U ON U.USR_ID = CU.USR_ID WHERE U.USR_ID = ? ORDER BY C.COM_ID";
+		String query = "SELECT * FROM COMPETENCE C INNER " +
+				"JOIN com_key CK ON C.COM_ID = CK.COM_ID " +
+				"INNER JOIN Keyword K ON K.key_id = CK.key_id " +
+				"WHERE K.key_id = ? ORDER BY C.com_id";
+
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
@@ -141,7 +145,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				Competence comp = new Competence();
 				comp.setId(rs.getInt(COM_ID));
 				comp.setLibelle(rs.getString(COM_LIBELLE));
-				//comList.add(comp);
+				comList.add(comp);
 			}
 
 		} catch (SQLException e) {
