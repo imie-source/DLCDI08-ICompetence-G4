@@ -8,6 +8,10 @@
 <%@ page import="fr.imie.factory.*" %>
 <%@ page import="fr.imie.service.UserService" %>
 <%@ page import="fr.imie.service.interfaces.IUserService" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.ParseException" %>
+
 
 <%! private String login;%>
 <%! private Utilisateur user = new Utilisateur(); %>
@@ -23,7 +27,7 @@
 
 <head>
 <meta charset="UTF-8" />
-<title>Ajouter un Utilisateur</title>
+<title>Modifier un Utilisateur</title>
 <link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/addUser.css" media="all" type="text/css" />
 <script src="js/addUser.js" type="text/javascript"></script>
@@ -43,75 +47,77 @@
 			<div id = "addUserForm">
 		
 				<%-- Form --%>
-				<form onsubmit="return valider(this)" method="post" action="./AddUser">
+				<form onsubmit="return valider(this)" method="post" action="./EditUser">
 				
 				<%-- NOM --%>
 				<div class = "formLibelle">Nom * : </div>
-				<div class = "formInput"><input type="textbox" name="nom" maxlength="50" value="<%=user.getNom()%>"/></div><br />
+				<div class = "formInput"><input type="textbox" name="nom" maxlength="50" value="<%if(user.getNom() == null){ %><%}else { %><%=user.getNom()%><%}%>"/></div><br />
 				
 				<%-- PRENOM --%>
 				<div class = "formLibelle">Prenom * : </div>
-				<div class = "formInput"><input type="textbox" name="prenom" maxlength="50" value="<%=user.getPrenom()%>"/></div><br />
+				<div class = "formInput"><input type="textbox" name="prenom" maxlength="50" value="<%if(user.getPrenom() == null){ %><%}else { %><%=user.getPrenom()%><%}%>"/></div><br />
 				
 				<%-- DATE DE NAISSANCE --%>
+				<% 
+				if(user.getDateNaissance() != null){
+					DateFormat dateFormat = null;
+					
+					dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+					
+					String dat = dateFormat.format(user.getDateNaissance());
+				%>
 				<div class = "formLibelle">Date de Naissance : </div>
-				<div class = "formInput"><input type="textbox" name="dateNaissance" value="<%=user.getDateNaissance()%>"/></div><br />
-				
+				<div class = "formInput"><input type="textbox" name="dateNaissance" value="<%if(user.getDateNaissance() == null){ %><%}else { %><%=dat%><%}%>"/></div><br />
+				<%
+				}
+				 %>
 				<%-- E-MAIL --%>
 				<div class = "formLibelle">E-mail * : </div>
-				<div class = "formInput"><input type="textbox" name="mail" maxlength="50" value="<%=user.getMail()%>" /></div><br />
+				<div class = "formInput"><input type="textbox" name="mail" maxlength="50" value="<%if(user.getMail() == null){ %><%}else { %><%=user.getMail()%><%}%>" /></div><br />
 				
 				<%-- TELEPHONE --%>
  				<div class = "formLibelle">Telephone : </div> 
-				<div class = "formInput"><input type="textbox" name="tel" maxlength="10" value="<%=user.getTel()%>"/></div><br /> 
+				<div class = "formInput"><input type="textbox" name="tel" maxlength="10" value="<%if(user.getTel() == null){ %><%}else { %><%=user.getTel()%><%}%>"/></div><br /> 
 				
 				<%-- FAX --%>
  				<div class = "formLibelle">Fax : </div> 
-				<div class = "formInput"><input type="textbox" name="fax" maxlength="10" value="<%=user.getFax()%>"/></div><br /> 
+				<div class = "formInput"><input type="textbox" name="fax" maxlength="10" value="<%if(user.getFax() == null){ %><%}else { %><%=user.getFax()%><%}%>"/></div><br /> 
 				
 				<%--EST EN FORMATION --%>
- 				<%-- <div class = "formLibelle">En Formation : </div> 
- 				<div class = "formInput"><input type="radio" name="enFormation" value="true" <%if(user.getEstEnFormation() == true){%>checked<%} %> /> Oui 
- 				<input type="radio" name="enFormation" value="false" <%if(user.getEstEnFormation() == false){%>checked<%} %> /> Non</div><br /> --%>
+ 				<div class = "formLibelle">En Formation : </div> 
+ 				<div class = "formInput"><input type="radio" name="enFormation" value="1" <%if(user.getEstEnFormation() == 1){%>checked<%} %> /> Oui 
+ 				<input type="radio" name="enFormation" value="0" <%if(user.getEstEnFormation() == 0){%>checked<%} %> /> Non</div><br />
  				
- 				<% System.out.println(user.getEstEnFormation()); %>
+ 				
 				
 				<%-- EST DISPONIBLE --%>
-<%--			<div class = "formLibelle">Disponible : </div>
- 				<div class = "formInput"><input type="radio" name="disponible" value="true" <%if (user.getEstDisponible() == true){%>checked<%} %>  /> Oui 
-				<input type="radio" name="disponible" value="false" <%if (user.getEstDisponible() == false){%>checked<%} %> /> Non</div><br /> --%>
+				<div class = "formLibelle">Disponible : </div>
+ 				<div class = "formInput"><input type="radio" name="disponible" value="1" <%if (user.getEstDisponible() == 1){%>checked<%} %>  /> Oui 
+				<input type="radio" name="disponible" value="0" <%if (user.getEstDisponible() == 0){%>checked<%} %> /> Non</div><br />
 				
 				<%-- CURSUS --%>
- <%-- 				<div class = "formLibelle">Cursus : </div> 
+ 				<div class = "formLibelle">Cursus : </div> 
 				<div class = "formInput"> 
  				<select name="cursus" id="selectcursus">
 				<%
  				List<Cursus> curlist = svc.findAllCursus(); 
 				
- 				for (Cursus cursus : curlist) {
-				%>
+ 				for (Cursus cursus : curlist) {%>
+				
 				<option <%if(user.getCursus().getId() == cursus.getId()){ %>selected <%}%>value="<%=cursus.getId()%>"><%=cursus.getLibelle()%></option>
 				<%
 				}
 				%>
 				</select>
-				</div><br /> --%>
+				</div><br />
 				
 				<%-- LOGIN --%>
 				<div class = "formLibelle">Login * : </div>
-				<div class = "formInput"><input type="textbox" name="identifiant" maxlength="20" value="<%=user.getLogin()%>"/></div><br />
-				
-				<%-- MOT DE PASSE --%>
-				<div class = "formLibelle">Mot de Passe * : </div>
-				<div class = "formInput"><input type="password" name="password" maxlength="25" /></div><br />
-				
-				<%-- CONFIRMATION MOT DE PASSE --%>
-				<div class = "formLibelle">Confirmer Mot de Passe * : </div>
-				<div class = "formInput"><input type="password" name="confirmpassword" maxlength="25" /></div><br />
+				<div class = "formInput"><input type="textbox" name="identifiant" maxlength="20" value="<%if(user.getLogin() == null){ %><%}else { %><%=user.getLogin()%><%}%>" readonly/></div><br />
 				
 				<%-- Submit --%>
 				<div class = "formLibelle"></div>
-				<div class = "formInput"><input id="submit" type="submit" name="insertUser" value="Ajouter" /></div><br />
+				<div class = "formInput"><input id="submit" type="submit" name="editUser" value="Modifier" /></div><br />
 				
 				<%-- End Form --%>
 				</form>

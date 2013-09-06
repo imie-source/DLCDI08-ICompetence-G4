@@ -85,7 +85,6 @@ public class AddUserServlet extends HttpServlet {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				System.out.println("DN" + datenaissance.getTime());
 				java.sql.Date d = new java.sql.Date(datenaissance.getTime());
 				user.setDateNaissance(d);
 			}
@@ -97,6 +96,14 @@ public class AddUserServlet extends HttpServlet {
 			}
 			if (fax != null) {
 				user.setFax(fax);
+			}
+			
+			if (enFormation != null){
+				user.setEstEnFormation(Integer.valueOf(enFormation));
+			}
+			
+			if (disponible != null){
+				user.setEstDisponible(Integer.valueOf(disponible));
 			}
 			
 			Cursus cursusDto = null;

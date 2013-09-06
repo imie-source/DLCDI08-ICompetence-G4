@@ -28,6 +28,8 @@ import fr.imie.transactionalFramework.TransactionalConnectionException;
  * 
  */
 public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
+	private static final String USR_EST_EN_FORMATION = "USR_estEnFormation";
+	private static final String USR_EST_DISPONIBLE = "USR_estDisponible";
 	// SQL Fields
 	private static final String USR_ID = "USR_ID";
 	private static final String USR_NOM = "USR_Nom";
@@ -216,7 +218,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		ResultSet rs = null;
 		try {
 			// execution d'une requête SQL et récupération du result
-			String query = "update utilisateur set usr_nom=?, usr_prenom=?, usr_daten=?, cur_ID=? where usr_ID=?";
+			String query = "update utilisateur set usr_nom=?, usr_prenom=?, usr_daten=?, usr_mail=?, usr_tel=?, usr_fax=?, usr_estenformation=?, usr_estdisponible=?, cur_ID=? where usr_Login=?";
 			pstmt = getConnection().prepareStatement(query);
 			pstmt.setString(1, userToUpdate.getNom());
 			pstmt.setString(2, userToUpdate.getPrenom());
@@ -225,15 +227,45 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 			} else {
 				pstmt.setNull(3, Types.DATE);
 			}
-
-			if (userToUpdate.getCursus() != null) {
-				// preparedStatement.setInt(4,
-				// userToUpdate.getCursus().getNum());
+			
+			if (userToUpdate.getMail() != null && userToUpdate.getMail() != "") {
+				pstmt.setString(4, userToUpdate.getMail());
 			} else {
-				pstmt.setNull(4, Types.INTEGER);
+				pstmt.setString(4, "");
+			}
+			
+			if (userToUpdate.getTel() != null && userToUpdate.getTel() != "") {
+				pstmt.setString(5, userToUpdate.getTel());
+			} else {
+				pstmt.setString(5, "");
+			}
+			
+			if (userToUpdate.getFax() != null && userToUpdate.getFax() != "") {
+				pstmt.setString(6, userToUpdate.getFax());
+			} else {
+				pstmt.setString(6, "");
+			}
+			
+			if (userToUpdate.getEstEnFormation() == 0 || userToUpdate.getEstEnFormation() == 1) {
+				pstmt.setInt(7, userToUpdate.getEstEnFormation());
+			} else {
+				pstmt.setNull(7, Types.INTEGER);
+			}
+			
+			if (userToUpdate.getEstDisponible() == 0 || userToUpdate.getEstDisponible() == 1) {
+				pstmt.setInt(8, userToUpdate.getEstDisponible());
+			} else {
+				pstmt.setNull(8, Types.INTEGER);
+			}
+			
+			if (userToUpdate.getCursus() != null) {
+				pstmt.setInt(9, userToUpdate.getCursus().getId());
+			} else {
+				pstmt.setNull(9, Types.INTEGER);
 			}
 
-			pstmt.setString(5, userToUpdate.getLogin());
+			pstmt.setString(10, userToUpdate.getLogin());
+			System.out.println(pstmt.toString());
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -384,6 +416,13 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 				user.setLogin(rs.getString(USR_LOGIN));
 				// user.setAge(ConvertUtils.getInstance().dateNToAge(rs.getDate(USR_DATE_N)));
 				user.setDateNaissance(rs.getDate(USR_DATE_N));
+				user.setEstDisponible(rs.getInt(USR_EST_DISPONIBLE));
+				user.setEstEnFormation(rs.getInt(USR_EST_EN_FORMATION));
+				
+				ICursusDAO cursusDAO = Factory.getInstance().createCursusDAO(this);
+				Cursus cursusDTO = cursusDAO.findCursusByUser(user);
+
+				user.setCursus(cursusDTO);
 			}
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);

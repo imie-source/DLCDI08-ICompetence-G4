@@ -91,6 +91,14 @@ public class EditUserServlet extends HttpServlet {
 				user.setFax(fax);
 			}
 			
+			if (enFormation != null){
+				user.setEstEnFormation(Integer.valueOf(enFormation));
+			}
+			
+			if (disponible != null){
+				user.setEstDisponible(Integer.valueOf(disponible));
+			}
+			
 			Cursus cursusDto = null;
 			int i = Integer.valueOf(cursus);
 			try {
@@ -109,12 +117,9 @@ public class EditUserServlet extends HttpServlet {
 			if (login != null) {
 				user.setLogin(login);
 			}
-			if (password != null) {
-				user.setPass(password);
-			}
-			
+
 			try {
-				Utilisateur usr = svc.insertUser(user);
+				Utilisateur usr = svc.updateUser(user);
 			} catch (TransactionalConnectionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
