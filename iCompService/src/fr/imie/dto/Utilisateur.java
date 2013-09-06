@@ -22,8 +22,8 @@ public class Utilisateur {
 	private String mail;
 	private String tel;
 	private String fax;
-	private Boolean estEnFormation;
-	private Boolean estDisponible;
+	private int estEnFormation;
+	private int estDisponible;
 	private String login;
 	private String pass;
 	//private int curNum;
@@ -136,19 +136,19 @@ public class Utilisateur {
 		this.fax = fax;
 	}
 
-	public Boolean getEstEnFormation() {
+	public int getEstEnFormation() {
 		return estEnFormation;
 	}
 
-	public void setEstEnFormation(Boolean estEnFormation) {
+	public void setEstEnFormation(int estEnFormation) {
 		this.estEnFormation = estEnFormation;
 	}
 
-	public Boolean getEstDisponible() {
+	public int getEstDisponible() {
 		return estDisponible;
 	}
 
-	public void setEstDisponible(Boolean estDisponible) {
+	public void setEstDisponible(int estDisponible) {
 		this.estDisponible = estDisponible;
 	}
 

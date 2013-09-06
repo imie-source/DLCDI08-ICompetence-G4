@@ -18,6 +18,7 @@ public class Competence {
 	private List<Utilisateur> listUtilisateur;
 	private Niveau niveau;
 	private Domaine domaine;
+	private List<Keyword> listKeyword;
 
 
 	/**
@@ -107,4 +108,15 @@ public class Competence {
 		this.domaine = domaine;
 	}
 
+	public List<Keyword> getListKeyword() {
+		return listKeyword;
+	}
+
+	public void addListKeyword(List<Keyword> listKeyword) {
+		this.listKeyword = listKeyword;
+	}
+	
+	public void removeListKeyword(List<Keyword> listKeyword) {
+		this.listKeyword = listKeyword;
+	}
 }

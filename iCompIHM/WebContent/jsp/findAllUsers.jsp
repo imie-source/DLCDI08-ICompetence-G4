@@ -157,7 +157,7 @@ jQuery(function($){
 								
 				<%-- Div Edit --%>
 				<div class="edit">
-					<img src=img/edit.png alt="Edit" title="Edit" />
+					<a href="./EditUser?login=<%=usr.getLogin()%>"><img src=img/edit.png alt="Edit" title="Edit" /></a>
 				</div>
 	
 				<%-- Div Delete --%>
@@ -183,6 +183,8 @@ jQuery(function($){
 	</div>
 	
 	<div id="popup1" class="popup_block">
+	
+		<h2>Ajouter un Utilisateur</h2>
 		
 		<%-- Div AddUserForm --%>
 			<div id = "addUserForm">
@@ -221,8 +223,8 @@ jQuery(function($){
 				
 				<%-- EST DISPONIBLE --%>
 				<div class = "formLibelle">Disponible : </div>
-				<div class = "formInput"><input type="radio" name="disponible" value="true" checked /> Oui
-				<input type="radio" name="disponible" value="false" /> Non</div><br />
+				<div class = "formInput"><input type="radio" name="disponible" value=1 checked /> Oui
+				<input type="radio" name="disponible" value=0 /> Non</div><br />
 				
 				<%-- CURSUS --%>
 				<div class = "formLibelle">Cursus : </div>
