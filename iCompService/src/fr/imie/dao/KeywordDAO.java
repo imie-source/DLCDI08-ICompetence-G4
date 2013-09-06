@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,12 +111,87 @@ public class KeywordDAO extends ATransactional implements IKeywordDAO {
 	
 	@Override
 	public Keyword insertKeyword(Keyword keyword) throws TransactionalConnectionException {
-		return null;
+		
+		PreparedStatement pstmt = null;
+		// déclaration de la variable de resultset
+		ResultSet rs = null;
+		Keyword keywordDTOinserted = null;
+
+		String query = "INSERT INTO Keyword (key_id, key_libelle) VALUES (?, ?)";
+				
+		try {
+
+			// execution d'une requête SQL et récupération du result dans le
+			// resultset
+			pstmt = getConnection().prepareStatement(query);
+
+			pstmt.setInt(1, keyword.getId());
+			pstmt.setString(2, keyword.getLibelle());
+
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				keywordDTOinserted = buildDTO(rs);
+			}
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+
+			// libération des ressources
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+		return keywordDTOinserted;
+	
 	}
 
 	@Override
-	public Keyword updateKeyword(Keyword keyword) throws TransactionalConnectionException {
-		return null;
+	public Keyword updateKeyword(Keyword keywordTOupdate) throws TransactionalConnectionException {
+		Keyword KeywordDTORetour = null;
+		PreparedStatement pstmt = null;
+		// déclaration de la variable de resultset
+		ResultSet rs = null;
+		try {
+			// execution d'une requête SQL et récupération du result
+			String query = "update Keyword set  key_libelle='css' where key_id='5'";
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setString(1, keywordTOupdate.getLibelle());
+			
+			
+
+			pstmt.setInt(10, keywordTOupdate.getId());
+			System.out.println(pstmt.toString());
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+
+			// libération des ressources
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+		return KeywordDTORetour;
+		
 	}
 
 	@Override
