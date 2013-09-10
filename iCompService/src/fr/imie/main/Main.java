@@ -203,18 +203,12 @@ public class Main {
 				break;
 
 			// UTILISATEURS PAR COMPETENCE
-				*/.metadata
-				*/RemoteSystemsTempFiles
 
 			case comp_users:
 
 				i = ScreenV2.competencesUser();
 
-				switch*/.metadata
-				*/RemoteSystemsTempFiles
- (i) {*/.metadata
-				*/RemoteSystemsTempFiles
-
+				switch(i) {
 
 				case 0:
 
