@@ -1,9 +1,8 @@
 package fr.imie.dao.interfaces;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
+import fr.imie.dto.Competence;
 import fr.imie.dto.Keyword;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -20,5 +19,10 @@ public interface IKeywordDAO {
 			throws TransactionalConnectionException;
 
 	public void deleteKeyword(Keyword keyword) throws TransactionalConnectionException;
+
+
+
+	public List<Keyword> getKeywordBycompetence(Competence competence)
+			throws TransactionalConnectionException;
 
 }

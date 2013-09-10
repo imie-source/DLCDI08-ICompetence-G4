@@ -4,19 +4,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.imie.dao.interfaces.ICompetenceDAO;
-import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dao.interfaces.IDomaineDAO;
-import fr.imie.dto.Competence;
-import fr.imie.dto.Cursus;
 import fr.imie.dto.Domaine;
-import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
-import fr.imie.factory.Factory;
 import fr.imie.transactionalFramework.ATransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -160,8 +153,8 @@ public class DomaineDAO extends ATransactional implements IDomaineDAO {
 		String query = "update domaine set dom_nom=?, dom_ID1=? where dom_ID=?";
 		pstmt = getConnection().prepareStatement(query);
 		
-		pstmt.setString(1, domaineRetour.getNom());
-		pstmt.setInt(2, domaineRetour.getId());
+		pstmt.setString(1, domaine.getNom());
+		pstmt.setInt(2, domaine.getId());
 		
 		
 		//pstmt.setDomaine(3, domaineRetour.getDomaine());

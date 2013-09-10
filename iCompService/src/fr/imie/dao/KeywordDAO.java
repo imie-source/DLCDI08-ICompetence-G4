@@ -4,18 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.imie.dao.interfaces.IKeywordDAO;
-import fr.imie.dao.interfaces.INiveauxDAO;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Keyword;
-import fr.imie.dto.Niveau;
-import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
-import fr.imie.factory.Factory;
 import fr.imie.transactionalFramework.ATransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -25,6 +20,7 @@ import fr.imie.transactionalFramework.TransactionalConnectionException;
  * @author imie
  * @version 1.0
  */
+
 public class KeywordDAO extends ATransactional implements IKeywordDAO {
 	public static final String key_id = "key_id";
 	public static final String key_libelle = "key_libelle";
@@ -179,7 +175,8 @@ public class KeywordDAO extends ATransactional implements IKeywordDAO {
 			throws TransactionalConnectionException {
 
 	}
-
+	
+	@Override
 	public List<Keyword> getKeywordBycompetence(Competence competence)
 			throws TransactionalConnectionException {
 
