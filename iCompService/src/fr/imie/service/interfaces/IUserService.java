@@ -46,6 +46,8 @@ public interface IUserService extends ITransactional {
 	
 	public abstract List<Competence> getCompetences() throws TransactionalConnectionException;
 
+	public abstract List<Competence> getCompetenceByKeyword(Keyword keyword)
+			throws TransactionalConnectionException;
 
 	// DOMAINE
 	public abstract List<Domaine> getDomaines() throws TransactionalConnectionException;
@@ -70,6 +72,7 @@ public interface IUserService extends ITransactional {
 
 
 	public abstract void deleteKeyword(Keyword keyword) throws TransactionalConnectionException;
+
 	
 	
 	
