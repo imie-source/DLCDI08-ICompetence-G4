@@ -4,38 +4,36 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Type;
-
-import fr.imie.dao.interfaces.IGroupeDAO;
+import fr.imie.dao.interfaces.IStatutDAO;
 import fr.imie.dto.Groupe;
-import fr.imie.dto.Utilisateur;
+import fr.imie.dto.Statut;
 import fr.imie.exceptionManager.ExceptionManager;
 import fr.imie.transactionalFramework.ATransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
-public class GroupeDAO extends ATransactional implements IGroupeDAO {
+
+public class StatutDAO extends ATransactional implements IStatutDAO {
 	// SQL Fields
 
 	@Override
-	public List<Groupe> getGroupes() throws TransactionalConnectionException {
-		List<Groupe> groupes = new ArrayList<Groupe>();
+	public List<Statut> getStatuts() throws TransactionalConnectionException {
+		List<Statut> statuts = new ArrayList<Statut>();
 
 		Statement stmt = null;
 		ResultSet rs = null;
-		String query = "SELECT * FROM groupe";
+		String query = "SELECT * FROM statut";
 
 		try {
 			stmt = getConnection().createStatement();
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				Groupe grp = buildDTO(rs);
-				groupes.add(grp);
+				Statut sta = buildDTO(rs);
+				statuts.add(sta);
 			}
 
 		} catch (SQLException e) {
@@ -56,51 +54,28 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
-		return groupes;
+		return statuts;
 	}
 
 	@Override
-	public Groupe insertGroupe(Groupe groupeToInsert)
+	public Statut insertStatut(Statut statutToInsert)
 			throws TransactionalConnectionException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Groupe groupe = null;
-		String query = "INSERT INTO GROUPES (GRP_Avancement , GRP_Nom_Projet , GRP_Description , STA_ID , USR_ID ) VALUES (? , ? , ? , ? , ?)";
+		Statut statut = null;
+		String query = "INSERT INTO STATUT (STA_Id , STA_Libelle ) VALUES (? , ?)";
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
 			
-			pstmt.setInt(1, groupeToInsert.getAvancement());
+			pstmt.setInt(1, statutToInsert.getId());
 			
+			pstmt.setString(2, statutToInsert.getLibelle());
 		
-			if (groupeToInsert.getNom() == null) {
-				pstmt.setNull(2, Type.CHAR);
-			} else {
-				pstmt.setString(2, groupeToInsert.getNom());
-			};
-	
-			if (groupeToInsert.getDescription() == null) {
-				pstmt.setNull(3, Type.CHAR);
-			} else {
-				pstmt.setString(3, groupeToInsert.getDescription());
-			}
-			
-			if (groupeToInsert.getStatut() == null) {
-				pstmt.setNull(4, Type.CHAR);
-			} else {
-				pstmt.setInt(4, groupeToInsert.getStatut().getId());
-			}
-					
-			
-			if (groupeToInsert.getChefProjet() == null) {
-				pstmt.setNull(5, Type.CHAR);
-			} else {
-				pstmt.setInt(5, groupeToInsert.getChefProjet().getId());
-			}
-
 			rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
-				groupe = buildDTO(rs);
+				statut = buildDTO(rs);
 			}
 
 		} catch (SQLException e) {
@@ -120,33 +95,23 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
-		return groupe;
+		return statut;
 	}
 
 	@Override
-	public Groupe updateGroupe(Groupe groupeToUpdate)
+	public Statut updateStatut(Statut statutToUpdate)
 			throws TransactionalConnectionException {
-		Groupe groupeRetour = null;
+		Statut statutRetour = null;
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		try {
-			String query = "update groupe set GRP_Avancement=?, GRP_Nom_Projet=?, GRP_Description=?, STA_ID=?, USR_ID=? where grp_ID=?";
+		try {                                           
+			String query = "update statut set STA_Id=?, STA_Libelle=? where sta_ID=?";
 			pstmt = getConnection().prepareStatement(query);
 
-			pstmt.setInt(1, groupeToUpdate.getAvancement());
-			pstmt.setString(2, groupeToUpdate.getNom());
-			pstmt.setString(3, groupeToUpdate.getDescription());
-			
-			
-			if (groupeToUpdate.getStatut() != null) {
-				pstmt.setInt(4, groupeToUpdate.getStatut().getId());
-			} else {
-				pstmt.setNull(4, Types.INTEGER);
-			}
-
-			pstmt.setInt(5, groupeToUpdate.getChefProjet().getId());
-			
+			pstmt.setInt(1, statutToUpdate.getId());
+			pstmt.setString(2, statutToUpdate.getLibelle());
+						
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -164,16 +129,15 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
-		return groupeRetour;
+		return statutRetour;
 	}
 
 	@Override
-	public void deleteGroupe(Groupe groupeToDelete)
+	public void deleteStatut(Statut statutToDelete)
 			throws TransactionalConnectionException {
 		// Batch Delete User
-		String QUERY_DELETE_FROM_GRP_USER = "DELETE FROM GRP_USER WHERE GRP_ID = ";
-		String QUERY_DELETE_FROM_INVITATION = "DELETE FROM INVITATION WHERE GRP_ID = ";
-		String QUERY_UPDATE_GROUPE = "DELETE GROUPE SET GRP_ID = null WHERE GRP_ID = ";
+		String QUERY_DELETE_FROM_STA_ID = "DELETE FROM STATUT WHERE STA_ID = ";
+
 
 		// déclaration de la variable de statement
 		Statement stmt = null;
@@ -181,10 +145,7 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 		ResultSet rs = null;
 		try {
 			stmt = getConnection().createStatement();
-
-			stmt.addBatch(QUERY_DELETE_FROM_GRP_USER + groupeToDelete.getId());
-			stmt.addBatch(QUERY_DELETE_FROM_INVITATION + groupeToDelete.getId());
-			stmt.addBatch(QUERY_UPDATE_GROUPE + groupeToDelete.getId());
+			stmt.addBatch(QUERY_DELETE_FROM_STA_ID + statutToDelete.getId());
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 		} finally {
@@ -204,7 +165,7 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 	}
 
 	@Override
-	public List<Groupe> getGroupesByUser(Utilisateur user)
+	public List<Statut> getStatutsByGRP(Groupe groupe)
 			throws TransactionalConnectionException {
 		// TODO Auto-generated method stub
 		return null;
@@ -222,15 +183,15 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 	 * @throws TransactionalConnectionException
 	 * @throws TransactionRequiredException
 	 */
-	private Groupe buildDTO(ResultSet rs) throws SQLException,
+	private Statut buildDTO(ResultSet rs) throws SQLException,
 			TransactionalConnectionException {
 		// IUtilisateurDAO utilisateurDAO =
 		// Factory.getInstance().createUserDAO(this);
 		// IStatutDAO StatutDAO = Factory.getInstance().createStatutDAO(this);
 
 		// création d'un nouveau groupe
-		Groupe groupe = new Groupe();
-		groupe.setId(rs.getInt("GRP_ID"));
+		Statut statut = new Statut();
+		statut.setId(rs.getInt("STA_ID"));
 
 		// // récupération des utilisateurs d'un groupe
 		// List<Utilisateur> utilisateurs = UtilisateurDAO.getUser(groupe);
@@ -238,6 +199,6 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 		// for (Utilisateur utilisateur : utilisateurs) {
 		// groupe.addUtilisateur(utilisateur);
 		// }
-		return groupe;
+		return statut;
 	}
 }

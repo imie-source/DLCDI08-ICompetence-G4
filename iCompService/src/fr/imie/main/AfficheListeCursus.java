@@ -15,10 +15,8 @@ public class AfficheListeCursus {
 		IUserService svc = Factory.getInstance().createUserService(null);
 		
 		
-		System.out.println("\033[2J\033[;H");
-		System.out.println("********************************");
-		System.out.println("\nLISTE CURSUS");
-		System.out.println("\n********************************\n");
+		System.out.println("LISTE CURSUS\n");
+		System.out.println("********************************\n");
 
 		try {
 
@@ -28,9 +26,6 @@ public class AfficheListeCursus {
 				System.out.print(cur.getId() + " : "
 						+ cur.getLibelle() + "\n");
 			}
-
-			System.out.println("\n********************************\n");
-
 		} catch (Exception e) {
 
 			System.out.println("Erreur à l'execution de Screen.cursusList()");

@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import fr.imie.dto.Competence;
+import fr.imie.dto.Keyword;
 import fr.imie.dto.Utilisateur;
 import fr.imie.transactionalFramework.ITransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
@@ -26,5 +27,8 @@ public interface ICompetenceDAO extends ITransactional {
 
 	public abstract List<Competence> getCompetences() throws TransactionalConnectionException;
 
-
+	public abstract List<Competence> getCompetenceByKeyword(Keyword keyword)
+			throws TransactionalConnectionException;
+	
+	
 }

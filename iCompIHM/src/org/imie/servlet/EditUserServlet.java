@@ -18,42 +18,34 @@ import fr.imie.service.interfaces.IUserService;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
 /**
- * Servlet implementation class AddUserServlet
+ * Servlet implementation class EditUserServlet
  */
-@WebServlet("/AddUser")
-public class AddUserServlet extends HttpServlet {
+@WebServlet("/EditUser")
+public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EditUserServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public AddUserServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("Add User Form");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Edit User Form");
 		response.setContentType("text/html");
-		request.getRequestDispatcher("./jsp/addUser.jsp")
+		request.getRequestDispatcher("./jsp/editUser.jsp")
 				.forward(request, response);
-
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Add User Process");
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IUserService svc = Factory.getInstance().createUserService(null);
 
 		Utilisateur user = new Utilisateur();
@@ -85,6 +77,7 @@ public class AddUserServlet extends HttpServlet {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
+				System.out.println("DN" + datenaissance.getTime());
 				java.sql.Date d = new java.sql.Date(datenaissance.getTime());
 				user.setDateNaissance(d);
 			}
@@ -124,12 +117,9 @@ public class AddUserServlet extends HttpServlet {
 			if (login != null) {
 				user.setLogin(login);
 			}
-			if (password != null) {
-				user.setPass(password);
-			}
-			
+
 			try {
-				Utilisateur usr = svc.insertUser(user);
+				Utilisateur usr = svc.updateUser(user);
 			} catch (TransactionalConnectionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

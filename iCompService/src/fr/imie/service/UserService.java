@@ -1,13 +1,18 @@
 package fr.imie.service;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
-
 
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
+import fr.imie.dao.interfaces.IDomaineDAO;
+import fr.imie.dao.interfaces.IKeywordDAO;
 import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
+import fr.imie.dto.Domaine;
+import fr.imie.dto.Keyword;
 import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IUserService;
@@ -111,6 +116,72 @@ public class UserService extends ATransactional implements IUserService {
 		return competenceDAO.getCompetences();
 		
 	}
+	
+	@Override
+	public List<Competence> getCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException{
+		ICompetenceDAO competenceDAO = Factory.getInstance().createCompetenceDAO(this);
+		return competenceDAO.getCompetenceByKeyword(keyword);
+		
+	}
+	
+	// DOMAINE
+	
+	@Override
+	public List<Domaine> getDomaines() throws TransactionalConnectionException {
+		IDomaineDAO domaineDAO = Factory.getInstance().createDomaineDAO(this);
+		return domaineDAO.getDomaines();
+	}
+	
+	@Override
+	public Domaine insertDomaine(Domaine domaine) throws TransactionalConnectionException {
+		IDomaineDAO domaineDAO = Factory.getInstance().createDomaineDAO(this);
+		return domaineDAO.insertDomaine(domaine);
+	}
+
+	@Override
+	public Domaine updateDomaine(Domaine domaine) throws TransactionalConnectionException {
+		IDomaineDAO domaineDAO = Factory.getInstance().createDomaineDAO(this);
+		return domaineDAO.updateDomaine(domaine);
+	}
+
+	
+	@Override
+	public void deleteDomaine(Domaine domaine) throws TransactionalConnectionException {
+		IDomaineDAO domaineDAO = Factory.getInstance().createDomaineDAO(this);
+		domaineDAO.deleteDomaine(domaine);
+	}
+	
+	
+	//KEYWORD
+	
+	@Override
+	public List<Keyword> getKeyword() throws TransactionalConnectionException{
+		IKeywordDAO KeywordDAO = Factory.getInstance().createKeywordDAO(this);
+		return KeywordDAO.getKeyword();
+		
+	}
+	
+	
+	@Override	
+	public Keyword insertKeyword(Keyword keyword) throws TransactionalConnectionException{
+		IKeywordDAO KeywordDAO = Factory.getInstance().createKeywordDAO(this);
+		return KeywordDAO.insertKeyword(keyword);
+		
+	}
+	
+	@Override
+	public Keyword updateKeyword(Keyword keyword)throws TransactionalConnectionException{
+		IKeywordDAO KeywordDAO = Factory.getInstance().createKeywordDAO(this);
+		return KeywordDAO.updateKeyword(keyword);
+		
+	}
+
+	@Override
+	public void deleteKeyword(Keyword keyword) throws TransactionalConnectionException{
+		IKeywordDAO KeywordDAO = Factory.getInstance().createKeywordDAO(this);
+	}
+	
+	
 	
 	
 }

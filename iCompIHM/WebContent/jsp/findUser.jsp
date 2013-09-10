@@ -36,6 +36,7 @@
 		
 		<%-- Div Wrapper --%>
 		<div id = "wrapper">
+		<div id= "profil">
 
 		<p class="title2">Profil</p>
 		
@@ -50,7 +51,7 @@
 		
 		<%-- End Div UserInfos --%>
 		</div>
-		
+		</div>
 		<%-- End Div Wrapper --%>
 		</div>
 		
