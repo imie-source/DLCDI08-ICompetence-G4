@@ -23,7 +23,7 @@ public interface IStatutDAO extends ITransactional {
 	 * @throws ClassNotFoundException
 	 * @throws TransactionalConnectionException
 	 */
-	public abstract List<Statut> getStatuts() throws TransactionalConnectionException;
+	public abstract List<Statut> findallStatuts() throws TransactionalConnectionException;
 
 	/**
 	 * insérer un statut

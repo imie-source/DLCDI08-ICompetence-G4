@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class PagePresentationServlet
  */
-@WebServlet(description = "Page de presentation", urlPatterns = {"/pagePresentation"})
+@WebServlet(description = "Page de presentation", urlPatterns = {"/accueilUser"})
 
-public class PagePresentationServlet extends HttpServlet {
+public class AccueilUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PagePresentationServlet() {
+    public AccueilUserServlet() {
         super();
     }
 
@@ -38,7 +38,7 @@ public class PagePresentationServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Page d'accueil" );
 		response.setContentType("text/html");
-		request.getRequestDispatcher("/jsp/pagePresentation.jsp").forward(request, response);
+		request.getRequestDispatcher("/jsp/accueilUser.jsp").forward(request, response);
 		
 	}
 

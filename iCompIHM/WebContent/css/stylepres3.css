@@ -1,14 +1,11 @@
 @CHARSET "UTF-8";
 
-@CHARSET "UTF-8";
-
 /* HEADER */
 
 /* MENU */
 #menu{
 background-color: #CCFFFF;
-padding: 10px 30px;
-margin-top: 20px;
+padding: 10px 10px;
 box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
 }
 
@@ -20,17 +17,47 @@ border-radius: 8px 8px 0px 0px;
 }
 
 #menuRecherche_right{
-display: table-cell;
-text-align: center;
-background-color: #ffffff;
-padding:30px 200px;
+display: inline-block;
+text-align: right;
+background-color:#33CC33;
+padding:10px 10px;
+margin-left:850px;
+padding-top:5px;
 }
 
-#menuRecherche_left{
+#menuListe_left{
+display: inline-block;
 text-align: center;
 background-color: #ffffff;
-padding:100px 20px;
+padding:10px 20px;
 }
+ul {
+ padding:0;
+ margin:0;
+ list-style-type:none;
+ }
+li {
+ margin-left:2px;
+ float:left; /*pour IE*/
+ }
+ul li a {
+ display:block;
+ float:left;   
+ width:auto;
+ background-color:#6495ED;
+ color:black;
+ text-decoration:none;
+ text-align:center;
+ padding:5px;
+ border:2px solid;
+ /*pour avoir un effet "outset" avec IE :*/
+ border-color:#DCDCDC #696969 #696969 #DCDCDC;
+ }
+ul li a:hover {
+ background-color:#D3D3D3;
+ border-color:#696969 #DCDCDC #DCDCDC #696969;
+ } 
+
 /* MES INFOS */
 #mesinfos{
 background-color: #FFCCFF;
@@ -88,5 +115,9 @@ box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
 	padding-bottom: 5%;
 	padding-left:5%;
 }
-
+#button2{
+display: table-cell;
+text-align: center;
+float: right;
+}
 

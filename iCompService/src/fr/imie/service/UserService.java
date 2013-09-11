@@ -196,10 +196,17 @@ public class UserService extends ATransactional implements IUserService {
 	}
 
 	@Override
+	public Keyword findCompetenceByKeyword(Keyword keyword2) throws TransactionalConnectionException{
+		IKeywordDAO KeywordDAO = Factory.getInstance().createKeywordDAO(this);
+		return keyword2;
+	}
+	
+	@Override
 	public Utilisateur IsAuthorized(Utilisateur user)
 			throws TransactionalConnectionException {
 		IUtilisateurDAO userDAO = Factory.getInstance().createUserDAO(this);
 		return userDAO.IsAuthorized(user);
 	}
+
 
 }

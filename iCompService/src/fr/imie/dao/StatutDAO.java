@@ -21,7 +21,7 @@ public class StatutDAO extends ATransactional implements IStatutDAO {
 	// SQL Fields
 
 	@Override
-	public List<Statut> getStatuts() throws TransactionalConnectionException {
+	public List<Statut> findallStatuts() throws TransactionalConnectionException {
 		List<Statut> statuts = new ArrayList<Statut>();
 
 		Statement stmt = null;
@@ -192,6 +192,7 @@ public class StatutDAO extends ATransactional implements IStatutDAO {
 		// création d'un nouveau groupe
 		Statut statut = new Statut();
 		statut.setId(rs.getInt("STA_ID"));
+		statut.setLibelle(rs.getString("STA_LIBELLE"));
 
 		// // récupération des utilisateurs d'un groupe
 		// List<Utilisateur> utilisateurs = UtilisateurDAO.getUser(groupe);

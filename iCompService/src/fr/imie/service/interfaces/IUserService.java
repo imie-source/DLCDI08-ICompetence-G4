@@ -70,7 +70,11 @@ public interface IUserService extends ITransactional {
 
 	public abstract void deleteKeyword(Keyword keyword) throws TransactionalConnectionException;
 
-	public abstract Utilisateur IsAuthorized(Utilisateur user)
+public abstract Keyword findCompetenceByKeyword(Keyword keyword2) throws TransactionalConnectionException;
+
+public abstract Utilisateur IsAuthorized(Utilisateur user)
 			throws TransactionalConnectionException;
+
+
 
 }
