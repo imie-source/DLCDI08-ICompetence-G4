@@ -72,4 +72,7 @@ public interface IUtilisateurDAO extends ITransactional {
 
 	public abstract Utilisateur findUser(Utilisateur user2) throws TransactionalConnectionException;
 
+	public abstract Utilisateur IsAuthorized(Utilisateur user)
+			throws TransactionalConnectionException;
+
 }

@@ -12,9 +12,11 @@ import javax.transaction.TransactionRequiredException;
 
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
+import fr.imie.dao.interfaces.IProfilDAO;
 import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
+import fr.imie.dto.Profil;
 import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
 import fr.imie.factory.Factory;
@@ -106,6 +108,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		// initialisation du DAO de gestion des compétences
 		ICompetenceDAO competenceDAO = Factory.getInstance().createCompetenceDAO(this);
 		ICursusDAO cursusDAO = Factory.getInstance().createCursusDAO(this);
+		IProfilDAO profilDAO = Factory.getInstance().createProfilDAO(this);
 
 		// création d'un nouveau UserDTO
 		Utilisateur user = new Utilisateur();
@@ -130,8 +133,14 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		}
 
 		Cursus cursusDTO = cursusDAO.findCursusByUser(user);
-
 		user.setCursus(cursusDTO);
+		
+		List<Profil> profils = profilDAO.getProfilsByUser(user);
+		for (Profil profil : profils) {
+			user.addProfil(profil);
+		}
+
+
 		return user;
 	}
 
@@ -490,6 +499,53 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 
 		return user;
 	}
-	
+
+	@Override
+	public Utilisateur IsAuthorized(Utilisateur user) throws TransactionalConnectionException {
+		String query = "SELECT * FROM UTILISATEUR WHERE USR_LOGIN = ? AND USR_PASS = ?";
+		Utilisateur userRetour = new Utilisateur();
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		IProfilDAO profilDAO = Factory.getInstance().createProfilDAO(this);
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+
+			pstmt.setString(1, user.getLogin());
+			pstmt.setString(2, user.getPass());
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				userRetour.setId(rs.getInt(USR_ID));
+				userRetour.setNom(rs.getString(USR_NOM));
+				userRetour.setPrenom(rs.getString("USR_Prenom"));
+				userRetour.setLogin(rs.getString("usr_login"));
+
+				List<Profil> profils = profilDAO.getProfilsByUser(user);
+				for (Profil profil : profils) {
+					user.addProfil(profil);
+					System.out.println("A SUP : Nom du profil : " + profil.getNom());
+				}
+
+			}
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return userRetour;
+	}
 	
 }
