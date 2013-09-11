@@ -9,25 +9,35 @@
 <link rel="stylesheet" href="css/stylepres3.css" media="all" type="text/css" />
 </head>
 <body>
+<<<<<<< HEAD:iCompIHM/WebContent/jsp/accueilUser.jsp
+
+	<header>
+		<div id="header_content">
+		<img src="img/logoimie.png" alt=""/>
+		<div id="site_name">
+		<div id="title">
+=======
 <div id="mainwrapper">
 <div id="title">
+>>>>>>> a6f4a02594d7041a89b165bb5a607fc1ad280424:iCompIHM/WebContent/jsp/pagePresentation.jsp
 		<h1>Gestion des competences</h1>
-	</div>
+		</div>
+		</div>
+		</div>
+	</header>
 
-	<%-- Div wrapper --%>
 	<div id="wrapper"> 
-		<nav id="menu"> <!-- Menu de navigation du site-->	
-			
-			<%-- Div menuListe_left --%>		
+		<nav id="menu"> <!-- Menu de navigation du site-->			
 			<div id="menuListe_left">
-			
-			<%-- Div button --%>
 			<div id="button">
-				<a href="">Accueil</a>
-				<a href="">Deconnexion</a>
+			<ul>
+				<li><a href="" title="">Accueil</a></li>
+				<li><a href="" title="">Deconnexion</a></li>
+				<li><a href="" title="">Infos projets</a></li>
+				<li><a href="" title="">Infos utilisateurs</a></li>
+			</ul>
 			</div>
-			
-			<%-- Div menuRecherche_right --%>
+			</div>
 			<div id="menuRecherche_right">
 				<form>
 				<input type="search" name="recherche" placeholder="Recherche"/>
@@ -36,24 +46,23 @@
 			</div>
 		</nav>
 		
-		<%-- Div mesinfos --%>
+		
 		<div id="mesinfos"> <!-- bloc Mes Infos-->
-				<h2>Infos utilisateur</h2>
+				<h3>Infos utilisateur :</h3>
+				<h5>Eminuit autem inter humilia supergressa iam impotentia fines mediocrium</h5>
 		</div>
 		
-		<%-- Div projet --%>
 		<div id="projet">
-		
-			<%-- Div projetleft --%>
 			<div id="projetleft">
-			
-				<%-- Div projetsEnCours --%>
 				<div id="projetsEnCours"> <!--Projets en cours -->
 						<h4>Projets en cours</h4>
-						
-						<%-- Div projet1 --%>
 						<div id="projet1">
 						<h6>Projet 1 en cours</h6>
+							<div id="button2">
+							<ul>
+								<li><a href="" title="">Liste des Utilisateurs</a></li>
+							</ul>
+							</div>
 						<p>Chef de projet : Michel Hardy</p>
 						<p>Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum nefanda Clematii cuiusdam Alexandrini nobilis mors repentina;
 						cuius socrus cum misceri sibi generum, flagrans eius amore, non impetraret, ut ferebatur, per palatii pseudothyrum introducta, oblato pretioso
@@ -61,9 +70,13 @@
 						<p>Etat d'avancement : 60%</p>
 						</div>
 
-						<%-- Div projet2 --%>
 						<div id="projet2">
 						<h6>Projet 2 en cours</h6>
+							<div id="button2">
+							<ul>
+								<li><a href="" title="">Liste des Utilisateurs</a></li>
+							</ul>
+							</div>
 						<p>Chef de projet : Michel Hardy</p>
 						<p>Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum nefanda Clematii cuiusdam Alexandrini nobilis mors repentina;
 						cuius socrus cum misceri sibi generum, flagrans eius amore, non impetraret, ut ferebatur, per palatii pseudothyrum introducta, oblato pretioso
@@ -74,11 +87,8 @@
 						</div>
 				</div>
 				
-				<%-- Div projetsRealises --%>
 				<div id="projetsRealises"> <!--Projets réalisés -->
 						<h4>Projets Réalisés</h4>
-						
-						<%-- Div projet5 --%>
 						<div id="projet5">
 						<h6>developpement d'une interface graphique</h6>
 						<p>Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum nefanda Clematii cuiusdam Alexandrini nobilis mors repentina;
@@ -88,10 +98,7 @@
 			
 			</div>
 		
-		<%-- Div projetright --%>
 		<div id="projetright">
-		
-				<%-- Div propositiondeprojets --%>
 				<div id="propositiondeprojets"> <!--Propositions de projets -->
 					<h4>Propositions de projets</h4>
 					<div id="projetxx">
@@ -110,7 +117,6 @@
 	</div>
 </div>
 				<footer>
-								<%-- Div footer --%>
 								<div id="footer">
 								<a href="" title="">Mentions légales</a> - <a href="" title="">Site officiel de l'IMIE</a> - <a href="" title="">Contact</a>
 								</div>
