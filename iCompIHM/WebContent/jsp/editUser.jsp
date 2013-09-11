@@ -34,7 +34,7 @@
 </head>
 
 <body>
-
+	<div id="mainwrapper">
 		<%-- Div Title --%>
 		<div id = "title">
 			<h1>Modifier un utilisateur</h1>
@@ -133,6 +133,7 @@
 		<div id="footer">
 		<a class="backlink" href="./FindAllUsers">Retour Liste</a>
 		</div>
+	</div>
 
 </body>
 </html>

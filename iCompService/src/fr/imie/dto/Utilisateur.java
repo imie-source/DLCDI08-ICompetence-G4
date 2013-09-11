@@ -31,6 +31,7 @@ public class Utilisateur {
 	private List<Competence> competences;
 	private Cursus cursus;
 	private Adresse adresse;
+	private List<Profil> profils;
 
 	// constructeur
 	// Ce constructeur par défaut est necessaire pour initialiser la liste des
@@ -40,7 +41,9 @@ public class Utilisateur {
 		super();
 		// initialisation de la liste des compétences
 		competences = new ArrayList<Competence>();
-	}
+
+		profils = new ArrayList<Profil>();
+}
 
 	// remplacement du setCompetence par les methodes de l'API List
 	public void addCompetence(Competence competenceDTO) {
@@ -56,6 +59,19 @@ public class Utilisateur {
 		return competences;
 	}
 
+	public void addProfil(Profil profil) {
+		this.profils.add(profil);
+	}
+
+	// remplacement du setCompetence par les methodes de l'API List
+	public void removeProfil(Profil profil) {
+		this.profils.remove(profil);
+	}
+
+	public List<Profil> getProfils() {
+		return profils;
+	}
+	
 	public String getNom() {
 		return nom;
 	}

@@ -10,8 +10,6 @@ import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Type;
-
 import fr.imie.dao.interfaces.IGroupeDAO;
 import fr.imie.dto.Groupe;
 import fr.imie.dto.Utilisateur;
@@ -74,26 +72,26 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 			
 		
 			if (groupeToInsert.getNom() == null) {
-				pstmt.setNull(2, Type.CHAR);
+				pstmt.setNull(2, Types.CHAR);
 			} else {
 				pstmt.setString(2, groupeToInsert.getNom());
 			};
 	
 			if (groupeToInsert.getDescription() == null) {
-				pstmt.setNull(3, Type.CHAR);
+				pstmt.setNull(3, Types.CHAR);
 			} else {
 				pstmt.setString(3, groupeToInsert.getDescription());
 			}
 			
 			if (groupeToInsert.getStatut() == null) {
-				pstmt.setNull(4, Type.CHAR);
+				pstmt.setNull(4, Types.CHAR);
 			} else {
 				pstmt.setInt(4, groupeToInsert.getStatut().getId());
 			}
 					
 			
 			if (groupeToInsert.getChefProjet() == null) {
-				pstmt.setNull(5, Type.CHAR);
+				pstmt.setNull(5, Types.CHAR);
 			} else {
 				pstmt.setInt(5, groupeToInsert.getChefProjet().getId());
 			}

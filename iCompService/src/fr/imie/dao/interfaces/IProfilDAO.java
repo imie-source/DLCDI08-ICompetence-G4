@@ -3,6 +3,7 @@ package fr.imie.dao.interfaces;
 import java.util.List;
 
 import fr.imie.dto.Profil;
+import fr.imie.dto.Utilisateur;
 import fr.imie.transactionalFramework.ITransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -22,5 +23,8 @@ public interface IProfilDAO extends ITransactional {
 	public abstract Profil updateProfil(Profil profil) throws TransactionalConnectionException;
 
 	public abstract void deleteProfil(Profil profil) throws TransactionalConnectionException;
+
+	public abstract List<Profil> getProfilsByUser(Utilisateur user)
+			throws TransactionalConnectionException;
 
 }
