@@ -398,7 +398,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		Utilisateur user = new Utilisateur();
-		String query = "SELECT * FROM UTILISATEUR U WHERE U.USR_Login = ? ORDER BY U.USR_ID";
+		String query = "SELECT * FROM UTILISATEUR U WHERE U.USR_Login = ? ORDER BY U.USR_Nom";
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
