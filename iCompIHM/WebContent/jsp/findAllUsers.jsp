@@ -82,11 +82,6 @@ jQuery(function($){
 			<%-- Div Header Line --%>
 			<div class="headerline">
 
-				<%-- Div Header Num --%>
-				<div class="num">
-					<p class="header">Num</p>
-				</div>
-
 				<%-- Div Header Identite --%>
 				<div class="identite">
 					<p class="header">Identite</p>
@@ -134,14 +129,6 @@ jQuery(function($){
 			%>
 			
 				<a href="./FindUser?login=<%=usr.getLogin()%>">
-					<%-- Div Num --%>
-					<div class="num">
-						<p class="content">	
-			
-							<%=i%> 
-						
-						</p>
-					</div>
 		
 					<%-- Div Identite --%>
 					<div class="identite">

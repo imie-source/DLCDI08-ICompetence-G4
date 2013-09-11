@@ -71,7 +71,7 @@
 
 .identite {
 	height: 20px;
-	width: 300px;
+	width: 375px;
 	float: left;
 }
 
@@ -108,11 +108,13 @@
 	vertical-align: middle;
 	display: inline;
 	font-weight: bold;
+	margin-left : 20px;
 }
 
 .content {
 	vertical-align: middle;
 	display: inline;
+	margin-left : 20px;
 }
 
 #fade { /*--Masque opaque noir de fond--*/
