@@ -12,15 +12,26 @@ import javax.transaction.TransactionRequiredException;
 
 import com.sun.xml.internal.ws.org.objectweb.asm.Type;
 
+import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dao.interfaces.IGroupeDAO;
+import fr.imie.dto.Cursus;
 import fr.imie.dto.Groupe;
 import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
+import fr.imie.factory.Factory;
 import fr.imie.transactionalFramework.ATransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
 public class GroupeDAO extends ATransactional implements IGroupeDAO {
 	// SQL Fields
+	// SQL Fields
+	
+	private static final String GRP_ID = "GRP_ID";
+	private static final String GRP_AVANCEMENT = "GRP_AVANCEMENT";
+	private static final String GRP_DESCRIPTION = "GRP_DESCRIPTION";
+	private static final String GRP_NOM = "GRP_NOM";
+	private static final String GRP_STATUT = "GRP_STATUT";
+
 
 	@Override
 	public List<Groupe> getGroupes() throws TransactionalConnectionException {
@@ -59,6 +70,52 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 		return groupes;
 	}
 
+	@Override
+	public Groupe findGroupById(String grpid)  throws TransactionalConnectionException {
+
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Groupe group = new Groupe();
+		String query = "SELECT * FROM GROUPE WHERE GRP_ID = ? ";
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setString(1, grpid);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+								
+				group.setId(rs.getInt(GRP_ID));
+				group.setAvancement(rs.getInt(GRP_AVANCEMENT));
+				group.setDescription(rs.getString(GRP_DESCRIPTION));
+				group.setNom(rs.getString(GRP_NOM));
+				
+				IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
+
+			}
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			// libération des ressources
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return group;
+
+	}
+	
+	
 	@Override
 	public Groupe insertGroupe(Groupe groupeToInsert)
 			throws TransactionalConnectionException {
