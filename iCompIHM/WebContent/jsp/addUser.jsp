@@ -24,7 +24,7 @@
 <body>
 		
 		<% svc = Factory.getInstance().createUserService(null); %>
-
+	<div id=mainwrapper">
 		<%-- Div Title --%>
 		<div id = "title">
 			<h1>Ajouter un utilisateur</h1>
@@ -42,6 +42,7 @@
 		<div id="footer">
 		<a class="backlink" href="./FindAllUsers">Retour Liste</a>
 		</div>
+	</div>
 
 </body>
 </html>

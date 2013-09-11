@@ -117,7 +117,6 @@ public class UserService extends ATransactional implements IUserService {
 		
 	}
 	
-	@Override
 	public List<Competence> getCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException{
 		ICompetenceDAO competenceDAO = Factory.getInstance().createCompetenceDAO(this);
 		return competenceDAO.getCompetenceByKeyword(keyword);

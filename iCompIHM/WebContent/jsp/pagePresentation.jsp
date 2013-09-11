@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="css/stylepres3.css" media="all" type="text/css" />
 </head>
 <body>
+<div id="mainwrapper">
 <div id="title">
 		<h1>Gestion des competences</h1>
 	</div>
@@ -114,6 +115,7 @@
 								<a href="" title="">Mentions légales</a> - <a href="" title="">Site officiel de l'IMIE</a> - <a href="" title="">Contact</a>
 								</div>
 				</footer>
+</div>
 
 </body>
 </html>
