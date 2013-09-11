@@ -182,6 +182,12 @@ public class UserService extends ATransactional implements IUserService {
 	}
 	
 	
+	@Override
+	public Keyword findCompetenceByKeyword(Keyword keyword2) throws TransactionalConnectionException{
+		IKeywordDAO KeywordDAO = Factory.getInstance().createKeywordDAO(this);
+		return keyword2;
+	}
+	
 	
 	
 }

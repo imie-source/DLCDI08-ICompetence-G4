@@ -25,4 +25,9 @@ public interface IKeywordDAO {
 	public List<Keyword> getKeywordBycompetence(Competence competence)
 			throws TransactionalConnectionException;
 
+
+
+	public Keyword findCompetenceByKeyword(Keyword keyword2)
+			throws TransactionalConnectionException;
+
 }

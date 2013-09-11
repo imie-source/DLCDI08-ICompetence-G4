@@ -73,6 +73,8 @@ public interface IUserService extends ITransactional {
 
 	public abstract void deleteKeyword(Keyword keyword) throws TransactionalConnectionException;
 
+	public abstract Keyword findCompetenceByKeyword(Keyword keyword2) throws TransactionalConnectionException;
+
 	
 	
 	
