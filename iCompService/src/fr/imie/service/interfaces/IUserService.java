@@ -2,14 +2,11 @@ package fr.imie.service.interfaces;
 
 import java.util.List;
 
-
-import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
 import fr.imie.dto.Domaine;
 import fr.imie.dto.Keyword;
 import fr.imie.dto.Utilisateur;
-import fr.imie.factory.Factory;
 import fr.imie.transactionalFramework.ITransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -46,6 +43,8 @@ public interface IUserService extends ITransactional {
 	
 	public abstract List<Competence> getCompetences() throws TransactionalConnectionException;
 
+	public abstract List<Competence> getCompetenceByKeyword(Keyword keyword)
+			throws TransactionalConnectionException;
 
 	// DOMAINE
 	public abstract List<Domaine> getDomaines() throws TransactionalConnectionException;
@@ -70,8 +69,12 @@ public interface IUserService extends ITransactional {
 
 
 	public abstract void deleteKeyword(Keyword keyword) throws TransactionalConnectionException;
-	
-	
-	
+
+public abstract Keyword findCompetenceByKeyword(Keyword keyword2) throws TransactionalConnectionException;
+
+public abstract Utilisateur IsAuthorized(Utilisateur user)
+			throws TransactionalConnectionException;
+
+
 
 }

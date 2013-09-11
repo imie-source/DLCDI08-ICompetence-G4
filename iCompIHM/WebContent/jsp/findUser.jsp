@@ -28,7 +28,7 @@
 <body>
 
 		
-
+<div id="mainwrapper">
 		<%-- Div Title --%>
 		<div id="title">
 			<h1><%=user.getPrenom() + " " + user.getNom()%></h1>
@@ -59,6 +59,7 @@
 		<div id="footer">
 		<a class="backlink" href="./FindAllUsers">Retour Liste</a>
 		</div>
+	</div>
 
 </body>
 </html>

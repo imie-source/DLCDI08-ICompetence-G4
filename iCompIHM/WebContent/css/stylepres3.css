@@ -1,0 +1,123 @@
+@CHARSET "UTF-8";
+
+/* HEADER */
+
+/* MENU */
+#menu{
+background-color: #CCFFFF;
+padding: 10px 10px;
+box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
+}
+
+#button{
+display: table-cell;
+text-align: center;
+background-color: #ffffff;
+border-radius: 8px 8px 0px 0px;
+}
+
+#menuRecherche_right{
+display: inline-block;
+text-align: right;
+background-color:#33CC33;
+padding:10px 10px;
+margin-left:850px;
+padding-top:5px;
+}
+
+#menuListe_left{
+display: inline-block;
+text-align: center;
+background-color: #ffffff;
+padding:10px 20px;
+}
+ul {
+ padding:0;
+ margin:0;
+ list-style-type:none;
+ }
+li {
+ margin-left:2px;
+ float:left; /*pour IE*/
+ }
+ul li a {
+ display:block;
+ float:left;   
+ width:auto;
+ background-color:#6495ED;
+ color:black;
+ text-decoration:none;
+ text-align:center;
+ padding:5px;
+ border:2px solid;
+ /*pour avoir un effet "outset" avec IE :*/
+ border-color:#DCDCDC #696969 #696969 #DCDCDC;
+ }
+ul li a:hover {
+ background-color:#D3D3D3;
+ border-color:#696969 #DCDCDC #DCDCDC #696969;
+ } 
+
+/* MES INFOS */
+#mesinfos{
+background-color: #FFCCFF;
+padding: 10px 15px;
+margin-top: 20px;
+box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
+}
+/* PROJET */
+
+#projetleft{
+	background-color:#FFFF99;
+	color: 	#000000;
+	width: 50%;
+	float: left;
+	position: relative;
+ }
+#projet{
+	background-color:#FFCC00;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+ 
+ #projetsEnCours{
+	background-color: #FFFF99;
+	color: #000000;
+	width: 50%;
+	list-style-type: square;
+	position: relative;
+	display:inline-block;
+	height:70%
+ }
+#projetsRealises{
+	background-color: #0099FF;
+	color:#000000;
+	width : 100%;
+	height:30%;
+	position: relative;
+	display:inline-block;
+}
+#propositiondeprojets{
+	background-color: #FFCCCC;
+	color: #000000;
+	width : 100%;
+	display:inline-block;
+	height:100%
+}
+#projetright{
+	background-color:#99FF9;
+	width: 30%;
+	height:100%;
+	display:inline-block;
+	padding-top: 5%;
+	padding-right: 5%;
+	padding-bottom: 5%;
+	padding-left:5%;
+}
+#button2{
+display: table-cell;
+text-align: center;
+float: right;
+}
+
