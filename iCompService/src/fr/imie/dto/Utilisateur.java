@@ -104,22 +104,6 @@ public class Utilisateur {
 		this.id = id;
 	}
 
-	/*public int getAdrNum() {
-		return adrNum;
-	}
-
-	public void setAdrNum(int adrNum) {
-		this.adrNum = adrNum;
-	}
-
-	public int getCurNum() {
-		return curNum;
-	}
-
-	public void setCurNum(int curNum) {
-		this.curNum = curNum;
-	}*/
-
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}

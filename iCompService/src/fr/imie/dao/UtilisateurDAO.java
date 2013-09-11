@@ -430,8 +430,15 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 				
 				ICursusDAO cursusDAO = Factory.getInstance().createCursusDAO(this);
 				Cursus cursusDTO = cursusDAO.findCursusByUser(user);
-
 				user.setCursus(cursusDTO);
+				
+				ICompetenceDAO competenceDAO = Factory.getInstance().createCompetenceDAO(this);
+				List<Competence> competences = competenceDAO.getCompetenceByUser(user);
+				for (Competence competence : competences) {
+					user.addCompetence(competence);
+				}
+
+				
 			}
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
