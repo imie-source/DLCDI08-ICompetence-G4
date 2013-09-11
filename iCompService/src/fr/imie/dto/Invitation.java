@@ -14,8 +14,8 @@ public class Invitation {
 	private int id;
 	private boolean reponse;
 	private Date date;
-	private int grpNum;
-	private int usrNum;
+	private Utilisateur utilisateur;
+	private Groupe groupe;
 
 	/**
 	 * @return the invNum
@@ -62,34 +62,20 @@ public class Invitation {
 		this.date = date;
 	}
 
-	/**
-	 * @return the grpNum
-	 */
-	public int getGrpNum() {
-		return grpNum;
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 
-	/**
-	 * @param grpNum
-	 *            the grpNum to set
-	 */
-	public void setGrpNum(int grpNum) {
-		this.grpNum = grpNum;
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
-	/**
-	 * @return the usrNum
-	 */
-	public int getUsrNum() {
-		return usrNum;
+	public Groupe getGroupe() {
+		return groupe;
 	}
 
-	/**
-	 * @param usrNum
-	 *            the usrNum to set
-	 */
-	public void setUsrNum(int usrNum) {
-		this.usrNum = usrNum;
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
 	}
 
 }
