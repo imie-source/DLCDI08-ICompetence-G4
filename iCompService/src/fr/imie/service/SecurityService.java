@@ -12,6 +12,7 @@ import fr.imie.dto.Fenetre;
 import fr.imie.dto.Fonction;
 import fr.imie.dto.Nature;
 import fr.imie.dto.Profil;
+import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.ISecurityService;
 import fr.imie.transactionalFramework.ATransactional;
@@ -138,4 +139,11 @@ public class SecurityService extends ATransactional implements ISecurityService 
 		IDroitDAO droitDAO = Factory.getInstance().createDroitDAO(this);
 		droitDAO.deleteDroit(droit);
 	}	
+	
+	@Override
+	public List<Profil> getProfilsByUser(Utilisateur user)
+			throws TransactionalConnectionException {
+		IProfilDAO profilDAO = Factory.getInstance().createProfilDAO(this);
+		return profilDAO.getProfilsByUser(user);
+	}
 }

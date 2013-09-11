@@ -10,6 +10,7 @@ import java.util.List;
 import fr.imie.dao.interfaces.IKeywordDAO;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Keyword;
+import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
 import fr.imie.transactionalFramework.ATransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
@@ -217,5 +218,50 @@ public class KeywordDAO extends ATransactional implements IKeywordDAO {
 		}
 		return keyList;
 	}
+
+
+
+	
+	@Override
+	public Keyword findCompetenceByKeyword(Keyword keyword2) throws TransactionalConnectionException {
+		String query = "SELECT key_libelle FROM Keyword  WHERE key_libelle = ?";
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+
+			pstmt.setString(1, keyword2.getLibelle());
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				Keyword keyword = new Keyword();
+				
+				keyword.setLibelle(rs.getString(key_libelle));
+				
+
+			}
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return keyword2;
+	}
+
+
+
 
 }

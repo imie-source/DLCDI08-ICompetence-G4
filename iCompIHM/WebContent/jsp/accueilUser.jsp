@@ -9,12 +9,17 @@
 <link rel="stylesheet" href="css/stylepres3.css" media="all" type="text/css" />
 </head>
 <body>
+<<<<<<< HEAD:iCompIHM/WebContent/jsp/accueilUser.jsp
 
 	<header>
 		<div id="header_content">
 		<img src="img/logoimie.png" alt=""/>
 		<div id="site_name">
 		<div id="title">
+=======
+<div id="mainwrapper">
+<div id="title">
+>>>>>>> a6f4a02594d7041a89b165bb5a607fc1ad280424:iCompIHM/WebContent/jsp/pagePresentation.jsp
 		<h1>Gestion des competences</h1>
 		</div>
 		</div>
@@ -116,6 +121,7 @@
 								<a href="" title="">Mentions légales</a> - <a href="" title="">Site officiel de l'IMIE</a> - <a href="" title="">Contact</a>
 								</div>
 				</footer>
+</div>
 
 </body>
 </html>

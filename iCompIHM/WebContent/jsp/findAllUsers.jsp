@@ -67,7 +67,7 @@ jQuery(function($){
 </head>
 
 <body>
-
+<div id=mainwrapper>
 	<%-- Div Title --%>
 	<div id="title">
 		<h1>Liste des Utilisateurs</h1>
@@ -265,6 +265,7 @@ jQuery(function($){
 			</div>
 			
 	</div>
+</div>
 	
 	
 </body>

@@ -2,27 +2,30 @@ package fr.imie.main;
 
 import java.util.List;
 
-import fr.imie.dao.KeywordDAO;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Keyword;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IUserService;
 
-public class MainKeyword {
+public class MainFindAllCompetences {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
 		IUserService svc = Factory.getInstance().createUserService(null);
-		System.out.println("Liste Keyword");
+		System.out.println("Liste Competences");
+		
+	
 		try {
-			Keyword keyword = new Keyword();
-			keyword.setLibelle("toto");
-			
+			List<Competence> list = svc.getCompetences();
 
-			System.out.println("le mot clé est " + keyword.getLibelle() + "\n");
-			
+			for (Competence var : list) {
+				System.out.println(var.getLibelle() + " : "
+						+ "\n");
+			}
+			System.out.println("Fin");
 
 		} catch (Exception e) {
 			System.out.println("erreur");
@@ -30,5 +33,8 @@ public class MainKeyword {
 		}
 
 	}
+		
+
+	
 
 }
