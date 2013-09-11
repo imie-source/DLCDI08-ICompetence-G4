@@ -1,0 +1,92 @@
+@CHARSET "UTF-8";
+
+@CHARSET "UTF-8";
+
+/* HEADER */
+
+/* MENU */
+#menu{
+background-color: #CCFFFF;
+padding: 10px 30px;
+margin-top: 20px;
+box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
+}
+
+#button{
+display: table-cell;
+text-align: center;
+background-color: #ffffff;
+border-radius: 8px 8px 0px 0px;
+}
+
+#menuRecherche_right{
+display: table-cell;
+text-align: center;
+background-color: #ffffff;
+padding:30px 200px;
+}
+
+#menuRecherche_left{
+text-align: center;
+background-color: #ffffff;
+padding:100px 20px;
+}
+/* MES INFOS */
+#mesinfos{
+background-color: #FFCCFF;
+padding: 10px 15px;
+margin-top: 20px;
+box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
+}
+/* PROJET */
+
+#projetleft{
+	background-color:#FFFF99;
+	color: 	#000000;
+	width: 50%;
+	float: left;
+	position: relative;
+ }
+#projet{
+	background-color:#FFCC00;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+}
+ 
+ #projetsEnCours{
+	background-color: #FFFF99;
+	color: #000000;
+	width: 50%;
+	list-style-type: square;
+	position: relative;
+	display:inline-block;
+	height:70%
+ }
+#projetsRealises{
+	background-color: #0099FF;
+	color:#000000;
+	width : 100%;
+	height:30%;
+	position: relative;
+	display:inline-block;
+}
+#propositiondeprojets{
+	background-color: #FFCCCC;
+	color: #000000;
+	width : 100%;
+	display:inline-block;
+	height:100%
+}
+#projetright{
+	background-color:#99FF9;
+	width: 30%;
+	height:100%;
+	display:inline-block;
+	padding-top: 5%;
+	padding-right: 5%;
+	padding-bottom: 5%;
+	padding-left:5%;
+}
+
+
