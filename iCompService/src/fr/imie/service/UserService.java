@@ -130,7 +130,7 @@ public class UserService extends ATransactional implements IUserService {
 			throws TransactionalConnectionException {
 		ICompetenceDAO competenceDAO = Factory.getInstance()
 				.createCompetenceDAO(this);
-		return competenceDAO.getCompetenceByKeyword(keyword);
+		return competenceDAO.findCompetenceByKeyword(keyword);
 
 	}
 
@@ -196,9 +196,9 @@ public class UserService extends ATransactional implements IUserService {
 	}
 
 	@Override
-	public Keyword findCompetenceByKeyword(Keyword keyword2) throws TransactionalConnectionException{
-		IKeywordDAO KeywordDAO = Factory.getInstance().createKeywordDAO(this);
-		return keyword2;
+	public List<Competence> findCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException{
+		ICompetenceDAO competenceDAO = Factory.getInstance().createCompetenceDAO(this);
+		return competenceDAO.findCompetenceByKeyword(keyword);
 	}
 	
 	@Override

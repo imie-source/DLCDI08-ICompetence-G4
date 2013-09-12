@@ -1,24 +1,23 @@
-package fr.imie.main;
+package org.imie.servlet.filters;
 
 import java.util.List;
 
 import fr.imie.dto.Competence;
-import fr.imie.dto.Cursus;
 import fr.imie.dto.Keyword;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IUserService;
 
+public class Test {
 
-public class AfficheListeCursus {
-
-	// LISTE DES CURSUS
-
-	public static void cursusList() {
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
 		IUserService svc = Factory.getInstance().createUserService(null);
 		System.out.println("Liste Keyword");
 		try {
 			Keyword keyword = new Keyword();
-			keyword.setLibelle("UML");
+			keyword.setLibelle("toto");
 			List<Competence> competences = svc.findCompetenceByKeyword(keyword);
 			
 			for (Competence competence : competences) {
@@ -30,11 +29,6 @@ public class AfficheListeCursus {
 			System.out.println("erreur");
 			e.printStackTrace();
 		}
-		
+	}
 
-	}
-	
-	public static void main(String[] args) {
-		cursusList();
-	}
 }

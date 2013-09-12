@@ -126,7 +126,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 	
 	
 	@Override
-	public List<Competence> getCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException {
+	public List<Competence> findCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException {
 		
 		List<Competence> comList = new ArrayList<Competence>();
 		PreparedStatement pstmt = null;

@@ -27,7 +27,7 @@ public interface ICompetenceDAO extends ITransactional {
 
 	public abstract List<Competence> getCompetences() throws TransactionalConnectionException;
 
-	public abstract List<Competence> getCompetenceByKeyword(Keyword keyword)
+	public abstract List<Competence> findCompetenceByKeyword(Keyword keyword)
 			throws TransactionalConnectionException;
 	
 	

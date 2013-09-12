@@ -2,7 +2,6 @@ package fr.imie.main;
 
 import java.util.List;
 
-import fr.imie.dao.KeywordDAO;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Keyword;
 import fr.imie.factory.Factory;
@@ -18,17 +17,18 @@ public class MainKeyword {
 		System.out.println("Liste Keyword");
 		try {
 			Keyword keyword = new Keyword();
-			keyword.setLibelle("toto");
+			keyword.setLibelle("UML");
+			List<Competence> competences = svc.findCompetenceByKeyword(keyword);
 			
-
-			System.out.println("le mot clé est " + keyword.getLibelle() + "\n");
+			for (Competence competence : competences) {
+				System.out.println("le mot clé est " + competence.getLibelle() + "\n");
+			}
 			
 
 		} catch (Exception e) {
 			System.out.println("erreur");
 			e.printStackTrace();
 		}
-
 	}
 
 }
