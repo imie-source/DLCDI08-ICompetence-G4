@@ -55,6 +55,13 @@ public class ProjectService extends ATransactional implements IProjectService {
 		IStatutDAO statutDAO = Factory.getInstance().createStatutDAO(this);
 		return statutDAO.findallStatuts();
 	}
+	
+	
+	@Override
+	public Statut findStatutById(String staId) throws TransactionalConnectionException {
+		IStatutDAO statutDAO = Factory.getInstance().createStatutDAO(this);
+		return statutDAO.findStatutById(staId);
+	}
 
 	@Override
 	public Statut updateStatut(Statut statutToUpdate) throws TransactionalConnectionException {

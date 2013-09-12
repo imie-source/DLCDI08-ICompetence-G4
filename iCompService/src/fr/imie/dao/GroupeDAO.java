@@ -10,9 +10,7 @@ import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
-import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dao.interfaces.IGroupeDAO;
-import fr.imie.dto.Cursus;
 import fr.imie.dto.Groupe;
 import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
@@ -27,6 +25,7 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 	private static final String GRP_ID = "GRP_ID";
 	private static final String GRP_AVANCEMENT = "GRP_AVANCEMENT";
 	private static final String GRP_DESCRIPTION = "GRP_DESCRIPTION";
+	private static final String GRP_RESUME = "GRP_RESUME";
 	private static final String GRP_NOM = "GRP_NOM";
 	private static final String GRP_STATUT = "GRP_STATUT";
 
@@ -53,7 +52,7 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 
 			// libération des ressources
 
-			try {
+			try { 
 				if (rs != null) {
 					rs.close();
 				}
@@ -70,26 +69,27 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 
 	@Override
 	public Groupe findGroupById(String grpid)  throws TransactionalConnectionException {
-
+		
+		Groupe groupe = new Groupe();
+		int k = Integer.valueOf(grpid).intValue();   
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		Groupe group = new Groupe();
 		String query = "SELECT * FROM GROUPE WHERE GRP_ID = ? ";
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
-			pstmt.setString(1, grpid);
+			pstmt.setInt(1, k);
 
 			rs = pstmt.executeQuery();
-
+			
 			while (rs.next()) {
 								
-				group.setId(rs.getInt(GRP_ID));
-				group.setAvancement(rs.getInt(GRP_AVANCEMENT));
-				group.setDescription(rs.getString(GRP_DESCRIPTION));
-				group.setNom(rs.getString(GRP_NOM));
+				groupe.setId(rs.getInt(GRP_ID));
+				groupe.setAvancement(rs.getInt(GRP_AVANCEMENT));
+				groupe.setDescription(rs.getString(GRP_DESCRIPTION));
+				groupe.setNom(rs.getString(GRP_NOM));
 				
-				IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
+				//IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
 
 			}
 		} catch (SQLException e) {
@@ -109,7 +109,7 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 			}
 		}
 
-		return group;
+		return groupe;
 
 	}
 	
@@ -285,7 +285,10 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 
 		// création d'un nouveau groupe
 		Groupe groupe = new Groupe();
-		groupe.setId(rs.getInt("GRP_ID"));
+		groupe.setId(rs.getInt(GRP_ID));
+		groupe.setAvancement(rs.getInt(GRP_AVANCEMENT));
+		groupe.setDescription(rs.getString(GRP_DESCRIPTION));
+		groupe.setNom(rs.getString(GRP_NOM));
 
 		// // récupération des utilisateurs d'un groupe
 		// List<Utilisateur> utilisateurs = UtilisateurDAO.getUser(groupe);

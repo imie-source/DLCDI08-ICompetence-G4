@@ -12,7 +12,7 @@ public interface IProjectService extends ITransactional {
 
 	public abstract List<Groupe> getGroupes() throws TransactionalConnectionException;
 	
-	public Groupe findGroupById(String grpid) throws TransactionalConnectionException;
+	public abstract Groupe findGroupById(String grpid) throws TransactionalConnectionException;
 	
 	public abstract Groupe insertGroupe(Groupe groupeToInsert) throws TransactionalConnectionException;
 
@@ -23,6 +23,8 @@ public interface IProjectService extends ITransactional {
 	public abstract List<Groupe> getGroupesByUser(Utilisateur user) throws TransactionalConnectionException;
 	
     public abstract List<Statut> findallStatuts() throws TransactionalConnectionException;
+    
+    public abstract Statut findStatutById(String staId) throws TransactionalConnectionException; 
 	
 	public abstract Statut insertStatut(Statut statutToInsert) throws TransactionalConnectionException;
 

@@ -33,6 +33,19 @@ public interface IStatutDAO extends ITransactional {
 	 * @throws ClassNotFoundException
 	 * @throws TransactionalConnectionException
 	 */
+	
+	public abstract Statut findStatutById(String staId)  throws TransactionalConnectionException;
+	
+	/**
+	 * Recherche du libelle d'un statut
+	 * 
+	 * @param statut_Num
+	 * @return le libellé statut
+	 * @throws ClassNotFoundException
+	 * @throws TransactionalConnectionException
+	 */
+	
+	
 	public abstract Statut insertStatut(Statut statutToInsert) throws TransactionalConnectionException;
 
 	/**

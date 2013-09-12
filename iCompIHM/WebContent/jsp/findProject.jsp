@@ -11,10 +11,11 @@
 <%! private Groupe groupe = new Groupe(); %>
 <%! IProjectService psvc; %>
 
-<% psvc = Factory.getInstance().createProjectService(null); %>
+<%  psvc = Factory.getInstance().createProjectService(null); %>
 
 <% //grpid = request.getParameter("grpid");%>
-<% groupe = psvc.findGroupById(grpid);%>
+<%  groupe = psvc.findGroupById(grpid);%>
+
 
 
 
@@ -29,6 +30,7 @@
 
 <body>
 
+	
 		
 
 		<%-- Div Title --%>
@@ -49,8 +51,7 @@
 		<p class="alternativeattributes"><span class="attributesname">Avancement : </span><%=groupe.getAvancement()%></p>
 		<p class="attributes"><span class="attributesname">description : </span><%=groupe.getDescription()%></p>
 		<p class="alternativeattributes"><span class="attributesname">Nom : </span><%=groupe.getNom()%></p>
-		<p class="attributes"><span class="attributesname">Statut : </span><%=groupe.getStatut()%></p>
-		
+
 		<%-- End Div UserInfos --%>
 		</div>
 		</div>
@@ -59,7 +60,9 @@
 		
 		<%-- Div Footer --%>
 		<div id="footer">
+		
 		<a class="backlink" href="./FindAllUsers">Retour Liste</a>
+		
 		</div>
 
 </body>

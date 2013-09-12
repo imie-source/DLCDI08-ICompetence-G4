@@ -9,17 +9,22 @@ import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
+import fr.imie.dao.interfaces.IGroupeDAO;
 import fr.imie.dao.interfaces.IStatutDAO;
 import fr.imie.dto.Groupe;
 import fr.imie.dto.Statut;
 import fr.imie.exceptionManager.ExceptionManager;
+import fr.imie.factory.Factory;
 import fr.imie.transactionalFramework.ATransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
 
 public class StatutDAO extends ATransactional implements IStatutDAO {
 	// SQL Fields
-
+	
+	private static final String STA_ID = "STA_ID";
+	private static final String STA_LIBELLE = "STA_LIBELLE";
+	
 	@Override
 	public List<Statut> findallStatuts() throws TransactionalConnectionException {
 		List<Statut> statuts = new ArrayList<Statut>();
@@ -56,6 +61,53 @@ public class StatutDAO extends ATransactional implements IStatutDAO {
 		}
 		return statuts;
 	}
+	
+	@Override
+	public Statut findStatutById(String staId)  throws TransactionalConnectionException {
+		
+		Statut statut = new Statut();
+		int k = Integer.valueOf(staId).intValue();   
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String query = "SELECT STA_LIBELLE FROM STATUT WHERE STA_ID = ? ";
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setInt(1, k);
+
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				statut.setId(rs.getInt(STA_ID));
+				statut.setLibelle(rs.getString(STA_LIBELLE));
+				
+				//IStatutDAO statutDAO = Factory.getInstance().createStatutDAO(this);
+
+			}
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			// libération des ressources
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return statut;
+
+	}
+	
+	
+	
 
 	@Override
 	public Statut insertStatut(Statut statutToInsert)
