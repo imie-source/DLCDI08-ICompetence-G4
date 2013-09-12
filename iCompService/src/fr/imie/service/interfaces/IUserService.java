@@ -2,6 +2,7 @@ package fr.imie.service.interfaces;
 
 import java.util.List;
 
+import fr.imie.dto.Adresse;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
 import fr.imie.dto.Domaine;
@@ -70,6 +71,9 @@ public interface IUserService extends ITransactional {
 	public abstract List<Competence> findCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException;
 
 	public abstract Utilisateur IsAuthorized(Utilisateur user)
+			throws TransactionalConnectionException;
+
+	public abstract Adresse getAdresseByUser(Utilisateur user)
 			throws TransactionalConnectionException;
 
 }

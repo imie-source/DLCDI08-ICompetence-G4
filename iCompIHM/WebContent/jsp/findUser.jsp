@@ -36,22 +36,40 @@
 		
 		<%-- Div Wrapper --%>
 		<div id = "wrapper">
-		<div id= "profil">
-
-		<p class="title2">Profil</p>
-		
-		<%-- Div UserInfos --%>
-		<div id = "userinfos">
-		
-		<p class="attributes"><span class="attributesname">Prenom : </span><%=user.getPrenom()%></p>
-		<p class="alternativeattributes"><span class="attributesname">Nom : </span><%=user.getNom()%></p>
-		<p class="attributes"><span class="attributesname">Age : </span><%=user.getAge()%>  ans</p>
-		<p class="alternativeattributes"><span class="attributesname">E-Mail : </span><%=user.getMail()%></p>
-		<p class="attributes"><span class="attributesname">Tel : </span><%=user.getTel()%></p>
-		
-		<%-- End Div UserInfos --%>
-		</div>
-		</div>
+			<%-- Div Profil --%>
+			<div id= "profil">
+	
+				<p class="title2">Profil</p>
+				
+				<%-- Div UserInfos --%>
+				<div id = "userinfos">
+				
+				<p class="attributes"><span class="attributesname">Prenom : </span><%=user.getPrenom()%></p>
+				<p class="alternativeattributes"><span class="attributesname">Nom : </span><%=user.getNom()%></p>
+				<p class="attributes"><span class="attributesname">Age : </span><%=user.getAge()%>  ans</p>
+				<p class="alternativeattributes"><span class="attributesname">E-Mail : </span><%=user.getMail()%></p>
+				<p class="attributes"><span class="attributesname">Tel : </span><%=user.getTel()%></p>
+				
+				<%-- End Div UserInfos --%>
+				</div>
+			<%-- End Div Profil --%>
+			</div>
+			
+			<%-- Div Adresse --%>
+			<div id="adresse">
+			
+				<p class="title2">Adresse</p>
+				
+				<%-- Div UserInfos --%>
+				<div id = "userinfos">
+				
+				<p class="attributes"><span class="attributesname">Adresse : </span><%=user.getAdresse().getRue()%></p>
+				<p class="alternativeattributes"><span class="attributesname">Complement : </span><%=user.getAdresse().getComplement()%></p>
+				<p class="attributes"><span class="attributesname">Code Postal : </span><%=user.getAdresse().getCodePostal()%></p>
+				<p class="alternativeattributes"><span class="attributesname">Ville : </span><%=user.getAdresse().getVille()%></p>
+			
+			<%-- End Div Adresse --%>
+			</div>
 		<%-- End Div Wrapper --%>
 		</div>
 		

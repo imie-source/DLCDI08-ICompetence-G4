@@ -1,6 +1,7 @@
 package fr.imie.factory;
 
 
+import fr.imie.dao.AdresseDAO;
 import fr.imie.dao.CompetenceDAO;
 import fr.imie.dao.CursusDAO;
 import fr.imie.dao.DomaineDAO;
@@ -14,6 +15,7 @@ import fr.imie.dao.NiveauDAO;
 import fr.imie.dao.ProfilDAO;
 import fr.imie.dao.StatutDAO;
 import fr.imie.dao.UtilisateurDAO;
+import fr.imie.dao.interfaces.IAdresseDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dao.interfaces.IDomaineDAO;
@@ -179,6 +181,12 @@ public class Factory implements IFactory {
 	public IStatutDAO createStatutDAO(ITransactional caller) {
 		TransactionalFactory<StatutDAO> fact = (TransactionalFactory<StatutDAO>) TransactionalFactory.getInstance();
 		return fact.createTransactionalService(new StatutDAO(), caller);
+	}
+
+	@Override
+	public IAdresseDAO createAdresseDAO(ITransactional caller) {
+		TransactionalFactory<AdresseDAO> fact = (TransactionalFactory<AdresseDAO>) TransactionalFactory.getInstance();
+		return fact.createTransactionalService(new AdresseDAO(), caller);
 	}
 
 }

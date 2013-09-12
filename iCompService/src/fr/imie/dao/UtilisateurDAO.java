@@ -10,10 +10,13 @@ import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
+import fr.imie.dao.interfaces.IAdresseDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
+import fr.imie.dao.interfaces.IGroupeDAO;
 import fr.imie.dao.interfaces.IProfilDAO;
 import fr.imie.dao.interfaces.IUtilisateurDAO;
+import fr.imie.dto.Adresse;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
 import fr.imie.dto.Profil;
@@ -449,6 +452,10 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 				for (Competence competence : competences) {
 					user.addCompetence(competence);
 				}
+				
+//				IAdresseDAO adresseDAO = Factory.getInstance().createAdresseDAO(this);
+//				Adresse address = adresseDAO.getAdresseByUser(user);
+//				user.setAdresse(address);
 
 				
 			}
