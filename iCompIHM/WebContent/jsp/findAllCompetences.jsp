@@ -43,7 +43,51 @@
 				</div>
 					
 			</div>
-			<% List<Competence> listcompetences = svc.getCompetences(); %>
+			<% List<Competence> listcompetences = svc.getCompetences();
+			
+			int i = 1;
+			int j = 0;
+			
+			for(Competence comp : listcompetences){
+				
+				if(j % 2 == 0){
+			%>
+			
+			<div class="line">
+			
+			<%
+				}else{
+			
+			%>
+			<div class="alternativeline">
+			
+			<%
+				}
+			%>
+				<div class="num">
+					<p class="content">
+						<%= i %>
+					</p>
+				</div>
+				
+				<div class="cptence">
+				
+					<p class="content"><%=comp.getLibelle()%>
+				
+				</div>
+			</div>
+			<% 
+			
+			i++;
+			j++;
+				
+			}
+			
+			%>
+			
+			
+			</div>
+		
 			
 		</div>
 	</div>

@@ -18,7 +18,7 @@ public class MainGetCompetenceByKeyword {
 		Keyword keyword = new Keyword();
 		keyword.setLibelle("java");
 		try {
-			List<Competence> list = svc.getCompetenceByKeyword(keyword);
+			List<Competence> list = svc.findCompetenceByKeyword(keyword);
 
 			for (Competence var : list) {
 				System.out.println(var.getLibelle()

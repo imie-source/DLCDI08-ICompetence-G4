@@ -120,7 +120,7 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Groupe groupe = null;
-		String query = "INSERT INTO GROUPES (GRP_Avancement , GRP_Nom_Projet , GRP_Description , STA_ID , USR_ID ) VALUES (? , ? , ? , ? , ?)";
+		String query = "INSERT INTO GROUPES (GRP_Avancement , GRP_Nom_Projet , GRP_Description , GRP_Resume, STA_ID , USR_ID ) VALUES (? , ? , ? , ? , ?, ?)";
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
@@ -139,18 +139,24 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 			} else {
 				pstmt.setString(3, groupeToInsert.getDescription());
 			}
-			
-			if (groupeToInsert.getStatut() == null) {
+
+			if (groupeToInsert.getResume() == null) {
 				pstmt.setNull(4, Types.CHAR);
 			} else {
-				pstmt.setInt(4, groupeToInsert.getStatut().getId());
+				pstmt.setString(4, groupeToInsert.getResume());
+			}
+
+			if (groupeToInsert.getStatut() == null) {
+				pstmt.setNull(5, Types.CHAR);
+			} else {
+				pstmt.setInt(5, groupeToInsert.getStatut().getId());
 			}
 					
 			
 			if (groupeToInsert.getChefProjet() == null) {
-				pstmt.setNull(5, Types.CHAR);
+				pstmt.setNull(6, Types.CHAR);
 			} else {
-				pstmt.setInt(5, groupeToInsert.getChefProjet().getId());
+				pstmt.setInt(6, groupeToInsert.getChefProjet().getId());
 			}
 
 			rs = pstmt.executeQuery();
@@ -186,21 +192,26 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			String query = "update groupe set GRP_Avancement=?, GRP_Nom_Projet=?, GRP_Description=?, STA_ID=?, USR_ID=? where grp_ID=?";
+			String query = "update groupe set GRP_Avancement=?, GRP_Nom_Projet=?, GRP_Description=?, GRP_Resume=?, STA_ID=?, USR_ID=? where grp_ID=?";
 			pstmt = getConnection().prepareStatement(query);
 
 			pstmt.setInt(1, groupeToUpdate.getAvancement());
 			pstmt.setString(2, groupeToUpdate.getNom());
 			pstmt.setString(3, groupeToUpdate.getDescription());
+			pstmt.setString(4, groupeToUpdate.getResume());
 			
 			
 			if (groupeToUpdate.getStatut() != null) {
-				pstmt.setInt(4, groupeToUpdate.getStatut().getId());
+				pstmt.setInt(5, groupeToUpdate.getStatut().getId());
 			} else {
-				pstmt.setNull(4, Types.INTEGER);
+				pstmt.setNull(5, Types.INTEGER);
 			}
 
-			pstmt.setInt(5, groupeToUpdate.getChefProjet().getId());
+			if (groupeToUpdate.getChefProjet() != null) {
+			pstmt.setInt(6, groupeToUpdate.getChefProjet().getId());
+			} else {
+				pstmt.setNull(6, Types.INTEGER);
+			}
 			
 			pstmt.executeUpdate();
 

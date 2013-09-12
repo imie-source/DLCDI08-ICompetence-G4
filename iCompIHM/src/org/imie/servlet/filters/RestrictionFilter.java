@@ -57,13 +57,15 @@ public class RestrictionFilter implements Filter {
 			Utilisateur user = new Utilisateur();
 			user.setLogin(request.getParameter("login"));
 			user.setPass(request.getParameter("password"));
-			System.out.println("A SUP : login : "+request.getParameter("login") + " Pass : " + request.getParameter("password"));
+			System.out.println("A SUP : dans param saisis login : "+user.getLogin() + " Pass : " + user.getPass());
 
 			try {
 				IUserService svc = Factory.getInstance()
 						.createUserService(null);
 				userAuthorized = svc.IsAuthorized(user);
+				if (userAuthorized != null) {
 				System.out.println("Nom dans 'RectrictedFilter' :" + userAuthorized.getNom());
+				}
 			} catch (TransactionalConnectionException e) {
 				// TODO Auto-generated catch block
 				System.out.println("Utilisateur non autorisé");

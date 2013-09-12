@@ -17,6 +17,7 @@ public class Groupe {
 	private int avancement;
 	private String nom;
 	private String description;
+	private String resume;
 	private Utilisateur chefProjet;
 	private List<Utilisateur> utilisateurs;
 	private List<Invitation> invitations;
@@ -88,6 +89,14 @@ public class Groupe {
 
 	public void setChefProjet(Utilisateur chefProjet) {
 		this.chefProjet = chefProjet;
+	}
+
+	public String getResume() {
+		return resume;
+	}
+
+	public void setResume(String resume) {
+		this.resume = resume;
 	}
 
 
