@@ -37,9 +37,9 @@ public class AdresseDAO extends ATransactional implements IAdresseDAO {
 
 					address.setId(rs.getInt("ADR_ID"));
 					address.setRue(rs.getString("ADR_RUE"));
-					address.setComplement("ADR_COMPLEMENT");
-					address.setCodePostal("ADR_CP");
-					address.setVille("ADR_VILLE");
+					address.setComplement(rs.getString("ADR_COMPLEMENT"));
+					address.setCodePostal(rs.getString("ADR_CP"));
+					address.setVille(rs.getString("ADR_VILLE"));
 				}
 			} catch (SQLException e) {
 				ExceptionManager.getInstance().manageException(e);
