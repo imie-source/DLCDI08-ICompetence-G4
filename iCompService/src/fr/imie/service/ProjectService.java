@@ -87,4 +87,10 @@ public class ProjectService extends ATransactional implements IProjectService {
 		return null;
 	}
 
+	@Override
+	public List<Groupe> findGroupByStatut(int id)  throws TransactionalConnectionException {
+		IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
+		return groupeDAO.findGroupByStatut(id);
+		
+	}
 }
