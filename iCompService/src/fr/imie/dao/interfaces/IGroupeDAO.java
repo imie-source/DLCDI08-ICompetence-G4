@@ -26,13 +26,25 @@ public interface IGroupeDAO extends ITransactional {
 	public abstract List<Groupe> getGroupes() throws TransactionalConnectionException;
 
 	/**
-	 * insérer un groupe
+	 * rechercher un groupe
 	 * 
-	 * @param groupeToInsert
-	 * @return le groupe inséré
+	 * 
+	 * 
 	 * @throws ClassNotFoundException
 	 * @throws TransactionalConnectionException
 	 */
+	
+	public abstract Groupe findGroupById(String grpid)  throws TransactionalConnectionException;
+
+	/**
+	 * rechercher les informations d'un groupe
+	 * 
+	 * 
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws TransactionalConnectionException
+	 */
+	
 	public abstract Groupe insertGroupe(Groupe groupeToInsert) throws TransactionalConnectionException;
 
 	/**
@@ -61,6 +73,9 @@ public interface IGroupeDAO extends ITransactional {
 	 * @throws TransactionalConnectionException
 	 */
 	public abstract List<Groupe> getGroupesByUser(Utilisateur user) throws TransactionalConnectionException;
+
+	public abstract List<Groupe> findGroupByStatut(int id)
+			throws TransactionalConnectionException;
 
 
 }

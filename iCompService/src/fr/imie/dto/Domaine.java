@@ -10,7 +10,7 @@ package fr.imie.dto;
 public class Domaine {
 	private int id;
 	private String nom;
-	private int id1;
+	private Domaine domaine;
 
 	/**
 	 * 
@@ -40,19 +40,11 @@ public class Domaine {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	/**
-	 * 
-	 * @return
-	 */
-	public int getId1() {
-		return id1;
+	public Domaine getDomaine() {
+		return domaine;
 	}
-	/**
-	 * 
-	 * @param id1
-	 */
-	public void setId1(int id1) {
-		this.id1 = id1;
+	public void setDomaine(Domaine domaine) {
+		this.domaine = domaine;
 	}
 	
 

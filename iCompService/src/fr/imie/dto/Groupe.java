@@ -17,8 +17,8 @@ public class Groupe {
 	private int avancement;
 	private String nom;
 	private String description;
-	private int staNum;
-	private int usrNum;
+	private String resume;
+	private Utilisateur chefProjet;
 	private List<Utilisateur> utilisateurs;
 	private List<Invitation> invitations;
 	private Statut statut;
@@ -46,18 +46,6 @@ public class Groupe {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public int getStaNum() {
-		return staNum;
-	}
-	public void setStaNum(int staNum) {
-		this.staNum = staNum;
-	}
-	public int getUsrNum() {
-		return usrNum;
-	}
-	public void setUsrNum(int usrNum) {
-		this.usrNum = usrNum;
 	}
 
 	// remplacement du setUtilisateur par les methodes de l'API List
@@ -94,5 +82,23 @@ public class Groupe {
 	public void setStatut(Statut statut) {
 		this.statut = statut;
 	}
+
+	public Utilisateur getChefProjet() {
+		return chefProjet;
+	}
+
+	public void setChefProjet(Utilisateur chefProjet) {
+		this.chefProjet = chefProjet;
+	}
+
+	public String getResume() {
+		return resume;
+	}
+
+	public void setResume(String resume) {
+		this.resume = resume;
+	}
+
+
 
 }

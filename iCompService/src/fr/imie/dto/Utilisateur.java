@@ -22,8 +22,8 @@ public class Utilisateur {
 	private String mail;
 	private String tel;
 	private String fax;
-	private Boolean estEnFormation;
-	private Boolean estDisponible;
+	private int estEnFormation;
+	private int estDisponible;
 	private String login;
 	private String pass;
 	//private int curNum;
@@ -31,6 +31,7 @@ public class Utilisateur {
 	private List<Competence> competences;
 	private Cursus cursus;
 	private Adresse adresse;
+	private List<Profil> profils;
 
 	// constructeur
 	// Ce constructeur par défaut est necessaire pour initialiser la liste des
@@ -40,7 +41,9 @@ public class Utilisateur {
 		super();
 		// initialisation de la liste des compétences
 		competences = new ArrayList<Competence>();
-	}
+
+		profils = new ArrayList<Profil>();
+}
 
 	// remplacement du setCompetence par les methodes de l'API List
 	public void addCompetence(Competence competenceDTO) {
@@ -56,6 +59,19 @@ public class Utilisateur {
 		return competences;
 	}
 
+	public void addProfil(Profil profil) {
+		this.profils.add(profil);
+	}
+
+	// remplacement du setCompetence par les methodes de l'API List
+	public void removeProfil(Profil profil) {
+		this.profils.remove(profil);
+	}
+
+	public List<Profil> getProfils() {
+		return profils;
+	}
+	
 	public String getNom() {
 		return nom;
 	}
@@ -87,22 +103,6 @@ public class Utilisateur {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	/*public int getAdrNum() {
-		return adrNum;
-	}
-
-	public void setAdrNum(int adrNum) {
-		this.adrNum = adrNum;
-	}
-
-	public int getCurNum() {
-		return curNum;
-	}
-
-	public void setCurNum(int curNum) {
-		this.curNum = curNum;
-	}*/
 
 	public Date getDateNaissance() {
 		return dateNaissance;
@@ -136,19 +136,19 @@ public class Utilisateur {
 		this.fax = fax;
 	}
 
-	public Boolean getEstEnFormation() {
+	public int getEstEnFormation() {
 		return estEnFormation;
 	}
 
-	public void setEstEnFormation(Boolean estEnFormation) {
+	public void setEstEnFormation(int estEnFormation) {
 		this.estEnFormation = estEnFormation;
 	}
 
-	public Boolean getEstDisponible() {
+	public int getEstDisponible() {
 		return estDisponible;
 	}
 
-	public void setEstDisponible(Boolean estDisponible) {
+	public void setEstDisponible(int estDisponible) {
 		this.estDisponible = estDisponible;
 	}
 

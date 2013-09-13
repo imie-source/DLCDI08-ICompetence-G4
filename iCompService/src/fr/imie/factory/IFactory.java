@@ -1,15 +1,19 @@
 package fr.imie.factory;
 
 
+import fr.imie.dao.interfaces.IAdresseDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
+import fr.imie.dao.interfaces.IDomaineDAO;
 import fr.imie.dao.interfaces.IDroitDAO;
 import fr.imie.dao.interfaces.IFenetreDAO;
 import fr.imie.dao.interfaces.IFonctionDAO;
 import fr.imie.dao.interfaces.IGroupeDAO;
+import fr.imie.dao.interfaces.IKeywordDAO;
 import fr.imie.dao.interfaces.INatureDAO;
 import fr.imie.dao.interfaces.INiveauxDAO;
 import fr.imie.dao.interfaces.IProfilDAO;
+import fr.imie.dao.interfaces.IStatutDAO;
 import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.service.interfaces.IProjectService;
 import fr.imie.service.interfaces.ISecurityService;
@@ -80,5 +84,12 @@ public interface IFactory {
 
 	public abstract IProjectService createProjectService(ITransactional caller);
 
+	public abstract IDomaineDAO createDomaineDAO(ITransactional caller);
+
+	public abstract IKeywordDAO createKeywordDAO(ITransactional caller);
+
+	public abstract IStatutDAO createStatutDAO(ITransactional caller);
+
+	public abstract IAdresseDAO createAdresseDAO(ITransactional caller);
 	
 }

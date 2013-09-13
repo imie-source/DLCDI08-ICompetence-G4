@@ -2,7 +2,9 @@ package fr.imie.main;
 
 import java.util.List;
 
+import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
+import fr.imie.dto.Keyword;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IUserService;
 
@@ -13,30 +15,23 @@ public class AfficheListeCursus {
 
 	public static void cursusList() {
 		IUserService svc = Factory.getInstance().createUserService(null);
-		
-		
-		System.out.println("\033[2J\033[;H");
-		System.out.println("********************************");
-		System.out.println("\nLISTE CURSUS");
-		System.out.println("\n********************************\n");
-
+		System.out.println("Liste Keyword");
 		try {
-
-			List<Cursus> listcur = svc.findAllCursus();
-
-			for (Cursus cur : listcur) {
-				System.out.print(cur.getId() + " : "
-						+ cur.getLibelle() + "\n");
+			Keyword keyword = new Keyword();
+			keyword.setLibelle("UML");
+			List<Competence> competences = svc.findCompetenceByKeyword(keyword);
+			
+			for (Competence competence : competences) {
+				System.out.println("le mot clé est " + competence.getLibelle() + "\n");
 			}
-
-			System.out.println("\n********************************\n");
+			
 
 		} catch (Exception e) {
-
-			System.out.println("Erreur à l'execution de Screen.cursusList()");
-			e.printStackTrace(); // @TODO A preciser / A gerer
-
+			System.out.println("erreur");
+			e.printStackTrace();
 		}
+		
+
 	}
 	
 	public static void main(String[] args) {

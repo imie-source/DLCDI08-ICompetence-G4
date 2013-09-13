@@ -3,7 +3,9 @@ package fr.imie.service;
 import java.util.List;
 
 import fr.imie.dao.interfaces.IGroupeDAO;
+import fr.imie.dao.interfaces.IStatutDAO;
 import fr.imie.dto.Groupe;
+import fr.imie.dto.Statut;
 import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IProjectService;
@@ -18,6 +20,12 @@ public class ProjectService extends ATransactional implements IProjectService {
 		return groupeDAO.getGroupes();
 	}
 
+	@Override
+	public Groupe findGroupById(String grpid) throws TransactionalConnectionException {
+		IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
+		return groupeDAO.findGroupById(grpid);
+	}
+	
 	@Override
 	public Groupe updateGroupe(Groupe groupeToUpdate) throws TransactionalConnectionException {
 		// TODO Auto-generated method stub
@@ -42,4 +50,47 @@ public class ProjectService extends ATransactional implements IProjectService {
 		return null;
 	}
 
+	@Override
+	public List<Statut> findallStatuts() throws TransactionalConnectionException {
+		IStatutDAO statutDAO = Factory.getInstance().createStatutDAO(this);
+		return statutDAO.findallStatuts();
+	}
+	
+	
+	@Override
+	public Statut findStatutById(String staId) throws TransactionalConnectionException {
+		IStatutDAO statutDAO = Factory.getInstance().createStatutDAO(this);
+		return statutDAO.findStatutById(staId);
+	}
+
+	@Override
+	public Statut updateStatut(Statut statutToUpdate) throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteStatut(Statut statutToDelete) throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Statut> getStatutsByGRP(Groupe groupe) throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Statut insertStatut(Statut statutToInsert) throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Groupe> findGroupByStatut(int id)  throws TransactionalConnectionException {
+		IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
+		return groupeDAO.findGroupByStatut(id);
+		
+	}
 }

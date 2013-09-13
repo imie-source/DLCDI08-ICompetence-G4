@@ -78,7 +78,7 @@ public class AddUserServlet extends HttpServlet {
 			if (prenom != null && prenom.length()<50) {
 				user.setPrenom(prenom);
 			}
-			if (dateNaissance != null) {
+			if (dateNaissance != null && dateNaissance != "") {
 				Date datenaissance = null;
 				try {
 					datenaissance = new SimpleDateFormat("dd/MM/yyyy").parse(dateNaissance);
@@ -96,6 +96,14 @@ public class AddUserServlet extends HttpServlet {
 			}
 			if (fax != null) {
 				user.setFax(fax);
+			}
+			
+			if (enFormation != null){
+				user.setEstEnFormation(Integer.valueOf(enFormation));
+			}
+			
+			if (disponible != null){
+				user.setEstDisponible(Integer.valueOf(disponible));
 			}
 			
 			Cursus cursusDto = null;
