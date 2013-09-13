@@ -1,6 +1,7 @@
 package fr.imie.factory;
 
 
+import fr.imie.dao.interfaces.IAdresseDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dao.interfaces.IDomaineDAO;
@@ -88,5 +89,7 @@ public interface IFactory {
 	public abstract IKeywordDAO createKeywordDAO(ITransactional caller);
 
 	public abstract IStatutDAO createStatutDAO(ITransactional caller);
+
+	public abstract IAdresseDAO createAdresseDAO(ITransactional caller);
 	
 }

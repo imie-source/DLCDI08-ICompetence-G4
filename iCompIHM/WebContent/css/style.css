@@ -59,6 +59,10 @@ h1 {
 	border-bottom-right-radius: 10px;
 }
 
+#footer a{
+color:#FFF;
+}
+
 .backlink {
 	color: #fff;
 	font-weight: bold;
