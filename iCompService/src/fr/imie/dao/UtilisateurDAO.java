@@ -10,11 +10,15 @@ import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
+import fr.imie.dao.interfaces.IAdresseDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
+import fr.imie.dao.interfaces.IProfilDAO;
 import fr.imie.dao.interfaces.IUtilisateurDAO;
+import fr.imie.dto.Adresse;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
+import fr.imie.dto.Profil;
 import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
 import fr.imie.factory.Factory;
@@ -89,6 +93,60 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		}
 		return userDTOs;
 	}
+	
+	@Override
+	public List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException {
+
+		// initialisation de la liste qui servira au retour
+		List<Utilisateur> userDTOG = new ArrayList<Utilisateur>();
+	    // String grpid devient Int grpid 
+	    int k = Integer.valueOf(grpid).intValue();
+	    
+		// déclaration de la variable de statement
+		PreparedStatement pstmt = null;
+		// déclaration de la variable de resultset
+		ResultSet rs = null;
+		String query = "SELECT * FROM GRP_USER G, UTILISATEUR U " +
+				       "WHERE G.USR_ID = U.USR_ID " +
+				       "AND   G.GRP_ID = ? ";
+		     
+
+		try {
+			// création du statement à partir de la connection
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setInt(1, k);
+			// execution d'une requête SQL et récupération du result dans le
+			// resultset
+			rs = pstmt.executeQuery();
+			// parcours du resultset
+			while (rs.next()) {
+				Utilisateur userDTO = buildDTO(rs);
+				// ajout du DTO dans la liste de retour
+				userDTOG.add(userDTO);
+			}
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+
+			// libération des ressources
+
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+		return userDTOG;
+	}
+	
+	
 
 	/**
 	 * construction d'un DTO à partir d'un resultset
@@ -102,10 +160,13 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	 * @throws TransactionalConnectionException
 	 * @throws TransactionRequiredException
 	 */
-	private Utilisateur buildDTO(ResultSet rs) throws SQLException, TransactionalConnectionException {
+	private Utilisateur buildDTO(ResultSet rs) throws SQLException,
+			TransactionalConnectionException {
 		// initialisation du DAO de gestion des compétences
-		ICompetenceDAO competenceDAO = Factory.getInstance().createCompetenceDAO(this);
+		ICompetenceDAO competenceDAO = Factory.getInstance()
+				.createCompetenceDAO(this);
 		ICursusDAO cursusDAO = Factory.getInstance().createCursusDAO(this);
+		IProfilDAO profilDAO = Factory.getInstance().createProfilDAO(this);
 
 		// création d'un nouveau UserDTO
 		Utilisateur user = new Utilisateur();
@@ -121,7 +182,8 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		// la connection passée en paramètre permet de partager la
 		// connection entre cette methode et celle appelée
 
-		List<Competence> competenceDTOs = competenceDAO.getCompetenceByUser(user);
+		List<Competence> competenceDTOs = competenceDAO
+				.getCompetenceByUser(user);
 		// parcours des compétences du user
 		for (Competence competenceDTO : competenceDTOs) {
 			// ajout des compétences sur le UserDTO à partir de celles
@@ -130,8 +192,13 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		}
 
 		Cursus cursusDTO = cursusDAO.findCursusByUser(user);
-
 		user.setCursus(cursusDTO);
+
+		List<Profil> profils = profilDAO.getProfilsByUser(user);
+		for (Profil profil : profils) {
+			user.addProfil(profil);
+		}
+
 		return user;
 	}
 
@@ -141,7 +208,8 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	 * @see org.imie.DAO.IuserDAO#insertUser(org.imie.DTO.UserDTO)
 	 */
 	@Override
-	public Utilisateur insertUser(Utilisateur user) throws TransactionalConnectionException {
+	public Utilisateur insertUser(Utilisateur user)
+			throws TransactionalConnectionException {
 		// déclaration de la variable de statement
 		PreparedStatement pstmt = null;
 		// déclaration de la variable de resultset
@@ -158,10 +226,11 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 
 			pstmt.setString(1, user.getNom());
 			pstmt.setString(2, user.getPrenom());
-			if (user.getDateNaissance() == null){
+			if (user.getDateNaissance() == null) {
 				pstmt.setNull(3, Types.DATE);
 			} else {
-				pstmt.setDate(3, new java.sql.Date(user.getDateNaissance().getTime()));
+				pstmt.setDate(3, new java.sql.Date(user.getDateNaissance()
+						.getTime()));
 			}
 			pstmt.setString(4, user.getMail());
 			pstmt.setString(5, user.getTel());
@@ -211,7 +280,8 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	 * @see org.imie.DAO.IuserDAO#updateUser(org.imie.DTO.UserDTO)
 	 */
 	@Override
-	public Utilisateur updateUser(Utilisateur userToUpdate) throws TransactionalConnectionException {
+	public Utilisateur updateUser(Utilisateur userToUpdate)
+			throws TransactionalConnectionException {
 		Utilisateur userDTORetour = null;
 		PreparedStatement pstmt = null;
 		// déclaration de la variable de resultset
@@ -223,41 +293,44 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 			pstmt.setString(1, userToUpdate.getNom());
 			pstmt.setString(2, userToUpdate.getPrenom());
 			if (userToUpdate.getDateNaissance() != null) {
-				pstmt.setDate(3, new java.sql.Date(userToUpdate.getDateNaissance().getTime()));
+				pstmt.setDate(3, new java.sql.Date(userToUpdate
+						.getDateNaissance().getTime()));
 			} else {
 				pstmt.setNull(3, Types.DATE);
 			}
-			
+
 			if (userToUpdate.getMail() != null && userToUpdate.getMail() != "") {
 				pstmt.setString(4, userToUpdate.getMail());
 			} else {
 				pstmt.setString(4, "");
 			}
-			
+
 			if (userToUpdate.getTel() != null && userToUpdate.getTel() != "") {
 				pstmt.setString(5, userToUpdate.getTel());
 			} else {
 				pstmt.setString(5, "");
 			}
-			
+
 			if (userToUpdate.getFax() != null && userToUpdate.getFax() != "") {
 				pstmt.setString(6, userToUpdate.getFax());
 			} else {
 				pstmt.setString(6, "");
 			}
-			
-			if (userToUpdate.getEstEnFormation() == 0 || userToUpdate.getEstEnFormation() == 1) {
+
+			if (userToUpdate.getEstEnFormation() == 0
+					|| userToUpdate.getEstEnFormation() == 1) {
 				pstmt.setInt(7, userToUpdate.getEstEnFormation());
 			} else {
 				pstmt.setNull(7, Types.INTEGER);
 			}
-			
-			if (userToUpdate.getEstDisponible() == 0 || userToUpdate.getEstDisponible() == 1) {
+
+			if (userToUpdate.getEstDisponible() == 0
+					|| userToUpdate.getEstDisponible() == 1) {
 				pstmt.setInt(8, userToUpdate.getEstDisponible());
 			} else {
 				pstmt.setNull(8, Types.INTEGER);
 			}
-			
+
 			if (userToUpdate.getCursus() != null) {
 				pstmt.setInt(9, userToUpdate.getCursus().getId());
 			} else {
@@ -294,7 +367,8 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	 * @see org.imie.DAO.IuserDAO#deleteUser(org.imie.DTO.UserDTO)
 	 */
 	@Override
-	public void deleteUser(Utilisateur user) throws TransactionalConnectionException {
+	public void deleteUser(Utilisateur user)
+			throws TransactionalConnectionException {
 		// Batch Delete User
 		String QUERY_DELETE_FROM_GRP_USER = "DELETE FROM GRP_USER WHERE USR_ID = ";
 		String QUERY_DELETE_FROM_COM_USER = "DELETE FROM COM_USER WHERE USR_ID = ";
@@ -343,7 +417,8 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	 * dto.Competence)
 	 */
 	@Override
-	public List<Utilisateur> getUsersByCompetence(Competence comp) throws TransactionalConnectionException {
+	public List<Utilisateur> getUsersByCompetence(Competence comp)
+			throws TransactionalConnectionException {
 
 		List<Utilisateur> usrList = new ArrayList<Utilisateur>();
 		ResultSet rs = null;
@@ -394,11 +469,12 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	 * @see fr.imie.dlcdi.dao.IUtilisateurDAO#findUserByLogin(String)
 	 */
 	@Override
-	public Utilisateur findUserByLogin(String login) throws TransactionalConnectionException {
+	public Utilisateur findUserByLogin(String login)
+			throws TransactionalConnectionException {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		Utilisateur user = new Utilisateur();
-		String query = "SELECT * FROM UTILISATEUR U WHERE U.USR_Login = ? ORDER BY U.USR_ID";
+		String query = "SELECT * FROM UTILISATEUR U WHERE U.USR_Login = ? ORDER BY U.USR_Nom";
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
@@ -418,11 +494,23 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 				user.setDateNaissance(rs.getDate(USR_DATE_N));
 				user.setEstDisponible(rs.getInt(USR_EST_DISPONIBLE));
 				user.setEstEnFormation(rs.getInt(USR_EST_EN_FORMATION));
-				
-				ICursusDAO cursusDAO = Factory.getInstance().createCursusDAO(this);
-				Cursus cursusDTO = cursusDAO.findCursusByUser(user);
 
+				ICursusDAO cursusDAO = Factory.getInstance().createCursusDAO(
+						this);
+				Cursus cursusDTO = cursusDAO.findCursusByUser(user);
 				user.setCursus(cursusDTO);
+				
+				ICompetenceDAO competenceDAO = Factory.getInstance().createCompetenceDAO(this);
+				List<Competence> competences = competenceDAO.getCompetenceByUser(user);
+				for (Competence competence : competences) {
+					user.addCompetence(competence);
+				}
+				
+				IAdresseDAO adresseDAO = Factory.getInstance().createAdresseDAO(this);
+				Adresse address = adresseDAO.getAdresseByUser(user);
+				user.setAdresse(address);
+
+				
 			}
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
@@ -452,7 +540,8 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	 * fr.imie.dlcdi.dao.IUtilisateurDAO#findUser(fr.imie.dlcdi.dto.Utilisateur)
 	 */
 	@Override
-	public Utilisateur findUser(Utilisateur user2) throws TransactionalConnectionException {
+	public Utilisateur findUser(Utilisateur user2)
+			throws TransactionalConnectionException {
 		String query = "SELECT * FROM UTILISATEUR U WHERE U.USR_ID = ? ORDER BY U.USR_ID";
 		Utilisateur user = new Utilisateur();
 		ResultSet rs = null;
@@ -490,6 +579,54 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 
 		return user;
 	}
-	
-	
+
+	@Override
+	public Utilisateur IsAuthorized(Utilisateur user)
+			throws TransactionalConnectionException {
+		String query = "SELECT * FROM UTILISATEUR WHERE USR_LOGIN = ? AND USR_PASS = ?";
+		Utilisateur userRetour = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		IProfilDAO profilDAO = Factory.getInstance().createProfilDAO(this);
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+
+			pstmt.setString(1, user.getLogin());
+			pstmt.setString(2, user.getPass());
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				System.out.println("A SUP : IsAuthorized = OK");
+				userRetour = new Utilisateur();
+				userRetour.setId(rs.getInt(USR_ID));
+				userRetour.setNom(rs.getString(USR_NOM));
+				userRetour.setPrenom(rs.getString("USR_Prenom"));
+				userRetour.setLogin(rs.getString("usr_login"));
+
+				List<Profil> profils = profilDAO.getProfilsByUser(user);
+				for (Profil profil : profils) {
+					user.addProfil(profil);
+				}
+
+			}
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return userRetour;
+	}
+
 }

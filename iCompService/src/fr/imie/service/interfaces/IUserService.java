@@ -2,14 +2,12 @@ package fr.imie.service.interfaces;
 
 import java.util.List;
 
-
-import fr.imie.dao.interfaces.ICursusDAO;
+import fr.imie.dto.Adresse;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
 import fr.imie.dto.Domaine;
 import fr.imie.dto.Keyword;
 import fr.imie.dto.Utilisateur;
-import fr.imie.factory.Factory;
 import fr.imie.transactionalFramework.ITransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -22,6 +20,8 @@ public interface IUserService extends ITransactional {
 	 */
 	public abstract List<Utilisateur> getUsers() throws TransactionalConnectionException;
 
+	public abstract List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException;
+	
 	public abstract Utilisateur insertUser(Utilisateur userToInsert) throws TransactionalConnectionException;
 
 	public abstract Utilisateur updateUser(Utilisateur userToUpdate) throws TransactionalConnectionException;
@@ -46,7 +46,6 @@ public interface IUserService extends ITransactional {
 	
 	public abstract List<Competence> getCompetences() throws TransactionalConnectionException;
 
-
 	// DOMAINE
 	public abstract List<Domaine> getDomaines() throws TransactionalConnectionException;
 
@@ -70,8 +69,13 @@ public interface IUserService extends ITransactional {
 
 
 	public abstract void deleteKeyword(Keyword keyword) throws TransactionalConnectionException;
-	
-	
-	
+
+	public abstract List<Competence> findCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException;
+
+	public abstract Utilisateur IsAuthorized(Utilisateur user)
+			throws TransactionalConnectionException;
+
+	public abstract Adresse getAdresseByUser(Utilisateur user)
+			throws TransactionalConnectionException;
 
 }

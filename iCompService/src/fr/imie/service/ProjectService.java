@@ -21,6 +21,12 @@ public class ProjectService extends ATransactional implements IProjectService {
 	}
 
 	@Override
+	public Groupe findGroupById(String grpid) throws TransactionalConnectionException {
+		IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
+		return groupeDAO.findGroupById(grpid);
+	}
+	
+	@Override
 	public Groupe updateGroupe(Groupe groupeToUpdate) throws TransactionalConnectionException {
 		// TODO Auto-generated method stub
 		return null;
@@ -45,9 +51,16 @@ public class ProjectService extends ATransactional implements IProjectService {
 	}
 
 	@Override
-	public List<Statut> getStatuts() throws TransactionalConnectionException {
+	public List<Statut> findallStatuts() throws TransactionalConnectionException {
 		IStatutDAO statutDAO = Factory.getInstance().createStatutDAO(this);
-		return statutDAO.getStatuts();
+		return statutDAO.findallStatuts();
+	}
+	
+	
+	@Override
+	public Statut findStatutById(String staId) throws TransactionalConnectionException {
+		IStatutDAO statutDAO = Factory.getInstance().createStatutDAO(this);
+		return statutDAO.findStatutById(staId);
 	}
 
 	@Override
@@ -74,4 +87,10 @@ public class ProjectService extends ATransactional implements IProjectService {
 		return null;
 	}
 
+	@Override
+	public List<Groupe> findGroupByStatut(int id)  throws TransactionalConnectionException {
+		IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
+		return groupeDAO.findGroupByStatut(id);
+		
+	}
 }

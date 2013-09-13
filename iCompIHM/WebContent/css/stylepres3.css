@@ -1,0 +1,123 @@
+@CHARSET "UTF-8";
+
+/* HEADER */
+
+/* MENU */
+#menu{
+background-color: #FFF;
+padding: 10px 10px;
+box-shadow: 0px 0px 10px rgba(128, 128, 128, 0.8);
+}
+
+#button{
+display: table-cell;
+text-align: center;
+background-color: #ffffff;
+border-radius: 8px 8px 0px 0px;
+}
+
+#menuRecherche_right{
+display: inline-block;
+text-align: right;
+background-color:#fff;
+padding:10px 10px;
+margin-left:850px;
+padding-top:5px;
+}
+
+#menuListe_left{
+display: inline-block;
+text-align: center;
+background-color: #ffffff;
+padding:10px 20px;
+}
+ul {
+ padding:0;
+ margin:0;
+ list-style-type:none;
+ }
+li {
+ margin-left:2px;
+ float:left; /*pour IE*/
+ }
+ul li a {
+ display:block;
+ float:left;   
+ width:auto;
+ background-color:#CCC;
+ color:black;
+ text-decoration:none;
+ text-align:center;
+ padding:5px;
+ border:2px solid;
+ /*pour avoir un effet "outset" avec IE :*/
+ border-color:#DCDCDC #696969 #696969 #DCDCDC;
+ }
+ul li a:hover {
+ background-color:#D3D3D3;
+ border-color:#696969 #DCDCDC #DCDCDC #696969;
+ } 
+
+/* MES INFOS */
+#mesinfos{
+background-color: #FFF;
+padding: 10px 15px;
+margin-top: 20px;
+border: solid 1px;
+}
+/* PROJET */
+
+#projetleft{
+	background-color:#FFF;
+	color: 	#000000;
+	width: 44%;
+	float: left;
+	position: relative;
+	padding: 10px 15px;
+	border-right: solid 1px;
+ }
+#projet{
+	background-color:#FFF;
+	position: relative;
+	overflow: hidden;
+	border: solid 1px;
+}
+ 
+ #projetsEnCours{
+	background-color: #FFF;
+	color: #000000;
+	width: 50%;
+	list-style-type: square;
+	position: relative;
+	display:inline-block;
+	height:70%
+ }
+#projetsRealises{
+	background-color: #FFF;
+	color:#000000;
+	width : 100%;
+	height:30%;
+	position: relative;
+	display:inline-block;
+}
+#propositiondeprojets{
+	background-color: #FFF;
+	color: #000000;
+	width : 100%;
+	display:inline-block;
+	height:100%;
+	padding: 10px 15px;
+}
+#projetright{
+	background-color:#FFF;
+	width: 45%;
+	height:100%;
+	display:inline-block;
+
+}
+#button2{
+display: table-cell;
+text-align: center;
+float: right;
+}
+

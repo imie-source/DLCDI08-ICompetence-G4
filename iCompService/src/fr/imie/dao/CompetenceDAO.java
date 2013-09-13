@@ -126,20 +126,20 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 	
 	
 	@Override
-	public List<Competence> getCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException {
+	public List<Competence> findCompetenceByKeyword(Keyword keyword) throws TransactionalConnectionException {
 		
 		List<Competence> comList = new ArrayList<Competence>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "SELECT * FROM COMPETENCE C INNER " +
+		String query = "SELECT C.com_id, c.com_libelle FROM COMPETENCE C INNER " +
 				"JOIN com_key CK ON C.COM_ID = CK.COM_ID " +
 				"INNER JOIN Keyword K ON K.key_id = CK.key_id " +
-				"WHERE K.key_id = ? ORDER BY C.com_id";
+				"WHERE K.key_libelle = ? ORDER BY C.com_id";
 
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
-			pstmt.setInt(1, keyword.getId());
+			pstmt.setString(1, keyword.getLibelle());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				Competence comp = new Competence();

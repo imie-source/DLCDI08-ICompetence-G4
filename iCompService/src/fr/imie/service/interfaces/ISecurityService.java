@@ -7,6 +7,7 @@ import fr.imie.dto.Fenetre;
 import fr.imie.dto.Fonction;
 import fr.imie.dto.Nature;
 import fr.imie.dto.Profil;
+import fr.imie.dto.Utilisateur;
 import fr.imie.transactionalFramework.ITransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -29,6 +30,7 @@ public interface ISecurityService extends ITransactional {
 	Profil insertProfil(Profil profil) throws TransactionalConnectionException;
 	Profil updateProfil(Profil profil) throws TransactionalConnectionException;
 	void deleteProfil(Profil profil) throws TransactionalConnectionException;
+	List<Profil> getProfilsByUser(Utilisateur user) throws TransactionalConnectionException;
 
 	// ---------------------- NATURE
 	List<Nature> getNatures() throws TransactionalConnectionException;
