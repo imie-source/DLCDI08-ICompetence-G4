@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FindAllCompetencesServlet
+ * Servlet implementation class ArborescenceCompetenceServlet
  */
-@WebServlet("/FindAllCompetences")
-public class FindAllCompetencesServlet extends HttpServlet {
+@WebServlet("/ArborescenceCompetence")
+public class ArborescenceCompetenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindAllCompetencesServlet() {
+    public ArborescenceCompetenceServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +28,11 @@ public class FindAllCompetencesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		System.out.print("List Of Competences");
+		System.out.print("Competences");
 		response.setContentType("text/html");
-		request.getRequestDispatcher("./jsp/findAllCompetences.jsp").forward(request, response);
+		request.getRequestDispatcher("./jsp/AborescenceCompetence.jsp").forward(request, response);
+		
+		
 	}
 
 	

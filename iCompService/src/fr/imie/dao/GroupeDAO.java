@@ -10,8 +10,12 @@ import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
+import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dao.interfaces.IGroupeDAO;
 import fr.imie.dto.Groupe;
+import fr.imie.dao.interfaces.IStatutDAO;
+import fr.imie.dto.Cursus;
+import fr.imie.dto.Statut;
 import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
 import fr.imie.transactionalFramework.ATransactional;
@@ -24,7 +28,8 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 	private static final String GRP_DESCRIPTION = "GRP_DESCRIPTION";
 	private static final String GRP_RESUME = "GRP_RESUME";
 	private static final String GRP_NOM = "GRP_NOM";
-	private static final String GRP_STATUT = "GRP_STATUT";
+	private static final String STA_ID = "STA_ID";
+	private static final String STA_LIBELLE = "STA_LIBELLE";
 
 
 	@Override
@@ -65,11 +70,12 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 	public Groupe findGroupById(String grpid)  throws TransactionalConnectionException {
 		
 		Groupe groupe = new Groupe();
+		Statut statut = new Statut();
 		int k = Integer.valueOf(grpid).intValue();   
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		String query = "SELECT * FROM GROUPE WHERE GRP_ID = ? ";
-
+		String query = "SELECT * from statut sta, groupe grp where (grp_id = ?)" +
+				       "and (sta.sta_id = grp.sta_id)";
 		try {
 			pstmt = getConnection().prepareStatement(query);
 			pstmt.setInt(1, k);
@@ -81,7 +87,13 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 				groupe.setId(rs.getInt(GRP_ID));
 				groupe.setAvancement(rs.getInt(GRP_AVANCEMENT));
 				groupe.setDescription(rs.getString(GRP_DESCRIPTION));
+				groupe.setResume(rs.getString(GRP_RESUME));
 				groupe.setNom(rs.getString(GRP_NOM));
+							
+				statut.setId(rs.getInt(STA_ID));
+				statut.setLibelle(rs.getString(STA_LIBELLE));
+				
+				groupe.setStatut(statut);
 				
 				//IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
 
@@ -103,7 +115,8 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 			}
 		}
 
-		return groupe;
+		return groupe; 
+		
 
 	}
 	
