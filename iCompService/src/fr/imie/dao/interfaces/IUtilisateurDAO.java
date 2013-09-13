@@ -33,6 +33,10 @@ public interface IUtilisateurDAO extends ITransactional {
 	 * @throws ClassNotFoundException
 	 * @throws TransactionalConnectionException
 	 */
+	
+	public abstract List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException;
+	
+	
 	public abstract Utilisateur insertUser(Utilisateur userToInsert) throws TransactionalConnectionException;
 
 	/**

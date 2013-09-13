@@ -91,6 +91,60 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		}
 		return userDTOs;
 	}
+	
+	@Override
+	public List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException {
+
+		// initialisation de la liste qui servira au retour
+		List<Utilisateur> userDTOG = new ArrayList<Utilisateur>();
+	    // String grpid devient Int grpid 
+	    int k = Integer.valueOf(grpid).intValue();
+	    
+		// déclaration de la variable de statement
+		PreparedStatement pstmt = null;
+		// déclaration de la variable de resultset
+		ResultSet rs = null;
+		String query = "SELECT * FROM GRP_USER G, UTILISATEUR U " +
+				       "WHERE G.USR_ID = U.USR_ID " +
+				       "AND   G.GRP_ID = ? ";
+		     
+
+		try {
+			// création du statement à partir de la connection
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setInt(1, k);
+			// execution d'une requête SQL et récupération du result dans le
+			// resultset
+			rs = pstmt.executeQuery();
+			// parcours du resultset
+			while (rs.next()) {
+				Utilisateur userDTO = buildDTO(rs);
+				// ajout du DTO dans la liste de retour
+				userDTOG.add(userDTO);
+			}
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+
+			// libération des ressources
+
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+		return userDTOG;
+	}
+	
+	
 
 	/**
 	 * construction d'un DTO à partir d'un resultset

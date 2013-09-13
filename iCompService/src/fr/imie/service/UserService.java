@@ -33,6 +33,18 @@ public class UserService extends ATransactional implements IUserService {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see org.imie.service.IUserService#getUsers()
+	 */
+	@Override
+	public List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException {
+	    IUtilisateurDAO userDAO = Factory.getInstance().createUserDAO(this);
+	    return userDAO.getUsersbyGrpId(grpid);
+    }
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.imie.service.IUserService#insertUser(org.imie.DTO.UserDTO)
 	 */
 	@Override
