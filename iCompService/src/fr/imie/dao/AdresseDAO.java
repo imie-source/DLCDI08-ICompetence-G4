@@ -9,7 +9,7 @@ import fr.imie.transactionalFramework.ATransactional;
  * @version 1.0
  */
 public class AdresseDAO extends ATransactional {
-	
+
 	/**
 	 * @TODO implements
 	 */

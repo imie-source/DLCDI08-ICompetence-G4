@@ -10,6 +10,7 @@ import fr.imie.service.interfaces.IProjectService;
 public class MainStatut {
 
 	// LISTE DES CURSUS
+	
 
 	public static void statutList() {
 		

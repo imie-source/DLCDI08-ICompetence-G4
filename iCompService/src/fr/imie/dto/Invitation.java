@@ -55,11 +55,11 @@ public class Invitation {
 	}
 
 	/**
-	 * @param date
+	 * @param string
 	 *            the invDate to set
 	 */
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(Date invitation) {
+		this.date = invitation;
 	}
 
 	public Utilisateur getUtilisateur() {
