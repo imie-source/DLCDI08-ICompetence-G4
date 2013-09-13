@@ -2,11 +2,13 @@ package fr.imie.service;
 
 import java.util.List;
 
+import fr.imie.dao.interfaces.IAdresseDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dao.interfaces.IDomaineDAO;
 import fr.imie.dao.interfaces.IKeywordDAO;
 import fr.imie.dao.interfaces.IUtilisateurDAO;
+import fr.imie.dto.Adresse;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
 import fr.imie.dto.Domaine;
@@ -30,6 +32,18 @@ public class UserService extends ATransactional implements IUserService {
 		return userDAO.getUsers();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.imie.service.IUserService#getUsers()
+	 */
+	@Override
+	public List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException {
+	    IUtilisateurDAO userDAO = Factory.getInstance().createUserDAO(this);
+	    return userDAO.getUsersbyGrpId(grpid);
+    }
+	
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -208,5 +222,13 @@ public class UserService extends ATransactional implements IUserService {
 		return userDAO.IsAuthorized(user);
 	}
 
+	@Override
+	public Adresse getAdresseByUser(Utilisateur user) throws
+	TransactionalConnectionException {
+		IAdresseDAO adresseDAO = Factory.getInstance().createAdresseDAO(this);
+		return adresseDAO.getAdresseByUser(user);
+		
+	}
+	
 
 }

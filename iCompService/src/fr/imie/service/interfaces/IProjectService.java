@@ -33,4 +33,7 @@ public interface IProjectService extends ITransactional {
 	public abstract void deleteStatut(Statut statutToDelete) throws TransactionalConnectionException;
 	
 	public abstract List<Statut> getStatutsByGRP(Groupe groupe) throws TransactionalConnectionException;
+
+	public abstract List<Groupe> findGroupByStatut(int id)
+			throws TransactionalConnectionException;
 }

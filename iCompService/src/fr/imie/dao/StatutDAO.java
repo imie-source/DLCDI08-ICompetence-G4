@@ -69,22 +69,20 @@ public class StatutDAO extends ATransactional implements IStatutDAO {
 		int k = Integer.valueOf(staId).intValue();   
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		String query = "SELECT STA_LIBELLE FROM STATUT WHERE STA_ID = ? ";
+		String query = "SELECT * FROM STATUT WHERE STA_ID = ? ";
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
 			pstmt.setInt(1, k);
 
 			rs = pstmt.executeQuery();
-			
+						
 			while (rs.next()) {
 				
 				statut.setId(rs.getInt(STA_ID));
 				statut.setLibelle(rs.getString(STA_LIBELLE));
 				
-				//IStatutDAO statutDAO = Factory.getInstance().createStatutDAO(this);
-
-			}
+				}
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 		} finally {

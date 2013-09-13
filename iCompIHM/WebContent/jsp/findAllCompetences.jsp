@@ -17,79 +17,90 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Liste des Competences</title>
-<link rel="stylesheet"href="css/findAllComptences.css" media="all" type="text/css" />
 <link rel="stylesheet"href="css/style.css" media="all" type="text/css" />
-
+<link rel="stylesheet"href="css/findAllUsers.css" media="all" type="text/css" />
 </head>
 
 
 <body>
+	<div id=mainwrapper>
+	<%-- Div Title --%>
 	<div id="title">
-		<h1> Liste des Competences</h1>
+		<h1>Liste des Competences</h1>
 	</div>
-	
+
+	<%-- Div Wrapper --%>
 	<div id="wrapper">
 	
-		<div id="competencelist">
-		
+		<%-- Div User List --%>
+		<div id="userlist">
+
+			<%-- Div Header Line --%>
 			<div class="headerline">
-			
+
+				<%-- Div Header Num --%>
 				<div class="num">
-					<p class="header">Numero Competence</p>
+					<p class="header">Libelllé Competence</p>
 				</div>
+
+			
+
+				<%-- Div Header Tool1 (Empty) --%>
+				<div class="toolHeader">
+				</div>
+
 				
-				<div class="cptence">
-					<p class="header">Nom Competences</p>
-				</div>
-					
+
+			<%-- End Div Header Line --%>
 			</div>
-			<% List<Competence> listcompetences = svc.getCompetences();
-			
-			int i = 1;
-			int j = 0;
-			
-			for(Competence comp : listcompetences){
-				
-				if(j % 2 == 0){
-			%>
-			
-			<div class="line">
-			
+
 			<%
-				}else{
+			List<Competence> listcomp = svc.getCompetences(); 
+			int i = 1; 
+			int j = 0; 
 			
+			for (Competence comp : listcomp){
+				
+				if (j % 2 == 0) {
 			%>
+				
+			<div class="line">
+				
+			<%
+				} else {
+			%>
+			
 			<div class="alternativeline">
 			
 			<%
-				}
-			%>
-				<div class="num">
-					<p class="content">
-						<%= i %>
-					</p>
-				</div>
-				
-				<div class="cptence">
-				
-					<p class="content"><%=comp.getLibelle()%>
-				
-				</div>
-			</div>
-			<% 
-			
-			i++;
-			j++;
-				
-			}
-			
+				} 
 			%>
 			
-			
-			</div>
+				
 		
-			
+					<%-- Div Identite --%>
+					<div class="identite">
+						<p class="content"><%=comp.getLibelle()%></p>
+					</div>
+		
+					
+				
+ 			
+ 			<%-- End Div Line / AlternativeLine --%>
+			</div>
+			<%
+			 
+			j++; 
+			}
+			%>
+		<%-- End Div User List --%>
 		</div>
+	
+	<%-- End Div Wrapper --%>
+	</div>
+	
+	<%-- Div Footer --%>
+	<div id="footer">
 	</div>
 	
 </body>
