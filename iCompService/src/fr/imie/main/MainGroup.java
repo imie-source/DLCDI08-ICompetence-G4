@@ -28,12 +28,15 @@ public class MainGroup {
 			System.out.println("\n********************************\n");
 
 			try {
-				Groupe groupedon = psvc.findGroupById(grpid);   
+				Groupe groupedon = psvc.findGroupById(grpid);
+				 
 				
 				
 					System.out.print(groupedon.getId() + " : "
 							+ " " + groupedon.getNom() + " " + groupedon.getAvancement()
-						    + " " +  groupedon.getDescription() +  "\n");
+						    + " " +  groupedon.getDescription() 
+						    + groupedon.getResume() + "---" + groupedon.getStatut().getId() 
+						    + groupedon.getStatut().getLibelle() +	    "\n");
 				
 				System.out.println("\n********************************\n");
 
