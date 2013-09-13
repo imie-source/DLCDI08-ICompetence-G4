@@ -18,7 +18,7 @@ public class FindGroupByStatut {
 			List<Groupe> groupes = svc.findGroupByStatut(1);
 			
 			for (Groupe groupe : groupes) {
-				System.out.println("le mot clé est " + groupe.getNom() + "\n");
+				System.out.println("le nom du groupe est : " + groupe.getNom() + "\n");
 			}
 			
 
