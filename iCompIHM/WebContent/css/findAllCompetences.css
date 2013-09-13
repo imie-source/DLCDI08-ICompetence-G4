@@ -18,6 +18,7 @@
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
+/*
 	
 .headerline {
 	background-color: #000;
@@ -33,12 +34,6 @@
 	border-top-right-radius: 10px;
 }
 
-.num {
-	height: 20px;
-	width: 75px;
-	float: left;
-	text-align: center;
-}
 
 .cptence {
 	height: 20px;
@@ -46,11 +41,7 @@
 	float: left;
 }
 
-.header {
-	vertical-align: middle;
-	display: inline;
-	font-weight: bold;
-}
+
 
 .alternativeline {
 	background-color: #fbffc3;
@@ -73,3 +64,4 @@
 	vertical-align: middle;
 	display: inline;
 }
+*/
