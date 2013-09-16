@@ -115,7 +115,7 @@ border: solid 1px;
 	display:inline-block;
 
 }
-#button2{
+.button2{
 display: table-cell;
 text-align: center;
 float: right;
