@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import fr.imie.dto.Competence;
+import fr.imie.dto.Groupe;
 import fr.imie.dto.Utilisateur;
 import fr.imie.transactionalFramework.ITransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
@@ -34,7 +35,7 @@ public interface IUtilisateurDAO extends ITransactional {
 	 * @throws TransactionalConnectionException
 	 */
 	
-	public abstract List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException;
+	public abstract List<Utilisateur> getUsersbyGrpId(int id) throws TransactionalConnectionException;
 	
 	
 	public abstract Utilisateur insertUser(Utilisateur userToInsert) throws TransactionalConnectionException;
@@ -80,5 +81,8 @@ public interface IUtilisateurDAO extends ITransactional {
 			throws TransactionalConnectionException;
 	
 	public abstract Utilisateur getChefProjetbyGrpid(String grpid) throws TransactionalConnectionException;
+
+	public abstract Utilisateur findUserByProject(Groupe groupe)
+			throws TransactionalConnectionException;
 
 }

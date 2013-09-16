@@ -5,13 +5,11 @@ import java.util.List;
 import fr.imie.dao.interfaces.IAdresseDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
-import fr.imie.dao.interfaces.IDomaineDAO;
 import fr.imie.dao.interfaces.IKeywordDAO;
 import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.dto.Adresse;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
-import fr.imie.dto.Domaine;
 import fr.imie.dto.Keyword;
 import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
@@ -38,9 +36,9 @@ public class UserService extends ATransactional implements IUserService {
 	 * @see org.imie.service.IUserService#getUsers()
 	 */
 	@Override
-	public List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException {
+	public List<Utilisateur> getUsersbyGrpId(int id) throws TransactionalConnectionException {
 	    IUtilisateurDAO userDAO = Factory.getInstance().createUserDAO(this);
-	    return userDAO.getUsersbyGrpId(grpid);
+	    return userDAO.getUsersbyGrpId(id);
     }
 	
 	@Override
@@ -152,35 +150,6 @@ public class UserService extends ATransactional implements IUserService {
 				.createCompetenceDAO(this);
 		return competenceDAO.findCompetenceByKeyword(keyword);
 
-	}
-
-	// DOMAINE
-
-	@Override
-	public List<Domaine> getDomaines() throws TransactionalConnectionException {
-		IDomaineDAO domaineDAO = Factory.getInstance().createDomaineDAO(this);
-		return domaineDAO.getDomaines();
-	}
-
-	@Override
-	public Domaine insertDomaine(Domaine domaine)
-			throws TransactionalConnectionException {
-		IDomaineDAO domaineDAO = Factory.getInstance().createDomaineDAO(this);
-		return domaineDAO.insertDomaine(domaine);
-	}
-
-	@Override
-	public Domaine updateDomaine(Domaine domaine)
-			throws TransactionalConnectionException {
-		IDomaineDAO domaineDAO = Factory.getInstance().createDomaineDAO(this);
-		return domaineDAO.updateDomaine(domaine);
-	}
-
-	@Override
-	public void deleteDomaine(Domaine domaine)
-			throws TransactionalConnectionException {
-		IDomaineDAO domaineDAO = Factory.getInstance().createDomaineDAO(this);
-		domaineDAO.deleteDomaine(domaine);
 	}
 
 	// KEYWORD

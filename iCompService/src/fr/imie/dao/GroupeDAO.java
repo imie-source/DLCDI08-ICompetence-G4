@@ -10,11 +10,9 @@ import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
-import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dao.interfaces.IGroupeDAO;
+import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.dto.Groupe;
-import fr.imie.dao.interfaces.IStatutDAO;
-import fr.imie.dto.Cursus;
 import fr.imie.dto.Statut;
 import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
@@ -24,8 +22,6 @@ import fr.imie.transactionalFramework.TransactionalConnectionException;
 
 public class GroupeDAO extends ATransactional implements IGroupeDAO {
 	// SQL Fields
-	// SQL Fields
-	
 	private static final String GRP_ID = "GRP_ID";
 	private static final String GRP_AVANCEMENT = "GRP_AVANCEMENT";
 	private static final String GRP_DESCRIPTION = "GRP_DESCRIPTION";
@@ -54,9 +50,6 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 		} finally {
-
-			// libération des ressources
-
 			try { 
 				if (rs != null) {
 					rs.close();
@@ -321,5 +314,55 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 		// groupe.addUtilisateur(utilisateur);
 		// }
 		return groupe;
+	}
+
+	@Override
+	public List<Groupe> findGroupByStatut(int id)  throws TransactionalConnectionException {
+		List<Groupe> groupes = new ArrayList<Groupe>();
+		List<Utilisateur> users  = new ArrayList<Utilisateur>();
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		String query = "SELECT * FROM GROUPE WHERE STA_ID = ?";
+		IUtilisateurDAO userDAO = Factory.getInstance().createUserDAO(this);
+
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setInt(1, id);
+
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				Groupe groupe = new Groupe();
+				groupe.setId(rs.getInt(GRP_ID));
+				groupe.setAvancement(rs.getInt(GRP_AVANCEMENT));
+				groupe.setDescription(rs.getString(GRP_DESCRIPTION));
+				groupe.setNom(rs.getString(GRP_NOM));
+				for (Utilisateur utilisateur : users) {
+					groupe.addUtilisateur(utilisateur);	
+				}
+				
+				Utilisateur chefProjet = new Utilisateur();
+				chefProjet = userDAO.findUserByProject(groupe);
+				groupe.setChefProjet(chefProjet);
+				
+				groupes.add(groupe);
+			}
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			// libération des ressources
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+		return groupes;
 	}
 }

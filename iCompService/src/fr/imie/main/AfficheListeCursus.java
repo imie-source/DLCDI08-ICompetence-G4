@@ -3,7 +3,6 @@ package fr.imie.main;
 import java.util.List;
 
 import fr.imie.dto.Competence;
-import fr.imie.dto.Cursus;
 import fr.imie.dto.Keyword;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IUserService;

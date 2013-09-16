@@ -74,5 +74,8 @@ public interface IGroupeDAO extends ITransactional {
 	 */
 	public abstract List<Groupe> getGroupesByUser(Utilisateur user) throws TransactionalConnectionException;
 
+	public abstract List<Groupe> findGroupByStatut(int id)
+			throws TransactionalConnectionException;
+
 
 }
