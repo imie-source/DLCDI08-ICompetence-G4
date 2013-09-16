@@ -7,6 +7,7 @@
 	final String SESSION_PROFIL = "profil";
 	final String SESSION_TITRE = "titre";
 	final String CONNECTE = "connecte";
+	final String ACCUEIL = "AccueilUser";
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -51,7 +52,7 @@
 				<%
 					if (session.getAttribute(SESSION_USER) == null) {
 				%>
-				<form name="Connexion" method="get" action="index">
+				<form name="Connexion" method="get" action="<%=ACCUEIL%>">
 
 					<table class=tableau align=center width="80%" height="100">
 						<tr>

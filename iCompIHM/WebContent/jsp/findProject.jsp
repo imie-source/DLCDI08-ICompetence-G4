@@ -99,13 +99,6 @@
 		<%-- End Div Wrapper --%>
 	</div>
 
-
-
-
-
-
-
-
 	<%-- Div Wrapper --%>
 	<div id="wrapper">
 		<div id="profil2">
@@ -173,17 +166,14 @@
 				<%-- End Div Wrapper --%>
 			</div>
 
-
-
-
-
-
-
 			<%-- Div Footer --%>
 			<div id="footer">
 
 				<a class="backlink" href="./FindAllUsers">Retour Liste</a>
 
 			</div>
+		</div>
+	</div>
+		
 </body>
 </html>
