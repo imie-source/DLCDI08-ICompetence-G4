@@ -1,3 +1,0 @@
-INDEX VERSION 1.126
-/mnt/data/DLCDI08-ICompetence-G4/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1434273968.index
-/iCompIHM/src
