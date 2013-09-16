@@ -63,7 +63,9 @@ ul li a:hover {
 background-color: #FFF;
 padding: 10px 15px;
 margin-top: 20px;
-border: solid 1px;
+border-top: solid 1px;
+border-right: solid 1px;
+border-left: solid 1px;
 }
 /* PROJET */
 
