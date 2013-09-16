@@ -167,6 +167,7 @@ jQuery(function($){
 	
 	<%-- Div Footer --%>
 	<div id="footer">
+	<a class="backlink" href="./AccueilUser">Retour Accueil</a>
 	</div>
 	
 	<div id="popup1" class="popup_block">
