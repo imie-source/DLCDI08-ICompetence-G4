@@ -10,14 +10,13 @@ import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
-import fr.imie.dao.interfaces.ICursusDAO;
 import fr.imie.dao.interfaces.IGroupeDAO;
+import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.dto.Groupe;
-import fr.imie.dao.interfaces.IStatutDAO;
-import fr.imie.dto.Cursus;
 import fr.imie.dto.Statut;
 import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
+import fr.imie.factory.Factory;
 import fr.imie.transactionalFramework.ATransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -320,9 +319,12 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 	@Override
 	public List<Groupe> findGroupByStatut(int id)  throws TransactionalConnectionException {
 		List<Groupe> groupes = new ArrayList<Groupe>();
+		List<Utilisateur> users  = new ArrayList<Utilisateur>();
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String query = "SELECT * FROM GROUPE WHERE STA_ID = ?";
+		IUtilisateurDAO userDAO = Factory.getInstance().createUserDAO(this);
+
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
@@ -336,6 +338,13 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 				groupe.setAvancement(rs.getInt(GRP_AVANCEMENT));
 				groupe.setDescription(rs.getString(GRP_DESCRIPTION));
 				groupe.setNom(rs.getString(GRP_NOM));
+				for (Utilisateur utilisateur : users) {
+					groupe.addUtilisateur(utilisateur);	
+				}
+				
+				Utilisateur chefProjet = new Utilisateur();
+				chefProjet = userDAO.findUserByProject(groupe);
+				groupe.setChefProjet(chefProjet);
 				
 				groupes.add(groupe);
 			}

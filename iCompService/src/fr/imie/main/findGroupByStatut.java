@@ -6,19 +6,20 @@ import fr.imie.dto.Groupe;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IProjectService;
 
-public class FindGroupByStatut {
+public class findGroupByStatut {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		IProjectService svc = Factory.getInstance().createProjectService(null);
-		System.out.println("Liste projets");
+		System.out.println("findGroupByStatut");
 		try {
 			List<Groupe> groupes = svc.findGroupByStatut(1);
 			
 			for (Groupe groupe : groupes) {
-				System.out.println("le nom du groupe est : " + groupe.getNom() + "\n");
+				System.out.println("groupe : " + groupe.getNom() + "\n");
+				System.out.println("CP : " + groupe.getChefProjet().getNom() + "\n");
 			}
 			
 

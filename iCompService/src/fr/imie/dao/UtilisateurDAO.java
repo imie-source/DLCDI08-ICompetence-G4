@@ -18,6 +18,7 @@ import fr.imie.dao.interfaces.IUtilisateurDAO;
 import fr.imie.dto.Adresse;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
+import fr.imie.dto.Groupe;
 import fr.imie.dto.Profil;
 import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
@@ -95,42 +96,27 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	}
 	
 	@Override
-	public List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException {
-
-		// initialisation de la liste qui servira au retour
-		List<Utilisateur> userDTOG = new ArrayList<Utilisateur>();
-	    // String grpid devient Int grpid 
-	    int k = Integer.valueOf(grpid).intValue();
-	    
-		// déclaration de la variable de statement
+	public List<Utilisateur> getUsersbyGrpId(int id) throws TransactionalConnectionException {
+		List<Utilisateur> users = new ArrayList<Utilisateur>();
 		PreparedStatement pstmt = null;
-		// déclaration de la variable de resultset
 		ResultSet rs = null;
 		String query = "SELECT * FROM GRP_USER G, UTILISATEUR U " +
 				       "WHERE G.USR_ID = U.USR_ID " +
 				       "AND   G.GRP_ID = ? ";
 		     
-
 		try {
-			// création du statement à partir de la connection
 			pstmt = getConnection().prepareStatement(query);
-			pstmt.setInt(1, k);
-			// execution d'une requête SQL et récupération du result dans le
-			// resultset
+			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
-			// parcours du resultset
+
 			while (rs.next()) {
 				Utilisateur userDTO = buildDTO(rs);
-				// ajout du DTO dans la liste de retour
-				userDTOG.add(userDTO);
+				users.add(userDTO);
 			}
 
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 		} finally {
-
-			// libération des ressources
-
 			try {
 				if (rs != null) {
 					rs.close();
@@ -143,9 +129,8 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
-		return userDTOG;
+		return users;
 	}
-	
 	
 
 	/**
@@ -177,7 +162,9 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		user.setLogin(rs.getString(USR_LOGIN));
 		user.setId(rs.getInt(USR_ID));
 		user.setDateNaissance(rs.getDate(USR_DATE_N));
-
+		user.setMail(rs.getString(USR_MAIL));
+		user.setTel(rs.getString(USR_TEL));
+		
 		// récupération des compétences du user grâce au competenceDAO
 		// la connection passée en paramètre permet de partager la
 		// connection entre cette methode et celle appelée
@@ -629,4 +616,115 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		return userRetour;
 	}
 
-}
+	@Override
+	public Utilisateur findUserByProject(Groupe groupe)
+			throws TransactionalConnectionException {
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Utilisateur user = new Utilisateur();
+		String query = "SELECT U.* FROM UTILISATEUR U inner join GROUPE G on U.usr_id = G.usr_id WHERE G.grp_id = ?";
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setInt(1, groupe.getId());
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				user.setId(rs.getInt(USR_ID));
+				user.setNom(rs.getString(USR_NOM));
+				user.setPrenom(rs.getString(USR_PRENOM));
+				user.setMail(rs.getString(USR_MAIL));
+				user.setTel(rs.getString(USR_TEL));
+				user.setLogin(rs.getString(USR_LOGIN));
+				// user.setAge(ConvertUtils.getInstance().dateNToAge(rs.getDate(USR_DATE_N)));
+				user.setDateNaissance(rs.getDate(USR_DATE_N));
+				user.setEstDisponible(rs.getInt(USR_EST_DISPONIBLE));
+				user.setEstEnFormation(rs.getInt(USR_EST_EN_FORMATION));
+
+//				ICursusDAO cursusDAO = Factory.getInstance().createCursusDAO(
+//						this);
+//				Cursus cursusDTO = cursusDAO.findCursusByUser(user);
+//				user.setCursus(cursusDTO);
+//				
+//				ICompetenceDAO competenceDAO = Factory.getInstance().createCompetenceDAO(this);
+//				List<Competence> competences = competenceDAO.getCompetenceByUser(user);
+//				for (Competence competence : competences) {
+//					user.addCompetence(competence);
+//				}
+				
+//				IAdresseDAO adresseDAO = Factory.getInstance().createAdresseDAO(this);
+//				Adresse address = adresseDAO.getAdresseByUser(user);
+//				user.setAdresse(address);
+
+				
+			}
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			// libération des ressources
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return user;
+
+	}
+	
+		@Override
+	public Utilisateur getChefProjetbyGrpid(String grpid) throws TransactionalConnectionException {
+		
+
+		int k = Integer.valueOf(grpid).intValue();
+		
+		String query = "SELECT * FROM GROUPE G, UTILISATEUR U " +
+			           "WHERE G.USR_ID = U.USR_ID " +
+				       "AND   G.GRP_ID = ? ";
+		Utilisateur userCP	 = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		//IProfilDAO profilDAO = Factory.getInstance().createProfilDAO(this);
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setInt(1, k);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				userCP = new Utilisateur();
+				userCP.setId(rs.getInt(USR_ID));
+				userCP.setNom(rs.getString(USR_NOM));
+				userCP.setPrenom(rs.getString(USR_PRENOM));
+				userCP.setMail(rs.getString(USR_MAIL));
+				userCP.setTel(rs.getString(USR_TEL));
+				}
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return userCP;
+	}
+
+}	

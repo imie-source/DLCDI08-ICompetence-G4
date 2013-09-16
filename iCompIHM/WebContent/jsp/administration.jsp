@@ -140,13 +140,19 @@
 		
 					<%-- Div Chef de projet --%>
 					<div class="project_chief">
-						<p class="content"><%=grp.getChefProjet().getPrenom() + " " + grp.getChefProjet().getNom()%></p>
+						<p class="content"><%if(grp.getChefProjet() != null){%><%=grp.getChefProjet().getPrenom() + " " + grp.getChefProjet().getNom()%><%} %></p>
 						
 					</div>
 					
 					<%-- Div Nbre participants --%>
 					<div class="project_users">
-						<p class="content"><%=grp.getChefProjet().getPrenom() + " " + grp.getChefProjet().getNom()%></p>
+						<p class="content"><%--countUserByGroup%></p>
+						
+					</div>
+					
+					<%-- Div Etat --%>
+					<div class="project_state">
+						<p class="content"><%--StateOfProject%></p>
 						
 					</div>
 				</a>
