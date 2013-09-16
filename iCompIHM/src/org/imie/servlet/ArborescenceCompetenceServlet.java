@@ -19,22 +19,14 @@ public class ArborescenceCompetenceServlet extends HttpServlet {
      */
     public ArborescenceCompetenceServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 		System.out.print("Competences");
 		response.setContentType("text/html");
-		request.getRequestDispatcher("./jsp/AborescenceCompetence.jsp").forward(request, response);
-		
-		
+		request.getRequestDispatcher("./jsp/aborescenceCompetence.jsp").forward(request, response);
 	}
-
-	
-
 }
