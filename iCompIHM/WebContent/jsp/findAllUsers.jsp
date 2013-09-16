@@ -154,7 +154,9 @@ jQuery(function($){
  			
  			<%-- End Div Line / AlternativeLine --%>
 			</div>
-			<%
+			<%et D
+
+Projet
 			i++; 
 			j++; 
 			}

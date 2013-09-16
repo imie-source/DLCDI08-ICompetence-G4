@@ -25,7 +25,7 @@
 <div id=mainwrapper>
 	<%-- Div Title --%>
 	<div id="title">
-		<h1>Liste des Projet</h1>
+		<h1>Liste des Projets</h1>
 	</div>
 
 	<%-- Div Wrapper --%>
@@ -39,12 +39,12 @@
 
 				<%-- Div Header Identite --%>
 				<div class="identite">
-					<p class="header">Identite</p>
+					<p class="header">Groupe</p>
 				</div>
 
 				<%-- Div Header Age --%>
 				<div class="age">
-					<p class="header">Age</p>
+					<p class="header">Avancement</p>
 				</div>
 
 				<%-- Div Header Tool1 (Empty) --%>
@@ -87,14 +87,29 @@
 					
 		
 					<%-- Div Nom --%>
-					<div class="nom">
+					<div class="identite">
 						<p class="content"><%=grp.getNom()%></p>
 						
 					</div>
 				
+			    	<%-- Div Nom --%>
+					<div class="age">
+						<p class="content"><%=grp.getAvancement() %> %</p>
+						
+					</div>
+				
+				
 								
-				
-				
+								<%-- Div Edit --%>
+				<div class="edit">
+					
+				</div>								
+								
+				<div class="edit">
+					<a href="./FindProject?login=<%=grp.getId()%>"><img src=img/edit.png alt="Edit" title="Edit" /></a>
+				</div>
+	
+	
  			
  			<%-- End Div Line / AlternativeLine --%>
 			</div>
@@ -103,7 +118,7 @@
 			j++; 
 			}
 			%>
-		<%-- End Div User List --%>
+		<%-- End Div Group List --%>
 		</div>
 	
 	<%-- End Div Wrapper --%>
@@ -111,6 +126,7 @@
 	
 	<%-- Div Footer --%>
 	<div id="footer">
+	<a class="backlink" href="./AccueilUser">Retour Accueil</a>
 	</div>
 	
 	
