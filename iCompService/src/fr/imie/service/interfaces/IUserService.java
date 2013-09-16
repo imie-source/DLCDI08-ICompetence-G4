@@ -20,7 +20,7 @@ public interface IUserService extends ITransactional {
 	 */
 	public abstract List<Utilisateur> getUsers() throws TransactionalConnectionException;
 
-	public abstract List<Utilisateur> getUsersbyGrpId(String grpid) throws TransactionalConnectionException;
+	public abstract List<Utilisateur> getUsersbyGrpId(int id) throws TransactionalConnectionException;
 	
 	public abstract Utilisateur insertUser(Utilisateur userToInsert) throws TransactionalConnectionException;
 

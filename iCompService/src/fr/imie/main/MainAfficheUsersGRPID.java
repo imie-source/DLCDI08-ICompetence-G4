@@ -19,7 +19,7 @@ public class MainAfficheUsersGRPID {
 		
 	
 		try {
-			String grpid = "2";
+			int grpid = 2;
 			IUserService svc = Factory.getInstance().createUserService(null);
 			List<Utilisateur> list = svc.getUsersbyGrpId(grpid);
 

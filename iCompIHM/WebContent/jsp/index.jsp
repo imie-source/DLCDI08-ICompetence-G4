@@ -26,8 +26,7 @@
 			<div id="dialog-form" title="Authentification">
 				<table class="tableContour" align=center width="80%" height="100">
 					<tr>
-						<td class="Title"><img src="img/add.png" class="logo" title="logo" /></td>
-						
+						<td class="Title"><img src="img/logo-imie.png" class="logo" title="logo" /></td>
 					</tr>
 					<tr>
 						<td class="SubTitle">Application de Référentiel de Gestion de
