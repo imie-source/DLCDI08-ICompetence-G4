@@ -70,15 +70,15 @@
 					
 					<div class="projet">
 						<h4><%=projet.getNom() %></h4>
-						<div id="button2">
-							<ul>
-								<li><a href="" title="">Liste des Utilisateurs</a></li>
-							</ul>
-						</div>
-						<p>Chef de projet : <%-- projet.getChefProjet().getPrenom()+ " " +projet.getChefProjet().getNom() --%></p>
+						<p>Chef de projet : <%= projet.getChefProjet().getPrenom()+ " " +projet.getChefProjet().getNom() %></p>
 						<p>Résumé : <%=  projet.getDescription()%></p>
 						<a href="" title="">[+ d'infos]</a>
 						<p>Etat d'avancement : <%=projet.getAvancement()%>%</p>
+						<div class="button2">
+							<ul>
+								<li><a href="" title="">Liste des Utilisateurs</a></li>
+							</ul>
+						</div><br />
 					</div>
 		<% } %>
 					
