@@ -177,7 +177,9 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		user.setLogin(rs.getString(USR_LOGIN));
 		user.setId(rs.getInt(USR_ID));
 		user.setDateNaissance(rs.getDate(USR_DATE_N));
-
+		user.setMail(rs.getString(USR_MAIL));
+		user.setTel(rs.getString(USR_TEL));
+		
 		// récupération des compétences du user grâce au competenceDAO
 		// la connection passée en paramètre permet de partager la
 		// connection entre cette methode et celle appelée
@@ -629,4 +631,50 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		return userRetour;
 	}
 
-}
+	@Override
+	public Utilisateur getChefProjetbyGrpid(String grpid) throws TransactionalConnectionException {
+		
+
+		int k = Integer.valueOf(grpid).intValue();
+		
+		String query = "SELECT * FROM GROUPE G, UTILISATEUR U " +
+			           "WHERE G.USR_ID = U.USR_ID " +
+				       "AND   G.GRP_ID = ? ";
+		Utilisateur userCP	 = null;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		//IProfilDAO profilDAO = Factory.getInstance().createProfilDAO(this);
+
+		try {
+			pstmt = getConnection().prepareStatement(query);
+			pstmt.setInt(1, k);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				userCP = new Utilisateur();
+				userCP.setId(rs.getInt(USR_ID));
+				userCP.setNom(rs.getString(USR_NOM));
+				userCP.setPrenom(rs.getString(USR_PRENOM));
+				userCP.setMail(rs.getString(USR_MAIL));
+				userCP.setTel(rs.getString(USR_TEL));
+				}
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return userCP;
+	}
+
+}	

@@ -77,5 +77,7 @@ public interface IUserService extends ITransactional {
 
 	public abstract Adresse getAdresseByUser(Utilisateur user)
 			throws TransactionalConnectionException;
+	
+	public abstract Utilisateur getChefProjetbyGrpid(String grpid) throws TransactionalConnectionException;
 
 }

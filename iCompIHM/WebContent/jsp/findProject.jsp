@@ -14,20 +14,18 @@
 
 
 <%! private String grpid = "1";%>
-<%! private Groupe groupe = new Groupe(); %>
-<%! IProjectService psvc; %>
-
-<%  psvc = Factory.getInstance().createProjectService(null); %>
 
 <% //grpid = request.getParameter("grpid");%>
-<%  groupe = psvc.findGroupById(grpid);%>
+<% //String provenance =  (String) request.getParameter("provenance");%>
 
+<% IProjectService psvc; %>
+<% IUserService svc; %>
 
-<%! IUserService svc; %>
-<%  svc = Factory.getInstance().createUserService(null); %>
+<%  psvc = Factory.getInstance().createProjectService(null); %>
+<%  svc  = Factory.getInstance().createUserService(null); %>
 
-
-
+<%  Groupe groupe = psvc.findGroupById(grpid);%>
+<%  Utilisateur userCP = svc.getChefProjetbyGrpid(grpid);%>
 
 
     
@@ -35,9 +33,9 @@
 <html>
 <head>
 <title<%= groupe.getNom() %>/title> 
-<link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
-<link rel="stylesheet" href="css/findUser.css" media="all" type="text/css" />
-<link rel="stylesheet" href="css/findAllUsers.css" media="all" type="text/css" />
+<link rel="stylesheet" href="css/styleProject.css" media="all" type="text/css" />
+<link rel="stylesheet" href="css/findProject.css" media="all" type="text/css" />
+<link rel="stylesheet" href="css/findAllProjects.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/addUser.css" media="all" type="text/css" />
 </head>
 
@@ -60,13 +58,12 @@
 		<%-- Div UserInfos --%>
 		<div id = "groupeinfos">
 		
-		<p class="attributes"><span class="attributesname">Id Projet : </span><%=groupe.getId()%></p>
-		<p class="alternativeattributes"><span class="attributesname">Nom : </span><%=groupe.getNom()%></p>
-		<p class="alternativeattributes"><span class="attributesname">Avancement : </span><%=groupe.getAvancement()%></p>
-		<p class="attributes"><span class="attributesname">Resume : </span><%=groupe.getResume()%></p>
+		<p class="attributes"><span class="attributesname">Nom : </span><%=groupe.getNom()%></p>
+        <p class="alternativeattributes"><span class="attributesname">Chef de Projet : </span><%=userCP.getNom()%></p>
+		<p class="attributes"><span class="attributesname">Avancement : </span><%=groupe.getAvancement()%></p>
+		<p class="alternativeattributes"><span class="attributesname">Resume : </span><%=groupe.getResume()%></p>
 		<p class="attributes"><span class="attributesname">Description : </span><%=groupe.getDescription()%></p>
-		<p class="attributes"><span class="attributesname">Statut : </span><%=groupe.getStatut().getLibelle()%></p>
-		
+		<p class="alternativeattributes"><span class="attributesname">Statut : </span><%=groupe.getStatut().getLibelle()%></p>
 
 		<%-- End Div UserInfos --%>
 		</div>
@@ -83,10 +80,12 @@
 				
 		<%-- Div Wrapper --%>
 		<div id = "wrapper">
-		<div id= "profil">
+		<div id= "profil2">
 
-		<p class="title2">Liste des volontaires du Projet</p>
-		
+		<p class="title3">Liste des volontaires du Projet</p>
+		<p class="title4"><span class="marge"> Identité </span><span class="marge"> Cursus </span>
+		<span class="marge2"> Téléphone </span><span class="marge3"> Mail </span></p>
+				
 		<%-- Div UserInfos --%>
 		<div id = "groupeinfos">
 <%
@@ -118,23 +117,28 @@
 						<p class="content"><%=usr.getPrenom() + " " + usr.getNom()%></p>
 					</div>
 		
-					<%-- Div Age --%>
-					<div class="age">
-						<p class="content"><%=usr.getAge() + " ans"%></p>
+					<%-- Div Cursus --%>
+					<div class="identite">
+						<p class="content"><%=usr.getCursus().getLibelle()%></p>
+						
+					</div>
+					
+					
+					<%-- Div Téléphone --%>
+					<div class="identite">
+						<p class="content"><%=usr.getTel()%></p>
+						
+					</div>
+					
+					
+					<%-- Div Mail --%>
+					<div class="identite">
+						<p class="content"><%=usr.getMail()%></p>
 						
 					</div>
 				</a>
 								
-				<%-- Div Edit --%>
-				<div class="edit">
-					<a href="./EditUser?login=<%=usr.getLogin()%>"><img src=img/edit.png alt="Edit" title="Edit" /></a>
-				</div>
-	
-				<%-- Div Delete --%>
-				<div class="delete">
-					<a href="./DeleteUser?login=<%=usr.getLogin()%>"><img src=img/remove.png alt="Delete" title="Delete" onclick="return(confirm('Etes-vous sûr de vouloir supprimer cette entrée?'));"/></a>
-				</div>
- 			
+		
   			<%-- End Div Line / AlternativeLine --%>
 			</div>
 			<%
