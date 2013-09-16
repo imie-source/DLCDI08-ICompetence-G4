@@ -10,7 +10,6 @@ import java.util.List;
 import fr.imie.dao.interfaces.IKeywordDAO;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Keyword;
-import fr.imie.dto.Utilisateur;
 import fr.imie.exceptionManager.ExceptionManager;
 import fr.imie.transactionalFramework.ATransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;

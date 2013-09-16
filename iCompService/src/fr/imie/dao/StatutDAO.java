@@ -9,12 +9,10 @@ import java.util.List;
 
 import javax.transaction.TransactionRequiredException;
 
-import fr.imie.dao.interfaces.IGroupeDAO;
 import fr.imie.dao.interfaces.IStatutDAO;
 import fr.imie.dto.Groupe;
 import fr.imie.dto.Statut;
 import fr.imie.exceptionManager.ExceptionManager;
-import fr.imie.factory.Factory;
 import fr.imie.transactionalFramework.ATransactional;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -63,17 +61,16 @@ public class StatutDAO extends ATransactional implements IStatutDAO {
 	}
 	
 	@Override
-	public Statut findStatutById(String staId)  throws TransactionalConnectionException {
+	public Statut findStatutById(int id)  throws TransactionalConnectionException {
 		
 		Statut statut = new Statut();
-		int k = Integer.valueOf(staId).intValue();   
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String query = "SELECT * FROM STATUT WHERE STA_ID = ? ";
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
-			pstmt.setInt(1, k);
+			pstmt.setInt(1, id);
 
 			rs = pstmt.executeQuery();
 						
