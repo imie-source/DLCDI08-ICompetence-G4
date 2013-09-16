@@ -5,7 +5,6 @@ import java.util.List;
 import fr.imie.dto.Adresse;
 import fr.imie.dto.Competence;
 import fr.imie.dto.Cursus;
-import fr.imie.dto.Domaine;
 import fr.imie.dto.Keyword;
 import fr.imie.dto.Utilisateur;
 import fr.imie.transactionalFramework.ITransactional;
@@ -46,17 +45,6 @@ public interface IUserService extends ITransactional {
 	
 	public abstract List<Competence> getCompetences() throws TransactionalConnectionException;
 
-	// DOMAINE
-	public abstract List<Domaine> getDomaines() throws TransactionalConnectionException;
-
-	public abstract Domaine insertDomaine(Domaine domaine)
-			throws TransactionalConnectionException;
-
-	public abstract Domaine updateDomaine(Domaine domaine)
-			throws TransactionalConnectionException;
-
-	public abstract void deleteDomaine(Domaine domaine) throws TransactionalConnectionException;
-	
 	// KEYWORD
 	
 	public abstract List<Keyword> getKeyword() throws TransactionalConnectionException;

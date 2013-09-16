@@ -17,7 +17,7 @@ public class Competence {
 	private List<Niveau> listNiveau;
 	private List<Utilisateur> listUtilisateur;
 	private Niveau niveau;
-	private Domaine domaine;
+	private Competence competence;
 	private List<Keyword> listKeyword;
 
 
@@ -100,14 +100,6 @@ public class Competence {
 		this.niveau = niveau;
 	}
 
-	public Domaine getDomaine() {
-		return domaine;
-	}
-
-	public void setDomaine(Domaine domaine) {
-		this.domaine = domaine;
-	}
-
 	public List<Keyword> getListKeyword() {
 		return listKeyword;
 	}
@@ -118,5 +110,13 @@ public class Competence {
 	
 	public void removeListKeyword(List<Keyword> listKeyword) {
 		this.listKeyword = listKeyword;
+	}
+
+	public Competence getCompetence() {
+		return competence;
+	}
+
+	public void setCompetence(Competence competence) {
+		this.competence = competence;
 	}
 }

@@ -4,7 +4,6 @@ package fr.imie.factory;
 import fr.imie.dao.AdresseDAO;
 import fr.imie.dao.CompetenceDAO;
 import fr.imie.dao.CursusDAO;
-import fr.imie.dao.DomaineDAO;
 import fr.imie.dao.DroitDAO;
 import fr.imie.dao.FenetreDAO;
 import fr.imie.dao.FonctionDAO;
@@ -18,7 +17,6 @@ import fr.imie.dao.UtilisateurDAO;
 import fr.imie.dao.interfaces.IAdresseDAO;
 import fr.imie.dao.interfaces.ICompetenceDAO;
 import fr.imie.dao.interfaces.ICursusDAO;
-import fr.imie.dao.interfaces.IDomaineDAO;
 import fr.imie.dao.interfaces.IDroitDAO;
 import fr.imie.dao.interfaces.IFenetreDAO;
 import fr.imie.dao.interfaces.IFonctionDAO;
@@ -165,12 +163,6 @@ public class Factory implements IFactory {
 		return fact.createTransactionalService(new DroitDAO(), caller);
 	}
 
-	@Override
-	public IDomaineDAO createDomaineDAO(ITransactional caller) {
-		TransactionalFactory<DomaineDAO> fact = (TransactionalFactory<DomaineDAO>) TransactionalFactory.getInstance();
-		return fact.createTransactionalService(new DomaineDAO(), caller);
-	}
-	
 	@Override
 	public IKeywordDAO createKeywordDAO(ITransactional caller) {
 		TransactionalFactory<KeywordDAO> fact = (TransactionalFactory<KeywordDAO>) TransactionalFactory.getInstance();
