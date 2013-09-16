@@ -1,6 +1,0 @@
-INDEX VERSION 1.122+/mnt/data/DLCDI08-ICompetence-G4/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
-2672398041.index
-3183439144.index
-1494999041.index
-4247946653.index
-1124875881.index
