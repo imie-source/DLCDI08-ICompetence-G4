@@ -81,6 +81,7 @@ public class RestrictionFilter implements Filter {
 					for (Profil profil : profils) {
 						if (profil.getNom() != null) {
 							System.out.println("profil :" + profil.getNom());
+							session.setAttribute(SESSION_PROFIL, profil.getNom());
 							session.setAttribute(SESSION_TITRE, " - "
 									+ userAuthorized.getNom() + " "
 									+ userAuthorized.getPrenom() + " - " + profil.getNom());
@@ -91,10 +92,10 @@ public class RestrictionFilter implements Filter {
 									+ "Pas de role");
 						}
 					}
-					if (profils != null) {
+					if (profils == null) {
 						session.setAttribute(SESSION_TITRE, " - "
 								+ userAuthorized.getNom() + " "
-								+ userAuthorized.getPrenom() + " - " + "Pas de role");
+								+ userAuthorized.getPrenom() + " - " + "Pas de role toto");
 					}
 					session.setAttribute(SESSION_USER, userAuthorized);
 				}
