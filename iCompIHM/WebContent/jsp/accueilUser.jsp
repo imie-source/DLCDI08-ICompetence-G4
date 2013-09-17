@@ -127,8 +127,8 @@
 		</div>
 	</div>
 	<div id="footer">
-		<a href="" title="">Mentions légales</a> - <a href="" title="">Site
-			officiel de l'IMIE</a> - <a href="" title="">Contact</a>
+		<a href="http://imie-ecole-informatique.fr/" title="">Mentions légales</a> - <a href="http://imie-ecole-informatique.fr/" title="">Site
+			officiel de l'IMIE</a> - <a href="http://imie-ecole-informatique.fr/" title="">Contact</a>
 	</div>
 </div>
 </body>
