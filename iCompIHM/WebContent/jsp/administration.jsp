@@ -10,13 +10,14 @@
 <%
 	svc = Factory.getInstance().createProjectService(null);
 %>
+<%	final String SESSION_TITRE = "titre"; %>
 
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8" />
-<title>Administration Panel</title>
+<title>Administration Panel <%=session.getAttribute(SESSION_TITRE)%></title>
 <link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/administration.css" media="all"
 	type="text/css" />

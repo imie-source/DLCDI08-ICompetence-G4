@@ -8,6 +8,7 @@
 	final String SESSION_TITRE = "titre";
 	final String CONNECTE = "connecte";
 	final String ACCUEIL = "AccueilUser";
+	final String ACCUEIL_ADMIN = "Administration";
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,13 +19,7 @@
 	type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<TITLE>Authentification <%
-	if (session.getAttribute(SESSION_TITRE) != null) {
-%>
-	<%=session.getAttribute(SESSION_TITRE)%> <%
- 	}
- %>
-</TITLE>
+<TITLE>Authentification</TITLE>
 <%session.removeAttribute(SESSION_USER); %>
 </head>
 <body>

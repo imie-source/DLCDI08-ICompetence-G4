@@ -66,6 +66,9 @@ public class RestrictionFilter implements Filter {
 			try {
 				IUserService svcUser = Factory.getInstance()
 						.createUserService(null);
+//				IUserService svcUser = Factory.getInstance()
+//						.createUserService(this);
+
 				userAuthorized = svcUser.IsAuthorized(user);
 				if (userAuthorized == null) {
 					request.setAttribute(ERROR_MESSAGE, user.getLogin()
@@ -75,9 +78,8 @@ public class RestrictionFilter implements Filter {
 					for (Profil profil : userAuthorized.getProfils()) {
 						System.out.println("Profil : " + profil.getNom());
 						session.setAttribute(SESSION_PROFIL, profil);
-						session.setAttribute(SESSION_TITRE, " - " + user.getLogin() + " " + user.getPass() + " - " + profil.getNom());
 					}
-					
+					session.setAttribute(SESSION_TITRE, " - " + userAuthorized.getNom() + " " + userAuthorized.getPrenom() + " - " + "Role");
 					session.setAttribute(SESSION_USER, userAuthorized);
 				}
 			} catch (TransactionalConnectionException e) {
