@@ -75,6 +75,13 @@
 	float: left;
 }
 
+
+.nom {
+	height: 20px;
+	width: 20px;
+	float: left;
+}
+
 .age {
 	height: 20px;
 	width: 125px;
