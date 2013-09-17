@@ -41,8 +41,8 @@
 				<div id="button">
 					<ul>
 						<li><a href="./AccueilUser" title="">Accueil</a></li>
-						<li><a href="" title="">Deconnexion</a></li>
-						<li><a href="" title="">Infos projets</a></li>
+						<li><a href="./jsp/index.jsp" title="">Deconnexion</a></li>
+						<li><a href="./FindAllProjects" title="">Infos projets</a></li>
 						<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
 					</ul>
 				</div>
@@ -53,8 +53,7 @@
 		<div id="mesinfos">
 			<!-- bloc Mes Infos-->
 			<h3>Infos utilisateur :</h3>
-			<h5>Eminuit autem inter humilia supergressa iam impotentia fines
-				mediocrium</h5>
+			<h5>Ne pas afficher</h5>
 		</div>
 
 		<div id="projet">
@@ -72,18 +71,16 @@
 						<h4><%=projet.getNom() %></h4>
 						<p>Chef de projet : <%= projet.getChefProjet().getPrenom()+ " " +projet.getChefProjet().getNom() %></p>
 						<p>Résumé : <%=  projet.getDescription()%></p>
-						<a href="" title="">[+ d'infos]</a>
+						<a href="./FindProject?grpid=<%=projet.getId()%>" title="">[+ d'infos]</a>
 						<p>Etat d'avancement : <%=projet.getAvancement()%>%</p>
 						<div class="button2">
 							<ul>
-								<li><a href="" title="">Liste des Utilisateurs</a></li>
+								<li><a href="./FindAllUsers" title="">Liste des Utilisateurs</a></li>
 							</ul>
 						</div><br />
 					</div>
 		<% } %>
-					
 				</div>
-
 		
 				<div id="projetsRealises">
 					<!--Projets réalisés -->
@@ -95,8 +92,8 @@
 		
 					<div class="projet">
 						<h4><%=projet.getNom() %></h4>
-						<p>Résumé : <%=  projet.getDescription()%></p>
-						<a href="" title="">[+ d'infos]</a>
+						<p>Résumé : <%=projet.getDescription()%></p>
+						<a href="./FindProject?grpid=<%=projet.getId()%>" title="">[+ d'infos]</a>
 					</div>	
 		<% } %>
 				</div>
@@ -117,7 +114,7 @@
 					<div class="projetxx">
 						<h4><%=projet.getNom() %></h4>
 						<p>Résumé : <%=  projet.getDescription()%></p>
-						<a href="" title="">[+ d'infos]</a>
+						<a href="./FindProject?grpid=<%=projet.getId()%>" title="">[+ d'infos]</a>
 					</div>
 		<% } %>
 				</div>

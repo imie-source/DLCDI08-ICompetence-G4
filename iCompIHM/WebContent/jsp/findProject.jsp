@@ -14,11 +14,14 @@
 
 
 <%
-	final int grpId = 1;
+	//final int grpId = 1;
 %>
 
 <%
-	//grpid = request.getParameter("grpid");
+	String id = (String) request.getParameter("grpid");
+	if (id != null) {
+		int grpId = Integer.parseInt(id);
+	}
 %>
 <%
 	//String provenance =  (String) request.getParameter("provenance");
@@ -39,10 +42,10 @@
 %>
 
 <%
-	Groupe groupe = psvc.findGroupById(grpId);
+	Groupe groupe = psvc.findGroupById(Integer.parseInt(id));
 %>
 <%
-	Utilisateur userCP = svc.getChefProjetbyGrpid(grpId);
+	Utilisateur userCP = svc.getChefProjetbyGrpid(Integer.parseInt(id));
 %>
 
 
@@ -50,7 +53,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title <%=groupe.getNom()%>/title>
+<title><%=groupe.getNom()%></title>
 	<link rel="stylesheet" href="css/styleProject.css" media="all"
 		type="text/css" />
 	<link rel="stylesheet" href="css/findProject.css" media="all"
@@ -113,7 +116,7 @@
 			<%-- Div UserInfos --%>
 			<div id="groupeinfos">
 				<%
-					List<Utilisateur> listuser = svc.getUsersbyGrpId(grpId); 
+					List<Utilisateur> listuser = svc.getUsersbyGrpId(Integer.parseInt(id)); 
 					int i = 1; 
 					int j = 0; 
 					
