@@ -13,12 +13,13 @@
 <%@ page import="java.util.List"%>
 
 
-<%
-	final int grpId = 1;
+<%!
+	    
 %>
 
 <%
-	//grpid = request.getParameter("grpid");
+
+    int id = Integer.parseInt(request.getParameter("id"));
 %>
 <%
 	//String provenance =  (String) request.getParameter("provenance");
@@ -39,10 +40,10 @@
 %>
 
 <%
-	Groupe groupe = psvc.findGroupById(grpId);
+	Groupe groupe = psvc.findGroupById(id);
 %>
 <%
-	Utilisateur userCP = svc.getChefProjetbyGrpid(grpId);
+	Utilisateur userCP = svc.getChefProjetbyGrpid(id);
 %>
 
 
@@ -99,13 +100,6 @@
 		<%-- End Div Wrapper --%>
 	</div>
 
-
-
-
-
-
-
-
 	<%-- Div Wrapper --%>
 	<div id="wrapper">
 		<div id="profil2">
@@ -120,7 +114,7 @@
 			<%-- Div UserInfos --%>
 			<div id="groupeinfos">
 				<%
-					List<Utilisateur> listuser = svc.getUsersbyGrpId(grpId); 
+					List<Utilisateur> listuser = svc.getUsersbyGrpId(id); 
 					int i = 1; 
 					int j = 0; 
 					
@@ -141,7 +135,7 @@
 							}
 						%>
 
-						<a href="./FindUser?login=<%=usr.getLogin()%>"> <%-- Div Identite --%>
+						<a href="./FindUser?login=<%=usr.getLogin()%>&provenanceUser=CPR"> <%-- Div Identite --%>
 							<div class="identite">
 								<p class="content"><%=usr.getPrenom() + " " + usr.getNom()%></p>
 							</div> <%-- Div Cursus --%>
@@ -170,8 +164,14 @@
 					<%-- End Div User List --%>
 				</div>
 
-				<%-- End Div Wrapper --%>
+				<%-- End Div groupeInfos --%>
 			</div>
+			
+
+				<%-- End Div profil2r --%>
+			</div>
+
+
 
 
 
@@ -181,9 +181,15 @@
 
 			<%-- Div Footer --%>
 			<div id="footer">
-
-				<a class="backlink" href="./FindAllUsers">Retour Liste</a>
-
+			    <%if (request.getParameter("provenanceProjet") == "LPR") {%>
+				<a class="backlink" href="./FindAllProjects">Retour Liste</a>
+				<%}else{%>
+		        <a class="backlink" href="./AccueilUser">Retour Liste</a>
+				<%}%>
 			</div>
+
+				<%-- End Div Wrapper --%>
+			</div>
+		
 </body>
 </html>
