@@ -7,9 +7,9 @@
 <%@ page import="java.util.List"%>
 <%@ page import="fr.imie.dto.Cursus"%>
 
-<%!IProjectService svc;%>
+<%!IProjectService psvc;%>
 <%
-	svc = Factory.getInstance().createProjectService(null);
+	psvc = Factory.getInstance().createProjectService(null);
 %>
 
 <!DOCTYPE html>
@@ -55,16 +55,13 @@
 
 					<%-- Div Header Tool2 (Add) --%>
 					<div class="toolHeader">
-						<a href="#" data-width="500" data-rel="popup1" class="poplight">
-							<img src=img/add.png alt="Add" title="Add" />
-						</a>
 					</div>
 
 					<%-- End Div Header Line --%>
 				</div>
 
 				<%
-					List<Groupe> listgroupe = svc.getGroupes(); 
+					List<Groupe> listgroupe = psvc.getGroupes(); 
 															int i = 1; 
 															int j = 0; 
 															
@@ -85,9 +82,21 @@
 							}
 						%>
 
+
+						
+
+
+
+
+                    <a href="./FindProject?id=<%=grp.getId()%>&provenanceProjet=LPR"> <%-- Div Identite --%>
 						<%-- Div Nom --%>
-					<div class="nom">
+					<div class="identite">
+					        <%if (grp.getNom()!=null) {%>
 							<p class="content"><%=grp.getNom()%></p>
+							<%}else{%>
+							<p class="content"></p>
+							<%}%>  
+							
 
 						</div>
 
@@ -97,7 +106,7 @@
 						
 					</div>
 				
-								
+					</a>			
 				
 								<%-- Div Edit --%>
 				<div class="edit">
@@ -105,7 +114,7 @@
 				</div>								
 								
 				<div class="edit">
-					<a href="./FindProject?login=<%=grp.getId()%>"><img src=img/edit.png alt="Edit" title="Edit" /></a>
+					<a href="./FindProject?id=<%=grp.getId()%>"><img src=img/edit.png alt="Edit" title="Edit" /></a>
 				</div>
 	
 	

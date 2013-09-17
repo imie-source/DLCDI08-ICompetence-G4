@@ -37,7 +37,7 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 
 		Statement stmt = null;
 		ResultSet rs = null;
-		String query = "SELECT * FROM groupe";
+		String query = "SELECT * FROM groupe ORDER BY GRP_NOM";
 
 		try {
 			stmt = getConnection().createStatement();
