@@ -2,24 +2,26 @@ package fr.imie.main;
 
 import java.util.List;
 
-import fr.imie.dto.Groupe;
+import fr.imie.dto.Profil;
+import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IProjectService;
 
-public class findGroupByStatut {
+public class FindProfilByUser {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		IProjectService svc = Factory.getInstance().createProjectService(null);
-		System.out.println("findGroupByStatut");
+		System.out.println("findProfilByUser");
 		try {
-			List<Groupe> groupes = svc.findGroupByStatut(1);
+			Utilisateur user = new Utilisateur();
+			user.setLogin("mha01");
+			List<Profil> profils = svc.getProfilsByUser(user);
 			
-			for (Groupe groupe : groupes) {
-				System.out.println("groupe : " + groupe.getNom() + "\n");
-				System.out.println("CP : " + groupe.getChefProjet().getNom() + "\n");
+			for (Profil profil : profils) {
+				System.out.println("profil : " + profil.getNom() + "\n");
 			}
 			
 
