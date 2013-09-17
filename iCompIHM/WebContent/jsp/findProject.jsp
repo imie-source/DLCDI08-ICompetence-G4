@@ -137,20 +137,21 @@
 							}
 						%>
 
-						<a href="./FindUser?login=<%if(usr.getLogin() != null){%><%=usr.getLogin()%>"> <%}%><%-- Div Identite --%>
+						<a href="./FindUser?login=<%if(usr.getLogin() != null){%><%=usr.getLogin()%>"<%}%>> <%-- Div Identite --%>
 							<div class="identite">
-								<p class="content"><%=usr.getPrenom() + " " + usr.getNom()%></p>
+								<p class="content"><%if(usr.getPrenom() + " " + usr.getNom() != null){%><%=usr.getPrenom() + " " + usr.getNom()%><%}%></p>
 							</div> <%-- Div Cursus --%>
 							<div class="identite">
-								<p class="content"><%=usr.getCursus().getLibelle()%></p>
+								<p class="content"><%if(usr.getCursus().getLibelle() != null){%><%=usr.getCursus().getLibelle()%><%}%></p>
 
 							</div> <%-- Div Téléphone --%>
 							<div class="identite">
-								<p class="content"><%=usr.getTel()%></p>
+							
+								<p class="content"><%if(usr.getTel() != null){%><%=usr.getTel()%><%}%></p>
 
 							</div> <%-- Div Mail --%>
 							<div class="identite">
-								<p class="content"><%=usr.getMail()%></p>
+								<p class="content"><%if(usr.getMail() != null){%><%=usr.getMail()%><%}%></p>
 
 							</div>
 						</a>
