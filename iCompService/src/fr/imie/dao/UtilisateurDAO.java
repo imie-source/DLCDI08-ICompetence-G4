@@ -574,7 +574,6 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		Utilisateur userRetour = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
-		IProfilDAO profilDAO = Factory.getInstance().createProfilDAO(this);
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
@@ -591,10 +590,10 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 				userRetour.setPrenom(rs.getString("USR_Prenom"));
 				userRetour.setLogin(rs.getString("usr_login"));
 
-				List<Profil> profils = profilDAO.getProfilsByUser(user);
-				for (Profil profil : profils) {
-					userRetour.addProfil(profil);
-				}
+//				List<Profil> profils = profilDAO.getProfilsByUser(user);
+//				for (Profil profil : profils) {
+//					userRetour.addProfil(profil);
+//				}
 			}
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
