@@ -44,11 +44,11 @@
 				<%-- Div UserInfos --%>
 				<div id = "userinfos">
 				
-				<p class="attributes"><span class="attributesname">Prenom : </span><%=user.getPrenom()%></p>
-				<p class="alternativeattributes"><span class="attributesname">Nom : </span><%=user.getNom()%></p>
-				<p class="attributes"><span class="attributesname">Age : </span><%=user.getAge()%>  ans</p>
-				<p class="alternativeattributes"><span class="attributesname">E-Mail : </span><%=user.getMail()%></p>
-				<p class="attributes"><span class="attributesname">Tel : </span><%=user.getTel()%></p>
+				<p class="attributes"><span class="attributesname">Prenom : </span><%if(user.getPrenom() != null){%><%=user.getPrenom()%><%}%></p>
+				<p class="alternativeattributes"><span class="attributesname">Nom : </span><%if(user.getNom() != null){%><%=user.getNom()%><%}%></p>
+				<p class="attributes"><span class="attributesname">Age : </span><%if(user.getAge() != 0){%><%=user.getAge()%>  ans<%}%></p>
+				<p class="alternativeattributes"><span class="attributesname">E-Mail : </span><%if(user.getMail() != null){%><%=user.getMail()%><%}%></p>
+				<p class="attributes"><span class="attributesname">Tel : </span><%if(user.getTel() != null){%><%=user.getTel()%><%}%></p>
 				
 				<%-- End Div UserInfos --%>
 				</div>

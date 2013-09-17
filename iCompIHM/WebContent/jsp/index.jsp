@@ -52,19 +52,19 @@
 				<%
 					if (session.getAttribute(SESSION_USER) == null) {
 				%>
-				<form name="Connexion" method="get" action="<%=ACCUEIL%>">
+				<form name="Connexion" method="post" action="<%=ACCUEIL%>">
 
 					<table class=tableau align=center width="80%" height="100">
 						<tr>
 							<td width="5%">&nbsp;</td>
 							<td class="ParaText" width="10%">Login :</td>
-							<td width="20%"><input name="login" id="login" size="12"
+							<td width="20%"><input name="login" id="login" size="12" type="text"
 								style="WIDTH: 90px" maxLength=10></td>
 						</tr>
 						<tr>
 							<td width="5%">&nbsp;</td>
 							<td class="ParaText" width="10%">Password :</td>
-							<td width="20%"><input name="password" id="password"
+							<td width="20%"><input name="password" id="password" type="password"
 								size="12" style="WIDTH: 90px" maxLength=10></td>
 						</tr>
 						<tr>

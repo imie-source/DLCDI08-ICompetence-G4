@@ -164,8 +164,6 @@
 						<%-- End Div Line / AlternativeLine --%>
 					</div>
 			<%
-
-Projet
 						i++; 
 						j++; 
 						}

@@ -35,6 +35,7 @@
 			</div>
 		</div>
 
+<<<<<<< HEAD
 		<div id="wrapper">
 			<div id="menu">
 				<!-- Menu de navigation du site-->
@@ -47,10 +48,24 @@
 							<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
 						</ul>
 					</div>
+=======
+	<div id="wrapper">
+		<div id="menu">
+			<!-- Menu de navigation du site-->
+			<div id="menuListe_left">
+				<div id="button">
+					<ul>
+						<li><a href="./AccueilUser" title="">Accueil</a></li>
+						<li><a href="./jsp/index.jsp" title="">Deconnexion</a></li>
+						<li><a href="./FindAllProjects" title="">Infos projets</a></li>
+						<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
+					</ul>
+>>>>>>> 2ad00392c32b4ac31195c7f2a4868ad966b8cd1f
 				</div>
 			</div>
 
 
+<<<<<<< HEAD
 			<div id="mesinfos">
 				<!-- bloc Mes Infos-->
 				<h3>Infos utilisateur :</h3>
@@ -96,6 +111,13 @@
 						<%
 							}
 						%>
+=======
+		<div id="mesinfos">
+			<!-- bloc Mes Infos-->
+			<h3>Infos utilisateur :</h3>
+			<h5>Ne pas afficher</h5>
+		</div>
+>>>>>>> 2ad00392c32b4ac31195c7f2a4868ad966b8cd1f
 
 					</div>
 
@@ -136,16 +158,36 @@
 						<h4><%=projet.getNom() %></h4>
 						<p>Chef de projet : <%= projet.getChefProjet().getPrenom()+ " " +projet.getChefProjet().getNom() %></p>
 						<p>Résumé : <%=  projet.getDescription()%></p>
-						<a href="" title="">[+ d'infos]</a>
+						<a href="./FindProject?grpid=<%=projet.getId()%>" title="">[+ d'infos]</a>
 						<p>Etat d'avancement : <%=projet.getAvancement()%>%</p>
 						<div class="button2">
 							<ul>
-								<li><a href="" title="">Liste des Utilisateurs</a></li>
+								<li><a href="./FindAllUsers" title="">Liste des Utilisateurs</a></li>
 							</ul>
 						</div><br />
 >>>>>>> 630a7506653101b797a3407a563cb752353bec54
 					</div>
+<<<<<<< HEAD
 
+=======
+		<% } %>
+				</div>
+		
+				<div id="projetsRealises">
+					<!--Projets réalisés -->
+					<h3>Projets Réalisés</h3>
+					
+		<% List<Groupe> listprojet3 = svcProject.findGroupByStatut(3);
+		
+		for (Groupe projet : listprojet3){	%>
+		
+					<div class="projet">
+						<h4><%=projet.getNom() %></h4>
+						<p>Résumé : <%=projet.getDescription()%></p>
+						<a href="./FindProject?grpid=<%=projet.getId()%>" title="">[+ d'infos]</a>
+					</div>	
+		<% } %>
+>>>>>>> 2ad00392c32b4ac31195c7f2a4868ad966b8cd1f
 				</div>
 
 				<div id="projetright">
@@ -153,6 +195,7 @@
 						<!--Propositions de projets -->
 						<h3>Propositions de projets</h3>
 
+<<<<<<< HEAD
 
 						<%
 							List<Groupe> listprojet1 = svcProject.findGroupByStatut(1);
@@ -171,6 +214,23 @@
 						<%
 							}
 						%>
+=======
+			<div id="projetright">
+				<div id="propositiondeprojets">
+					<!--Propositions de projets -->
+					<h3>Propositions de projets</h3>
+					
+					
+		<% List<Groupe> listprojet1 = svcProject.findGroupByStatut(1);
+		
+		for (Groupe projet : listprojet1){	%>
+					
+					
+					<div class="projetxx">
+						<h4><%=projet.getNom() %></h4>
+						<p>Résumé : <%=  projet.getDescription()%></p>
+						<a href="./FindProject?grpid=<%=projet.getId()%>" title="">[+ d'infos]</a>
+>>>>>>> 2ad00392c32b4ac31195c7f2a4868ad966b8cd1f
 					</div>
 
 				</div>
