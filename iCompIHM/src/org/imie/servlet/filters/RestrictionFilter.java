@@ -1,6 +1,7 @@
 package org.imie.servlet.filters;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import fr.imie.dto.Profil;
 import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
+import fr.imie.service.interfaces.IProjectService;
 import fr.imie.service.interfaces.IUserService;
 import fr.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -30,7 +32,7 @@ public class RestrictionFilter implements Filter {
 	private static final String SESSION_USER = "user";
 	private static final String SESSION_PROFIL = "profil";
 	private static final String SESSION_TITRE = "titre";
-	
+
 	private Utilisateur userAuthorized;
 
 	public void destroy() {
@@ -55,7 +57,7 @@ public class RestrictionFilter implements Filter {
 
 		/* Récupération de la session depuis la requête */
 		HttpSession session = request.getSession();
-		
+
 		if ((request.getParameter("login") != null)
 				|| (request.getParameter("password") != null)) {
 
@@ -64,26 +66,46 @@ public class RestrictionFilter implements Filter {
 			user.setPass(request.getParameter("password"));
 
 			try {
-				IUserService svcUser = Factory.getInstance()
-						.createUserService(null);
+				IUserService svcUser = Factory.getInstance().createUserService(
+						null);
+				IProjectService svc = Factory.getInstance()
+						.createProjectService(null);
+
 				userAuthorized = svcUser.IsAuthorized(user);
 				if (userAuthorized == null) {
 					request.setAttribute(ERROR_MESSAGE, user.getLogin()
 							+ " n'est pas un login valide");
 				} else {
+					List<Profil> profils = svc.getProfilsByUser(user);
 					System.out.println("Login : " + userAuthorized.getLogin());
-					for (Profil profil : userAuthorized.getProfils()) {
-						System.out.println("Profil : " + profil.getNom());
-						session.setAttribute(SESSION_PROFIL, profil);
-						session.setAttribute(SESSION_TITRE, " - " + user.getLogin() + " " + user.getPass() + " - " + profil.getNom());
+					for (Profil profil : profils) {
+						if (profil.getNom() != null) {
+							System.out.println("profil :" + profil.getNom());
+							session.setAttribute(SESSION_PROFIL, profil.getNom());
+							session.setAttribute(SESSION_TITRE, " - "
+									+ userAuthorized.getNom() + " "
+									+ userAuthorized.getPrenom() + " - " + profil.getNom());
+						} else {
+							session.setAttribute(SESSION_TITRE, " - "
+									+ userAuthorized.getNom() + " "
+									+ userAuthorized.getPrenom() + " - "
+									+ "Pas de role");
+						}
 					}
-					
+					if (profils == null) {
+						session.setAttribute(SESSION_TITRE, " - "
+								+ userAuthorized.getNom() + " "
+								+ userAuthorized.getPrenom() + " - " + "Pas de role toto");
+					}
 					session.setAttribute(SESSION_USER, userAuthorized);
 				}
 			} catch (TransactionalConnectionException e) {
-				request.setAttribute(ERROR_MESSAGE, "Erreur d'accès à l'authentification");
+				request.setAttribute(ERROR_MESSAGE,
+						"Erreur d'accès à l'authentification");
 			}
-
+		} else {
+			request.setAttribute(ERROR_MESSAGE,
+					"Erreur d'accès à l'authentification");
 		}
 
 		/**

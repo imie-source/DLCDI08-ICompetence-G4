@@ -8,7 +8,7 @@
 
 <%! IUserService svc; %>
 <% svc = Factory.getInstance().createUserService(null); %>
-
+<%	final String SESSION_TITRE = "titre"; %>
        
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,7 +16,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Liste des Competences</title>
+<title>Liste des Competences <%=session.getAttribute(SESSION_TITRE)%></title>
 <link rel="stylesheet"href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet"href="css/findAllUsers.css" media="all" type="text/css" />
 </head>

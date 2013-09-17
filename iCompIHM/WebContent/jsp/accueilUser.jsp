@@ -14,12 +14,13 @@
 <%
 	svcUser = Factory.getInstance().createUserService(null);
 %>
+<%	final String SESSION_TITRE = "titre"; %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Accueil - Michel Hardy - CP</title>
+<title>Accueil <%=session.getAttribute(SESSION_TITRE)%></title>
 <link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/stylepres3.css" media="all" type="text/css" />
 </head>
@@ -40,10 +41,11 @@
 			<div id="menuListe_left">
 				<div id="button">
 					<ul>
-						<li><a href="./AccueilUser" title="">Accueil</a></li>
-						<li><a href="" title="">Deconnexion</a></li>
-						<li><a href="" title="">Infos projets</a></li>
-						<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
+
+							<li><a href="./AccueilUser" title="">Accueil</a></li>
+							<li><a href="./Authentification" title="">Deconnexion</a></li>
+							<li><a href="./FindAllProjects" title="">Infos projets</a></li>
+							<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
 					</ul>
 				</div>
 			</div>
@@ -53,8 +55,7 @@
 		<div id="mesinfos">
 			<!-- bloc Mes Infos-->
 			<h3>Infos utilisateur :</h3>
-			<h5>Eminuit autem inter humilia supergressa iam impotentia fines
-				mediocrium</h5>
+			<h5>Ne pas afficher</h5>
 		</div>
 
 		<div id="projet">
@@ -70,13 +71,15 @@
 					
 					<div class="projet">
 						<h4><%=projet.getNom() %></h4>
-						<p>Chef de projet : <%= projet.getChefProjet().getPrenom()+ " " +projet.getChefProjet().getNom() %></p>
-						<p>Résumé : <%=  projet.getDescription()%></p>
-						<a href="" title="">[+ d'infos]</a>
+						<p>Chef de projet : <%=projet.getChefProjet().getPrenom() + " " + projet.getChefProjet().getNom() %></p>
+						<p>Résumé : <%=projet.getDescription()%></p>
+						<a href="./FindProject?grpid=<%=projet.getId()%>" title="Info">[+ d'infos]</a>
 						<p>Etat d'avancement : <%=projet.getAvancement()%>%</p>
 						<div class="button2">
 							<ul>
-								<li><a href="" title="">Liste des Utilisateurs</a></li>
+								<li><a href="./FindAllUsers?grpid=<%=projet.getId()%>" title="Liste utilisateurs">Liste des Utilisateurs</a></li>
+
+
 							</ul>
 						</div><br />
 					</div>
@@ -95,8 +98,8 @@
 		
 					<div class="projet">
 						<h4><%=projet.getNom() %></h4>
-						<p>Résumé : <%=  projet.getDescription()%></p>
-						<a href="" title="">[+ d'infos]</a>
+						<p>Résumé : <%=projet.getDescription()%></p>
+						<a href="./FindProject?grpid=<%=projet.getId()%>" title="Info">[+ d'infos]</a>
 					</div>	
 		<% } %>
 				</div>
@@ -116,8 +119,8 @@
 					
 					<div class="projetxx">
 						<h4><%=projet.getNom() %></h4>
-						<p>Résumé : <%=  projet.getDescription()%></p>
-						<a href="" title="">[+ d'infos]</a>
+						<p>Résumé : <%=projet.getDescription()%></p>
+						<a href="./FindProject?grpid=<%=projet.getId()%>" title="Info">[+ d'infos]</a>
 					</div>
 		<% } %>
 				</div>
@@ -127,8 +130,8 @@
 		</div>
 	</div>
 	<div id="footer">
-		<a href="" title="">Mentions légales</a> - <a href="" title="">Site
-			officiel de l'IMIE</a> - <a href="" title="">Contact</a>
+		<a href="http://imie-ecole-informatique.fr/" title="">Mentions légales</a> - <a href="http://imie-ecole-informatique.fr/" title="">Site
+			officiel de l'IMIE</a> - <a href="http://imie-ecole-informatique.fr/" title="">Contact</a>
 	</div>
 </div>
 </body>

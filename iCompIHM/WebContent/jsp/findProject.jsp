@@ -19,10 +19,10 @@
 
 <%
 
-    int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("id"));
 %>
 <%
-	//String provenance =  (String) request.getParameter("provenance");
+
 %>
 
 <%
@@ -46,12 +46,14 @@
 	Utilisateur userCP = svc.getChefProjetbyGrpid(id);
 %>
 
+<%      final String SESSION_TITRE = "titre"; 
+%>
 
 
 <!DOCTYPE html>
 <html>
 <head>
-<title <%=groupe.getNom()%>/title>
+<title>Projet <%=session.getAttribute(SESSION_TITRE)%></title>
 	<link rel="stylesheet" href="css/styleProject.css" media="all"
 		type="text/css" />
 	<link rel="stylesheet" href="css/findProject.css" media="all"
@@ -69,7 +71,9 @@
 
 	<%-- Div Title --%>
 	<div id="title">
-		<h1><%=groupe.getNom()%></h1>
+		<h1><%if(groupe.getNom() != null){%><%=groupe.getNom()%><%}%></h1>
+	</div>
+
 	</div>
 
 	<%-- Div Wrapper --%>

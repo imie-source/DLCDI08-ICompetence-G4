@@ -9,13 +9,14 @@
 <%@ page import="fr.imie.service.interfaces.IUserService" %>
 
 <%! IUserService svc; %>
+<%	final String SESSION_TITRE = "titre"; %>
 
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8" />
-<title>Ajouter un Utilisateur</title>
+<title>Ajouter un Utilisateur <%=session.getAttribute(SESSION_TITRE)%></title>
 <link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/addUser.css" media="all" type="text/css" />
 <script src="js/addUser.js" type="text/javascript"></script>
