@@ -41,6 +41,7 @@
 			<div id="menuListe_left">
 				<div id="button">
 					<ul>
+
 							<li><a href="./AccueilUser" title="">Accueil</a></li>
 							<li><a href="./Authentification" title="">Deconnexion</a></li>
 							<li><a href="./FindAllProjects" title="">Infos projets</a></li>
@@ -77,6 +78,8 @@
 						<div class="button2">
 							<ul>
 								<li><a href="./FindAllUsers?grpid=<%=projet.getId()%>" title="Liste utilisateurs">Liste des Utilisateurs</a></li>
+
+
 							</ul>
 						</div><br />
 					</div>

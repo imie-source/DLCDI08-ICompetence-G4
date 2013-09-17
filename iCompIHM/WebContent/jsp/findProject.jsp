@@ -72,7 +72,7 @@
 
 	<%-- Div Title --%>
 	<div id="title">
-		<h1><%=groupe.getNom()%></h1>
+		<h1><%if(groupe.getNom() != null){%><%=groupe.getNom()%><%}%></h1>
 	</div>
 
 	<%-- Div Wrapper --%>
@@ -85,17 +85,17 @@
 			<div id="groupeinfos">
 
 				<p class="attributes">
-					<span class="attributesname">Nom : </span><%=groupe.getNom()%></p>
+					<span class="attributesname">Nom : </span><%if(groupe.getNom() != null){%><%=groupe.getNom()%><%}%></p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Chef de Projet : </span><%=userCP.getNom()%></p>
+					<span class="attributesname">Chef de Projet : </span><%if(userCP.getNom() != null){%><%=userCP.getNom()%><%}%></p>
 				<p class="attributes">
-					<span class="attributesname">Avancement : </span><%=groupe.getAvancement()%></p>
+					<span class="attributesname">Avancement : </span><%if(groupe.getAvancement() != 0){%><%=groupe.getAvancement()%><%}%></p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Resume : </span><%=groupe.getResume()%></p>
+					<span class="attributesname">Resume : </span><%if(groupe.getResume() != null){%><%=groupe.getResume()%><%}%></p>
 				<p class="attributes">
-					<span class="attributesname">Description : </span><%=groupe.getDescription()%></p>
+					<span class="attributesname">Description : </span><%if(groupe.getDescription() != null){%><%=groupe.getDescription()%><%}%></p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Statut : </span><%=groupe.getStatut().getLibelle()%></p>
+					<span class="attributesname">Statut : </span><%if(groupe.getStatut().getLibelle() != null){%><%=groupe.getStatut().getLibelle()%><%}%></p>
 
 				<%-- End Div UserInfos --%>
 			</div>
@@ -138,7 +138,7 @@
 							}
 						%>
 
-						<a href="./FindUser?login=<%=usr.getLogin()%>"> <%-- Div Identite --%>
+						<a href="./FindUser?login=<%if(usr.getLogin() != null){%><%=usr.getLogin()%>"> <%}%><%-- Div Identite --%>
 							<div class="identite">
 								<p class="content"><%=usr.getPrenom() + " " + usr.getNom()%></p>
 							</div> <%-- Div Cursus --%>
