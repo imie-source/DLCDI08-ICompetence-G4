@@ -13,18 +13,16 @@
 <%@ page import="java.util.List"%>
 
 
-<%
-	//final int grpId = 1;
+<%!
+	    
 %>
 
 <%
-	String id = (String) request.getParameter("grpid");
-	if (id != null) {
-		int grpId = Integer.parseInt(id);
-	}
+
+        int id = Integer.parseInt(request.getParameter("id"));
 %>
 <%
-	//String provenance =  (String) request.getParameter("provenance");
+
 %>
 
 <%
@@ -42,13 +40,14 @@
 %>
 
 <%
-	Groupe groupe = psvc.findGroupById(Integer.parseInt(id));
+	Groupe groupe = psvc.findGroupById(id);
 %>
 <%
-	Utilisateur userCP = svc.getChefProjetbyGrpid(Integer.parseInt(id));
+	Utilisateur userCP = svc.getChefProjetbyGrpid(id);
 %>
-<%	final String SESSION_TITRE = "titre"; %>
 
+<%      final String SESSION_TITRE = "titre"; 
+%>
 
 
 <!DOCTYPE html>
@@ -75,6 +74,8 @@
 		<h1><%if(groupe.getNom() != null){%><%=groupe.getNom()%><%}%></h1>
 	</div>
 
+	</div>
+
 	<%-- Div Wrapper --%>
 	<div id="wrapper">
 		<div id="profil">
@@ -85,17 +86,17 @@
 			<div id="groupeinfos">
 
 				<p class="attributes">
-					<span class="attributesname">Nom : </span><%if(groupe.getNom() != null){%><%=groupe.getNom()%><%}%></p>
+					<span class="attributesname">Nom : </span><%=groupe.getNom()%></p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Chef de Projet : </span><%if(userCP.getNom() != null){%><%=userCP.getNom()%><%}%></p>
+					<span class="attributesname">Chef de Projet : </span><%=userCP.getNom()%></p>
 				<p class="attributes">
-					<span class="attributesname">Avancement : </span><%if(groupe.getAvancement() != 0){%><%=groupe.getAvancement()%><%}%></p>
+					<span class="attributesname">Avancement : </span><%=groupe.getAvancement()%></p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Resume : </span><%if(groupe.getResume() != null){%><%=groupe.getResume()%><%}%></p>
+					<span class="attributesname">Resume : </span><%=groupe.getResume()%></p>
 				<p class="attributes">
-					<span class="attributesname">Description : </span><%if(groupe.getDescription() != null){%><%=groupe.getDescription()%><%}%></p>
+					<span class="attributesname">Description : </span><%=groupe.getDescription()%></p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Statut : </span><%if(groupe.getStatut().getLibelle() != null){%><%=groupe.getStatut().getLibelle()%><%}%></p>
+					<span class="attributesname">Statut : </span><%=groupe.getStatut().getLibelle()%></p>
 
 				<%-- End Div UserInfos --%>
 			</div>
@@ -117,7 +118,7 @@
 			<%-- Div UserInfos --%>
 			<div id="groupeinfos">
 				<%
-					List<Utilisateur> listuser = svc.getUsersbyGrpId(Integer.parseInt(id)); 
+					List<Utilisateur> listuser = svc.getUsersbyGrpId(id); 
 					int i = 1; 
 					int j = 0; 
 					
@@ -138,7 +139,11 @@
 							}
 						%>
 
+<<<<<<< HEAD
 						<a href="./FindUser?login=<%if(usr.getLogin() != null){%><%=usr.getLogin()%>"<%}%>> <%-- Div Identite --%>
+=======
+						<a href="./FindUser?login=<%=usr.getLogin()%>&provenanceUser=CPR"> <%-- Div Identite --%>
+>>>>>>> 193ceb2e455eb436f9d229dff0bffaf7c6f3ae61
 							<div class="identite">
 								<p class="content"><%if(usr.getPrenom() + " " + usr.getNom() != null){%><%=usr.getPrenom() + " " + usr.getNom()%><%}%></p>
 							</div> <%-- Div Cursus --%>
@@ -168,17 +173,32 @@
 					<%-- End Div User List --%>
 				</div>
 
-				<%-- End Div Wrapper --%>
+				<%-- End Div groupeInfos --%>
 			</div>
+			
+
+				<%-- End Div profil2r --%>
+			</div>
+
+
+
+
+
+
+
+
 
 			<%-- Div Footer --%>
 			<div id="footer">
-
-				<a class="backlink" href="./FindAllUsers">Retour Liste</a>
-
+			    <%if (request.getParameter("provenanceProjet") == "LPR") {%>
+				<a class="backlink" href="./FindAllProjects">Retour Liste</a>
+				<%}else{%>
+		        <a class="backlink" href="./AccueilUser">Retour Liste</a>
+				<%}%>
 			</div>
-		</div>
-	</div>
+
+				<%-- End Div Wrapper --%>
+			</div>
 		
 </body>
 </html>
