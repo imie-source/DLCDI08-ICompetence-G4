@@ -14,7 +14,7 @@
 }
 
 #userlist {
-	width: 900px;
+	width: 560px;
 	margin: 0px auto;
 	border: solid 1px #000;
 	position: relative;
@@ -34,7 +34,7 @@
 .headerline {
 	background-color: #000;
 	color: #fff;
-	width: 900px;
+	width: 560px;
 	height: 20px;
 	position: relative;
 	-webkit-border-top-left-radius: 10px;
@@ -46,7 +46,7 @@
 }
 
 .line {
-	width: 900px;
+	width: 560px;
 	height: 22px;
 	position: relative;
 	padding-top: 3px;
@@ -55,7 +55,7 @@
 
 .alternativeline {
 	background-color: #fbffc3;
-	width: 900px;
+	width: 560px;
 	height: 22px;
 	position: relative;
 	padding-top: 3px;
@@ -71,25 +71,14 @@
 
 .identite {
 	height: 20px;
-	width: 200px;
+	width: 375px;
 	float: left;
 }
 
-.cursus {
-	height: 20px;
-	width:  20px;
-	float: left;
-}
 
-.telephone {
+.nom {
 	height: 20px;
-	width:  50px;
-	float: left;
-}
-
-.mail {
-	height: 20px;
-	width:  80px;
+	width: 20px;
 	float: left;
 }
 
@@ -178,17 +167,4 @@ img.btn_close {
 
 * html .popup_block {
 	position: absolute;
-}
-
-
-.marge {
-margin-right: 5em;
-}
-
-.marge2 {
-margin-left: 3em;
-}
-
-.marge3 {
-margin-left: 11em;
 }

@@ -585,7 +585,6 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				System.out.println("A SUP : IsAuthorized = OK");
 				userRetour = new Utilisateur();
 				userRetour.setId(rs.getInt(USR_ID));
 				userRetour.setNom(rs.getString(USR_NOM));
@@ -594,9 +593,8 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 
 				List<Profil> profils = profilDAO.getProfilsByUser(user);
 				for (Profil profil : profils) {
-					user.addProfil(profil);
+					userRetour.addProfil(profil);
 				}
-
 			}
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
@@ -682,11 +680,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 	}
 	
 		@Override
-	public Utilisateur getChefProjetbyGrpid(String grpid) throws TransactionalConnectionException {
-		
-
-		int k = Integer.valueOf(grpid).intValue();
-		
+	public Utilisateur getChefProjetbyGrpid(int id) throws TransactionalConnectionException {
 		String query = "SELECT * FROM GROUPE G, UTILISATEUR U " +
 			           "WHERE G.USR_ID = U.USR_ID " +
 				       "AND   G.GRP_ID = ? ";
@@ -697,7 +691,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
-			pstmt.setInt(1, k);
+			pstmt.setInt(1, id);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

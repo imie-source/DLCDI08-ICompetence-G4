@@ -8,25 +8,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ArborescenceCompetenceServlet
+ * Servlet implementation class FindAllProjectsServlet
  */
-@WebServlet("/ArborescenceCompetence")
-public class ArborescenceCompetenceServlet extends HttpServlet {
+@WebServlet(description = "List all projects", urlPatterns = { "/FindAllProjects" })
+public class FindAllProjectsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ArborescenceCompetenceServlet() {
-        super();
+    public FindAllProjectsServlet() {
+        super();        
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.print("Competences");
+		System.out.println("List of Projects");
 		response.setContentType("text/html");
-		request.getRequestDispatcher("./jsp/aborescenceCompetence.jsp").forward(request, response);
+		request.getRequestDispatcher("./jsp/findAllProjects.jsp").forward(request, response);
 	}
+
+	
 }

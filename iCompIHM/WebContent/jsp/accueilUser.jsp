@@ -15,7 +15,6 @@
 	svcUser = Factory.getInstance().createUserService(null);
 %>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -64,6 +63,7 @@
 						<!--Projets en cours -->
 						<h3>Projets en cours</h3>
 
+<<<<<<< HEAD
 
 						<%
 							List<Groupe> listprojet2 = svcProject.findGroupByStatut(2); 
@@ -120,6 +120,30 @@
 						<%
 							}
 						%>
+=======
+		<div id="projet">
+			<div id="projetleft">
+				<div id="projetsEnCours">
+					<!--Projets en cours -->
+					<h3>Projets en cours</h3>
+					
+					
+		<% List<Groupe> listprojet2 = svcProject.findGroupByStatut(2); 
+	
+		for (Groupe projet : listprojet2){	%>
+					
+					<div class="projet">
+						<h4><%=projet.getNom() %></h4>
+						<p>Chef de projet : <%= projet.getChefProjet().getPrenom()+ " " +projet.getChefProjet().getNom() %></p>
+						<p>Résumé : <%=  projet.getDescription()%></p>
+						<a href="" title="">[+ d'infos]</a>
+						<p>Etat d'avancement : <%=projet.getAvancement()%>%</p>
+						<div class="button2">
+							<ul>
+								<li><a href="" title="">Liste des Utilisateurs</a></li>
+							</ul>
+						</div><br />
+>>>>>>> 630a7506653101b797a3407a563cb752353bec54
 					</div>
 
 				</div>

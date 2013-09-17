@@ -34,7 +34,7 @@ public interface IGroupeDAO extends ITransactional {
 	 * @throws TransactionalConnectionException
 	 */
 	
-	public abstract Groupe findGroupById(String grpid)  throws TransactionalConnectionException;
+	public abstract Groupe findGroupById(int id)  throws TransactionalConnectionException;
 
 	/**
 	 * rechercher les informations d'un groupe

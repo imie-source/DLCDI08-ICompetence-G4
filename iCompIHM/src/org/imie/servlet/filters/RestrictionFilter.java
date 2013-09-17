@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.imie.dto.Profil;
 import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IUserService;
@@ -24,8 +25,12 @@ import fr.imie.transactionalFramework.TransactionalConnectionException;
 // urlPatterns = { "/RestrictionFilter" })
 public class RestrictionFilter implements Filter {
 
-	public static final String ACCES_CONNEXION = "./jsp/index.jsp";
-	public static final String ATT_SESSION_USER = "sessionUtilisateur";
+	private static final String ACCES_CONNEXION = "./jsp/index.jsp";
+	private static final String ERROR_MESSAGE = "errorMessage";
+	private static final String SESSION_USER = "user";
+	private static final String SESSION_PROFIL = "profil";
+	private static final String SESSION_TITRE = "titre";
+	
 	private Utilisateur userAuthorized;
 
 	public void destroy() {
@@ -57,22 +62,26 @@ public class RestrictionFilter implements Filter {
 			Utilisateur user = new Utilisateur();
 			user.setLogin(request.getParameter("login"));
 			user.setPass(request.getParameter("password"));
-			System.out.println("A SUP : dans param saisis login : "+user.getLogin() + " Pass : " + user.getPass());
 
 			try {
-				IUserService svc = Factory.getInstance()
+				IUserService svcUser = Factory.getInstance()
 						.createUserService(null);
-				userAuthorized = svc.IsAuthorized(user);
-				if (userAuthorized != null) {
-				System.out.println("Nom dans 'RectrictedFilter' :" + userAuthorized.getNom());
+				userAuthorized = svcUser.IsAuthorized(user);
+				if (userAuthorized == null) {
+					request.setAttribute(ERROR_MESSAGE, user.getLogin()
+							+ " n'est pas un login valide");
+				} else {
+					System.out.println("Login : " + userAuthorized.getLogin());
+					for (Profil profil : userAuthorized.getProfils()) {
+						System.out.println("Profil : " + profil.getNom());
+						session.setAttribute(SESSION_PROFIL, profil);
+						session.setAttribute(SESSION_TITRE, " - " + user.getLogin() + " " + user.getPass() + " - " + profil.getNom());
+					}
+					
+					session.setAttribute(SESSION_USER, userAuthorized);
 				}
 			} catch (TransactionalConnectionException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Utilisateur non autorisé");
-			}
-
-			if (userAuthorized != null) {
-				session.setAttribute(ATT_SESSION_USER, userAuthorized);
+				request.setAttribute(ERROR_MESSAGE, "Erreur d'accès à l'authentification");
 			}
 
 		}
@@ -81,7 +90,7 @@ public class RestrictionFilter implements Filter {
 		 * Si l'objet utilisateur n'existe pas dans la session en cours, alors
 		 * l'utilisateur n'est pas connecté.
 		 */
-		if (session.getAttribute(ATT_SESSION_USER) == null) {
+		if (session.getAttribute(SESSION_USER) == null) {
 			/* Redirection vers la page publique */
 			request.getRequestDispatcher(ACCES_CONNEXION).forward(request,
 					response);

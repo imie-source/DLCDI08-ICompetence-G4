@@ -1,9 +1,6 @@
 package fr.imie.main;
 
-import java.util.List;
-
 import fr.imie.dto.Groupe;
-import fr.imie.dto.Statut;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IProjectService;
 
@@ -13,7 +10,7 @@ public class MainGroup {
 	
 	// LISTE DES DONNEES D'UN GROUPE
 	    
-	    private static String grpid = "1";
+	    private static int grpid = 1;
 	
 	
 		public static void groupedonnees() {
@@ -24,8 +21,8 @@ public class MainGroup {
 			IProjectService psvc = Factory.getInstance().createProjectService(null);
 			
 			System.out.println("********************************");
-			System.out.println("\nDONNES PROJET");
-			System.out.println("\n********************************\n");
+			System.out.println("DONNES PROJET");
+			System.out.println("********************************\n");
 
 			try {
 				Groupe groupedon = psvc.findGroupById(grpid);

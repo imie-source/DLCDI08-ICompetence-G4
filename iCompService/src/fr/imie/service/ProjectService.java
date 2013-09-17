@@ -3,8 +3,10 @@ package fr.imie.service;
 import java.util.List;
 
 import fr.imie.dao.interfaces.IGroupeDAO;
+import fr.imie.dao.interfaces.IProfilDAO;
 import fr.imie.dao.interfaces.IStatutDAO;
 import fr.imie.dto.Groupe;
+import fr.imie.dto.Profil;
 import fr.imie.dto.Statut;
 import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
@@ -21,9 +23,9 @@ public class ProjectService extends ATransactional implements IProjectService {
 	}
 
 	@Override
-	public Groupe findGroupById(String grpid) throws TransactionalConnectionException {
+	public Groupe findGroupById(int id) throws TransactionalConnectionException {
 		IGroupeDAO groupeDAO = Factory.getInstance().createGroupeDAO(this);
-		return groupeDAO.findGroupById(grpid);
+		return groupeDAO.findGroupById(id);
 	}
 	
 	@Override
@@ -58,9 +60,9 @@ public class ProjectService extends ATransactional implements IProjectService {
 	
 	
 	@Override
-	public Statut findStatutById(String staId) throws TransactionalConnectionException {
+	public Statut findStatutById(int id) throws TransactionalConnectionException {
 		IStatutDAO statutDAO = Factory.getInstance().createStatutDAO(this);
-		return statutDAO.findStatutById(staId);
+		return statutDAO.findStatutById(id);
 	}
 
 	@Override
@@ -93,4 +95,11 @@ public class ProjectService extends ATransactional implements IProjectService {
 		return groupeDAO.findGroupByStatut(id);
 		
 	}
+	
+	@Override
+	public List<Profil> getProfilsByUser(Utilisateur user) throws TransactionalConnectionException {
+		IProfilDAO profilDAO = Factory.getInstance().createProfilDAO(this);
+		return profilDAO.getProfilsByUser(user);
+	}
+
 }
