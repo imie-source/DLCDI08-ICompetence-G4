@@ -80,7 +80,7 @@ public interface IUtilisateurDAO extends ITransactional {
 	public abstract Utilisateur IsAuthorized(Utilisateur user)
 			throws TransactionalConnectionException;
 	
-	public abstract Utilisateur getChefProjetbyGrpid(String grpid) throws TransactionalConnectionException;
+	public abstract Utilisateur getChefProjetbyGrpid(int id) throws TransactionalConnectionException;
 
 	public abstract Utilisateur findUserByProject(Groupe groupe)
 			throws TransactionalConnectionException;

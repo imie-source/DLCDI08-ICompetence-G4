@@ -66,18 +66,17 @@ public class GroupeDAO extends ATransactional implements IGroupeDAO {
 	}
 
 	@Override
-	public Groupe findGroupById(String grpid)  throws TransactionalConnectionException {
+	public Groupe findGroupById(int id)  throws TransactionalConnectionException {
 		
 		Groupe groupe = new Groupe();
 		Statut statut = new Statut();
-		int k = Integer.valueOf(grpid).intValue();   
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		String query = "SELECT * from statut sta, groupe grp where (grp_id = ?)" +
 				       "and (sta.sta_id = grp.sta_id)";
 		try {
 			pstmt = getConnection().prepareStatement(query);
-			pstmt.setInt(1, k);
+			pstmt.setInt(1, id);
 
 			rs = pstmt.executeQuery();
 			

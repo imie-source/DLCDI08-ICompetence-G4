@@ -34,7 +34,7 @@ public interface IStatutDAO extends ITransactional {
 	 * @throws TransactionalConnectionException
 	 */
 	
-	public abstract Statut findStatutById(String staId)  throws TransactionalConnectionException;
+	public abstract Statut findStatutById(int id)  throws TransactionalConnectionException;
 	
 	/**
 	 * Recherche du libelle d'un statut

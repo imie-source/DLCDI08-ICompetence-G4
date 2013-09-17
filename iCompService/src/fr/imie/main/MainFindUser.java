@@ -4,7 +4,6 @@ import fr.imie.dao.interfaces.IAdresseDAO;
 import fr.imie.dto.Adresse;
 import fr.imie.dto.Utilisateur;
 import fr.imie.factory.Factory;
-import fr.imie.service.interfaces.IUserService;
 
 public class MainFindUser {
 
@@ -19,7 +18,8 @@ public class MainFindUser {
 			user.setId(1);
 			Adresse adresse = svc.getAdresseByUser(user);
 			
-			System.out.println(user.getId() + "\n");
+			System.out.println("id user : " + user.getId());
+			System.out.println("id adresse : " + adresse.getId() + "\n");
 			
 
 		} catch (Exception e) {

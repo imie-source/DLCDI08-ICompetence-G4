@@ -42,9 +42,9 @@ public class UserService extends ATransactional implements IUserService {
     }
 	
 	@Override
-	public Utilisateur getChefProjetbyGrpid(String grpid) throws TransactionalConnectionException {
+	public Utilisateur getChefProjetbyGrpid(int id) throws TransactionalConnectionException {
 	    IUtilisateurDAO userDAO = Factory.getInstance().createUserDAO(this);
-	    return userDAO.getChefProjetbyGrpid(grpid);
+	    return userDAO.getChefProjetbyGrpid(id);
     }
 	
 	

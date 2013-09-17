@@ -26,12 +26,11 @@ public class Utilisateur {
 	private int estDisponible;
 	private String login;
 	private String pass;
-	//private int curNum;
-	//private int adrNum;	
 	private List<Competence> competences;
 	private Cursus cursus;
 	private Adresse adresse;
 	private List<Profil> profils;
+	private String titre;
 
 	// constructeur
 	// Ce constructeur par défaut est necessaire pour initialiser la liste des
@@ -180,6 +179,15 @@ public class Utilisateur {
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+
+	public String getTitre() {
+		String v = nom + " " + prenom;
+		return v;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
 	}
 
 }

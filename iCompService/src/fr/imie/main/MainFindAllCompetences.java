@@ -3,7 +3,6 @@ package fr.imie.main;
 import java.util.List;
 
 import fr.imie.dto.Competence;
-import fr.imie.dto.Keyword;
 import fr.imie.factory.Factory;
 import fr.imie.service.interfaces.IUserService;
 
@@ -25,7 +24,7 @@ public class MainFindAllCompetences {
 				System.out.println(var.getLibelle() + " : "
 						+ "\n");
 			}
-			System.out.println("Fin");
+			System.out.println("*********************");
 
 		} catch (Exception e) {
 			System.out.println("erreur");

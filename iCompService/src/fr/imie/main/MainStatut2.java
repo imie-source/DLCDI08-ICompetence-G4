@@ -10,7 +10,7 @@ public class MainStatut2 {
 	
 	// LISTE DES DONNEES D'UN STATUT
 	    
-	    private static String staId = "1";
+	    private static int staId = 1;
 	
 	
 		public static void statutdonnees() {

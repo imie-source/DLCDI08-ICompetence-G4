@@ -67,7 +67,9 @@
 				<p class="alternativeattributes"><span class="attributesname">Complement : </span><%if(user.getAdresse().getComplement() != null){%><%=user.getAdresse().getComplement()%><%}%></p>
 				<p class="attributes"><span class="attributesname">Code Postal : </span><%if(user.getAdresse().getCodePostal() != null){%><%=user.getAdresse().getCodePostal()%><%}%></p>
 				<p class="alternativeattributes"><span class="attributesname">Ville : </span><%if(user.getAdresse().getVille() != null){%><%=user.getAdresse().getVille()%><%}%></p>
-			
+				
+				<%-- End Div User Infos --%>
+				</div>
 			<%-- End Div Adresse --%>
 			</div>
 		<%-- End Div Wrapper --%>
