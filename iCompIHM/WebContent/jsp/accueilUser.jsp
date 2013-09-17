@@ -40,10 +40,17 @@
 			<div id="menuListe_left">
 				<div id="button">
 					<ul>
+<<<<<<< HEAD
 							<li><a href="./AccueilUser" title="">Accueil</a></li>
 							<li><a href="./Authentification" title="">Deconnexion</a></li>
 							<li><a href="./FindAllProjects" title="">Infos projets</a></li>
 							<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
+=======
+						<li><a href="./AccueilUser" title="">Accueil</a></li>
+						<li><a href="./Authentification" title="">Deconnexion</a></li>
+						<li><a href="./FindAllProjects" title="">Infos projets</a></li>
+						<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
+>>>>>>> ed33c06d86a14ca7f3e839863960d7302a0eecac
 					</ul>
 				</div>
 			</div>
@@ -75,7 +82,11 @@
 						<p>Etat d'avancement : <%=projet.getAvancement()%>%</p>
 						<div class="button2">
 							<ul>
+<<<<<<< HEAD
 								<li><a href="./FindAllUsers?grpid=<%=projet.getId()%>" title="Liste utilisateurs">Liste des Utilisateurs</a></li>
+=======
+								<li><a href="./FindAllUsers?grpid=<%=projet.getId()%>" title="">Liste des Utilisateurs</a></li>
+>>>>>>> ed33c06d86a14ca7f3e839863960d7302a0eecac
 							</ul>
 						</div><br />
 					</div>
