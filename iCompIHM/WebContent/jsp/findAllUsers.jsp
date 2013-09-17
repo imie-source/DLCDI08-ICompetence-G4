@@ -12,6 +12,10 @@
 	svc = Factory.getInstance().createUserService(null);
 %>
 
+<%
+	String id = (String) request.getParameter("grpid");
+%>
+
 <!DOCTYPE html>
 <html>
 
@@ -117,7 +121,15 @@
 				</div>
 
 				<%
-					List<Utilisateur> listuser = svc.getUsers(); 
+					List<Utilisateur> listuser = null;
+					int grpId;
+				
+					if (id != null) {
+						grpId = Integer.parseInt(id);
+						listuser = svc.getUsersbyGrpId(grpId);
+					} else {
+						listuser = svc.getUsers(); 
+					}
 					int i = 1; 
 					int j = 0; 
 					

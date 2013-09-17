@@ -41,7 +41,7 @@
 				<div id="button">
 					<ul>
 						<li><a href="./AccueilUser" title="">Accueil</a></li>
-						<li><a href="./jsp/index.jsp" title="">Deconnexion</a></li>
+						<li><a href="./Authentification" title="">Deconnexion</a></li>
 						<li><a href="./FindAllProjects" title="">Infos projets</a></li>
 						<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
 					</ul>
@@ -75,7 +75,7 @@
 						<p>Etat d'avancement : <%=projet.getAvancement()%>%</p>
 						<div class="button2">
 							<ul>
-								<li><a href="./FindAllUsers" title="">Liste des Utilisateurs</a></li>
+								<li><a href="./FindAllUsers?grpid=<%=projet.getId()%>" title="">Liste des Utilisateurs</a></li>
 							</ul>
 						</div><br />
 					</div>
