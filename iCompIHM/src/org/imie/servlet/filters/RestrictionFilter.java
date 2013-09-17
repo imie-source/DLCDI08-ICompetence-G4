@@ -83,7 +83,8 @@ public class RestrictionFilter implements Filter {
 			} catch (TransactionalConnectionException e) {
 				request.setAttribute(ERROR_MESSAGE, "Erreur d'accès à l'authentification");
 			}
-
+		} else {
+			request.setAttribute(ERROR_MESSAGE, "Erreur d'accès à l'authentification");
 		}
 
 		/**
