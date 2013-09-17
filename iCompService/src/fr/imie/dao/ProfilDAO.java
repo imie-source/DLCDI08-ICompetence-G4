@@ -60,12 +60,11 @@ public class ProfilDAO extends ATransactional implements IProfilDAO {
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "SELECT * FROM PROFIL P inner join pro_user PU on P.pro_id=P.pro_id inner join utilisateur u on u.usr_id=PU.usr_id where U.usr_id = ? order by P.pro_nom";
-//		System.out.println("A SUP : getProfilsByUser :" + query);
+		String query = "SELECT * FROM PROFIL P inner join pro_user PU on P.pro_id=PU.pro_id inner join utilisateur u on u.usr_id=PU.usr_id where U.usr_login = ? order by P.pro_nom";
 
 		try {
 			pstmt = getConnection().prepareStatement(query);
-			pstmt.setInt(1, user.getId());
+			pstmt.setString(1, user.getLogin());
 
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

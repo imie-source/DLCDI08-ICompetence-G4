@@ -8,6 +8,19 @@
 	final String SESSION_TITRE = "titre";
 	final String CONNECTE = "connecte";
 	final String ACCUEIL = "AccueilUser";
+	final String ACCUEIL_ADMIN = "Administration";
+%>
+
+<%
+String ecran = ACCUEIL;
+	/* String profil = null;
+	
+	if (session.getAttribute(SESSION_PROFIL) != null) {
+		profil = (String) session.getAttribute(SESSION_PROFIL);
+	}
+	if (profil.equalsIgnoreCase("Super Admin")) { */
+		//ecran = ACCUEIL_ADMIN;
+	/*  } */
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,14 +31,10 @@
 	type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<TITLE>Authentification <%
-	if (session.getAttribute(SESSION_TITRE) != null) {
+<TITLE>Authentification</TITLE>
+<%
+	session.removeAttribute(SESSION_USER);
 %>
-	<%=session.getAttribute(SESSION_TITRE)%> <%
- 	}
- %>
-</TITLE>
-<%session.removeAttribute(SESSION_USER); %>
 </head>
 <body>
 	<div id="mainWrapper">
@@ -58,14 +67,14 @@
 						<tr>
 							<td width="5%">&nbsp;</td>
 							<td class="ParaText" width="10%">Login :</td>
-							<td width="20%"><input name="login" id="login" size="12" type="text"
-								style="WIDTH: 90px" maxLength=10></td>
+							<td width="20%"><input name="login" id="login" size="12"
+								type="text" style="WIDTH: 90px" maxLength=10></td>
 						</tr>
 						<tr>
 							<td width="5%">&nbsp;</td>
 							<td class="ParaText" width="10%">Password :</td>
-							<td width="20%"><input name="password" id="password" type="password"
-								size="12" style="WIDTH: 90px" maxLength=10></td>
+							<td width="20%"><input name="password" id="password"
+								type="password" size="12" style="WIDTH: 90px" maxLength=10></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>

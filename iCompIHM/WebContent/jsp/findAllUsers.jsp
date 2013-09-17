@@ -15,13 +15,13 @@
 <%
 	String id = (String) request.getParameter("grpid");
 %>
-
+<%	final String SESSION_TITRE = "titre"; %>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8" />
-<title>Liste des Utilisateurs</title>
+<title>Liste des Utilisateurs <%=session.getAttribute(SESSION_TITRE)%></title>
 <link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/findAllUsers.css" media="all"
 	type="text/css" />

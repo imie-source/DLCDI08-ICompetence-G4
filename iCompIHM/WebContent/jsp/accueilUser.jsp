@@ -14,12 +14,13 @@
 <%
 	svcUser = Factory.getInstance().createUserService(null);
 %>
+<%	final String SESSION_TITRE = "titre"; %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Accueil - Michel Hardy - CP</title>
+<title>Accueil <%=session.getAttribute(SESSION_TITRE)%></title>
 <link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/stylepres3.css" media="all" type="text/css" />
 </head>
@@ -40,17 +41,11 @@
 			<div id="menuListe_left">
 				<div id="button">
 					<ul>
-<<<<<<< HEAD
+
 							<li><a href="./AccueilUser" title="">Accueil</a></li>
 							<li><a href="./Authentification" title="">Deconnexion</a></li>
 							<li><a href="./FindAllProjects" title="">Infos projets</a></li>
 							<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
-=======
-						<li><a href="./AccueilUser" title="">Accueil</a></li>
-						<li><a href="./Authentification" title="">Deconnexion</a></li>
-						<li><a href="./FindAllProjects" title="">Infos projets</a></li>
-						<li><a href="./FindAllUsers" title="">Infos utilisateurs</a></li>
->>>>>>> ed33c06d86a14ca7f3e839863960d7302a0eecac
 					</ul>
 				</div>
 			</div>
@@ -82,11 +77,9 @@
 						<p>Etat d'avancement : <%=projet.getAvancement()%>%</p>
 						<div class="button2">
 							<ul>
-<<<<<<< HEAD
 								<li><a href="./FindAllUsers?grpid=<%=projet.getId()%>" title="Liste utilisateurs">Liste des Utilisateurs</a></li>
-=======
-								<li><a href="./FindAllUsers?grpid=<%=projet.getId()%>" title="">Liste des Utilisateurs</a></li>
->>>>>>> ed33c06d86a14ca7f3e839863960d7302a0eecac
+
+
 							</ul>
 						</div><br />
 					</div>
@@ -137,8 +130,8 @@
 		</div>
 	</div>
 	<div id="footer">
-		<a href="" title="">Mentions légales</a> - <a href="" title="">Site
-			officiel de l'IMIE</a> - <a href="" title="">Contact</a>
+		<a href="http://imie-ecole-informatique.fr/" title="">Mentions légales</a> - <a href="http://imie-ecole-informatique.fr/" title="">Site
+			officiel de l'IMIE</a> - <a href="http://imie-ecole-informatique.fr/" title="">Contact</a>
 	</div>
 </div>
 </body>
