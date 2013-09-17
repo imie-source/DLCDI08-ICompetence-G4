@@ -14,13 +14,14 @@
 
 <% login = request.getParameter("login");%>
 <% user = svc.findUserByLogin(login); %>
+<%	final String SESSION_TITRE = "titre"; %>
     
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8" />
-<title><%= user.getPrenom() + " " + user.getNom() %></title>
+<title>Utilisateur <%=session.getAttribute(SESSION_TITRE)%></title>
 <link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/findUser.css" media="all" type="text/css" />
 </head>

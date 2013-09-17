@@ -47,13 +47,14 @@
 <%
 	Utilisateur userCP = svc.getChefProjetbyGrpid(Integer.parseInt(id));
 %>
+<%	final String SESSION_TITRE = "titre"; %>
 
 
 
 <!DOCTYPE html>
 <html>
 <head>
-<title><%=groupe.getNom()%></title>
+<title>Projet <%=session.getAttribute(SESSION_TITRE)%></title>
 	<link rel="stylesheet" href="css/styleProject.css" media="all"
 		type="text/css" />
 	<link rel="stylesheet" href="css/findProject.css" media="all"

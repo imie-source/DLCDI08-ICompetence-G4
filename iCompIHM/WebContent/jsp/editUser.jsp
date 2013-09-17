@@ -21,13 +21,13 @@
 
 <% login = request.getParameter("login");%>
 <% user = svc.findUserByLogin(login); %>
-
+<%	final String SESSION_TITRE = "titre"; %>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8" />
-<title>Modifier un Utilisateur</title>
+<title>Modifier un Utilisateur <%=session.getAttribute(SESSION_TITRE)%></title>
 <link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/addUser.css" media="all" type="text/css" />
 <script src="js/addUser.js" type="text/javascript"></script>

@@ -11,14 +11,13 @@
 <%
 	svc = Factory.getInstance().createProjectService(null);
 %>
-
+<%	final String SESSION_TITRE = "titre"; %>
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8" />
-<title>Liste des Projets</title>
-<link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
+<title>Liste des Projets <%=session.getAttribute(SESSION_TITRE)%>s/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/findAllProjects.css" media="all"
 	type="text/css" />
 <script src="js/jquery-1.10.2.min.js"></script>
