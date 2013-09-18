@@ -80,7 +80,7 @@
 		
 					<%-- Div Identite --%>
 					<div class="identite">
-						<p class="content"><%=comp.getLibelle()%></p>
+						<p class="content"><%if(comp.getLibelle() != null){%><%=comp.getLibelle()%><%}%></p>
 					</div>
 		
 					

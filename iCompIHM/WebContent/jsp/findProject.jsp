@@ -139,18 +139,21 @@
 
 						
 							<div class="identite1">
-								<p class="content"><%=usr.getPrenom() + " " + usr.getNom()%></p>
+
+
+								<p class="content"><%if(usr.getPrenom() + " " + usr.getNom() != null){%><%=usr.getPrenom() + " " + usr.getNom()%><%}%></p>
 							</div> <%-- Div Cursus --%>
 							<div class="identite2">
-								<p class="content"><%=usr.getCursus().getLibelle()%></p>
+								<p class="content"><%if(usr.getCursus().getLibelle() != null){%><%=usr.getCursus().getLibelle()%><%}%></p>
 
 							</div> <%-- Div Téléphone --%>
 							<div class="identite3">
-								<p class="content"><%=usr.getTel()%></p>
+							
+								<p class="content"><%if(usr.getTel() != null){%><%=usr.getTel()%><%}%></p>
 
 							</div> <%-- Div Mail --%>
 							<div class="identite4">
-								<p class="content"><%=usr.getMail()%></p>
+								<p class="content"><%if(usr.getMail() != null){%><%=usr.getMail()%><%}%></p>
 
 							</div>
 						
