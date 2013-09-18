@@ -8,8 +8,11 @@
 	final String SESSION_TITRE = "titre";
 	final String SESSION_ACCUEIL = "accueil";
 	final String CONNECTE = "connecte";
-%>
+	final String ACCUEIL_USER = "AccueilUser";
+ 	final String ACCUEIL_ADM = "Administration";
 
+	session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>

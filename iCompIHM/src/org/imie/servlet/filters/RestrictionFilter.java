@@ -87,7 +87,7 @@ public class RestrictionFilter implements Filter {
 				} else {
 					List<Profil> profils = svc.getProfilsByUser(user);
 					session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
-					
+					System.out.println(session.getAttribute(SESSION_ACCUEIL));
 					for (Profil profil : profils) {
 						if (profil.getNom() != null) {
 							session.setAttribute(SESSION_PROFIL,

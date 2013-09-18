@@ -10,9 +10,9 @@ import fr.imie.exceptionManager.ExceptionManager;
 
 
 public abstract class ATransactional implements ITransactional {
-	private static String URL = "jdbc:postgresql://localhost:5432/filrouge";
-	private static String USER = "postgres";
-	private static String PASSWD = "postgres";
+	private static String URL = jdbc.getString("jdbc.url"); //$NON-NLS-1$
+	private static String USER = jdbc.getString("jdbc.user"); //$NON-NLS-1$
+	private static String PASSWD = jdbc.getString("jdbc.password"); //$NON-NLS-1$
 
 	private Connection connection;
 	
