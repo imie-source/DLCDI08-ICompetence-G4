@@ -6,23 +6,15 @@
 	final String SESSION_USER = "user";
 	final String SESSION_PROFIL = "profil";
 	final String SESSION_TITRE = "titre";
+	final String SESSION_ACCUEIL = "accueil";
 	final String CONNECTE = "connecte";
-	final String ACCUEIL = "AccueilUser";
-	final String ACCUEIL_ADMIN = "Administration";
 %>
-
 <%
-String ecran = ACCUEIL;
-	/* String profil = null;
-	
-	if (session.getAttribute(SESSION_PROFIL) != null) {
-		profil = (String) session.getAttribute(SESSION_PROFIL);
-	}
-	if (profil.equalsIgnoreCase("Super Admin")) { */
-		//ecran = ACCUEIL_ADMIN;
-	/*  } */
-%>
+	final String ACCUEIL_USER = "AccueilUser";
+ 	final String ACCUEIL_ADM = "Administration";
 
+	session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -61,7 +53,7 @@ String ecran = ACCUEIL;
 				<%
 					if (session.getAttribute(SESSION_USER) == null) {
 				%>
-				<form name="Connexion" method="post" action="<%=ACCUEIL%>">
+				<form name="Connexion" method="post" action="<%=session.getAttribute(SESSION_ACCUEIL)%>">
 
 					<table class=tableau align=center width="80%" height="100">
 						<tr>
