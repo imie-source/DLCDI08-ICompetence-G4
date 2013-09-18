@@ -8,8 +8,6 @@
 	final String SESSION_TITRE = "titre";
 	final String SESSION_ACCUEIL = "accueil";
 	final String CONNECTE = "connecte";
-%>
-<%
 	final String ACCUEIL_USER = "AccueilUser";
  	final String ACCUEIL_ADM = "Administration";
 
@@ -25,7 +23,7 @@
 
 <TITLE>Authentification</TITLE>
 <%
-	session.removeAttribute(SESSION_USER);
+	session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
 %>
 </head>
 <body>
