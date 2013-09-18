@@ -73,7 +73,7 @@
 						<h4><%=projet.getNom() %></h4>
 						<p>Chef de projet : <%=projet.getChefProjet().getPrenom() + " " + projet.getChefProjet().getNom() %></p>
 						<p>Résumé : <%=projet.getDescription()%></p>
-						<a href="./FindProject?grpid=<%=projet.getId()%>" title="Info">[+ d'infos]</a>
+						<a href="./FindProject?id=<%=projet.getId()%>&provenanceProjet=ACC" title="Info">[+ d'infos]</a>
 						<p>Etat d'avancement : <%=projet.getAvancement()%>%</p>
 						<div class="button2">
 							<ul>
@@ -99,7 +99,7 @@
 					<div class="projet">
 						<h4><%=projet.getNom() %></h4>
 						<p>Résumé : <%=projet.getDescription()%></p>
-						<a href="./FindProject?grpid=<%=projet.getId()%>" title="Info">[+ d'infos]</a>
+						<a href="./FindProject?id=<%=projet.getId()%>&provenanceProjet=ACC" title="Info">[+ d'infos]</a>
 					</div>	
 		<% } %>
 				</div>
@@ -120,7 +120,7 @@
 					<div class="projetxx">
 						<h4><%=projet.getNom() %></h4>
 						<p>Résumé : <%=projet.getDescription()%></p>
-						<a href="./FindProject?grpid=<%=projet.getId()%>" title="Info">[+ d'infos]</a>
+						<a href="./FindProject?id=<%=projet.getId()%>&provenanceProjet=ACC" title="Info">[+ d'infos]</a>
 					</div>
 		<% } %>
 				</div>

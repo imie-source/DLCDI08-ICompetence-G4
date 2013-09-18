@@ -110,7 +110,10 @@
 		<div id="profil2">
 
 			<p class="title3">Liste des volontaires du Projet</p>
-			<p class="title4"><span class="marge"></span>Identité<span class="marge"></span> <span class="marge"></span>  Cursus <span class="marge"></span>Téléphone<span class="marge"></span><span class="marge"></span>Mail</p>
+			<p class="title4"><span class="marge"></span>Identité
+			                  <span class="marge"></span><span class="marge"></span>Cursus 
+			                  <span class="marge"></span><span class="marge"></span>Téléphone
+			                  <span class="marge"></span><span class="marge"></span>Mail</p>
 
 
 			<%-- Div UserInfos --%>
