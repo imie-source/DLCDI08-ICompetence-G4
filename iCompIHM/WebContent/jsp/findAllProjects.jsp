@@ -17,7 +17,8 @@
 
 <head>
 <meta charset="UTF-8" />
-<title>Liste des Projets <%=session.getAttribute(SESSION_TITRE)%>s/style.css" media="all" type="text/css" />
+<title>Liste des Projets <%=session.getAttribute(SESSION_TITRE)%></title>
+<link rel="stylesheet" href="css/style.css" media="all" type="text/css" />
 <link rel="stylesheet" href="css/findAllProjects.css" media="all"
 	type="text/css" />
 <script src="js/jquery-1.10.2.min.js"></script>
@@ -131,8 +132,10 @@
 			</div>
 
 			<%-- Div Footer --%>
-			<div id="footer"></div>
+			<div id="footer">
 	<a class="backlink" href="./AccueilUser">Retour Accueil</a>
+	</div>
+	</div>
 	</div>
 </body>
 </html>

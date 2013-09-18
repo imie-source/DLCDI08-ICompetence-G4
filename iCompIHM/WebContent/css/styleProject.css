@@ -68,3 +68,26 @@ color:#FFF;
 	font-weight: bold;
 	margin-top: 7px;
 }
+
+.marge1 {
+	height: 20px;
+	width: 270px;
+	float: left;
+	margin-left: 10px;
+	
+}
+
+
+
+.marge3 {
+	height: 20px;
+	width: 125px;
+	float: left;
+}
+
+.marge4 {
+	height: 20px;
+	width: 250px;
+	float: left;
+}
+
