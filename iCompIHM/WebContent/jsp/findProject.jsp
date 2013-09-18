@@ -19,7 +19,8 @@
 
 <%
 
-        int id = Integer.parseInt(request.getParameter("id"));
+    int id = Integer.parseInt(request.getParameter("id"));
+    String provenanceProjet = request.getParameter("provenanceProjet");
 %>
 <%
 
@@ -86,17 +87,17 @@
 			<div id="groupeinfos">
 
 				<p class="attributes">
-					<span class="attributesname">Nom : </span><%=groupe.getNom()%></p>
+					<span class="attributesname">Nom : </span><%if(groupe.getNom() != null){%><%=groupe.getNom()%><%}%></p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Chef de Projet : </span><%=userCP.getNom()%></p>
+					<span class="attributesname">Chef de Projet : </span><%if(userCP.getNom() != null){%><%=userCP.getNom()%><%}%></p>
 				<p class="attributes">
-					<span class="attributesname">Avancement : </span><%=groupe.getAvancement()%></p>
+					<span class="attributesname">Avancement : </span><%=groupe.getAvancement()%>%</p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Resume : </span><%=groupe.getResume()%></p>
+					<span class="attributesname">Resume : </span><%if(groupe.getResume() != null){%><%=groupe.getResume()%><%}%></p>
 				<p class="attributes">
-					<span class="attributesname">Description : </span><%=groupe.getDescription()%></p>
+					<span class="attributesname">Description : </span><%if(groupe.getDescription() != null){%><%=groupe.getDescription()%><%}%></p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Statut : </span><%=groupe.getStatut().getLibelle()%></p>
+					<span class="attributesname">Statut : </span><%if(groupe.getStatut().getLibelle() != null){%><%=groupe.getStatut().getLibelle()%><%}%></p>
 
 				<%-- End Div UserInfos --%>
 			</div>
@@ -109,11 +110,8 @@
 		<div id="profil2">
 
 			<p class="title3">Liste des volontaires du Projet</p>
-			<p class="title4">
-				<span class="marge"> Identité </span><span class="marge">
-					Cursus </span> <span class="marge2"> Téléphone </span><span class="marge3">
-					Mail </span>
-			</p>
+			<p class="title4"><span class="marge"></span>Identité<span class="marge"></span> <span class="marge"></span>  Cursus <span class="marge"></span>Téléphone<span class="marge"></span><span class="marge"></span>Mail</p>
+
 
 			<%-- Div UserInfos --%>
 			<div id="groupeinfos">
@@ -127,40 +125,38 @@
 						if (j % 2 == 0) {
 				%>
 
-				<div class="line">
+				<div class="line2">
 
 					<%
 						} else {
 					%>
 
-					<div class="alternativeline">
+					<div class="alternativeline2">
 
 						<%
 							}
 						%>
 
-<<<<<<< HEAD
-						<a href="./FindUser?login=<%if(usr.getLogin() != null){%><%=usr.getLogin()%>"<%}%>> <%-- Div Identite --%>
-=======
-						<a href="./FindUser?login=<%=usr.getLogin()%>&provenanceUser=CPR"> <%-- Div Identite --%>
->>>>>>> 193ceb2e455eb436f9d229dff0bffaf7c6f3ae61
-							<div class="identite">
+						
+							<div class="identite1">
+
+
 								<p class="content"><%if(usr.getPrenom() + " " + usr.getNom() != null){%><%=usr.getPrenom() + " " + usr.getNom()%><%}%></p>
 							</div> <%-- Div Cursus --%>
-							<div class="identite">
+							<div class="identite2">
 								<p class="content"><%if(usr.getCursus().getLibelle() != null){%><%=usr.getCursus().getLibelle()%><%}%></p>
 
 							</div> <%-- Div Téléphone --%>
-							<div class="identite">
+							<div class="identite3">
 							
 								<p class="content"><%if(usr.getTel() != null){%><%=usr.getTel()%><%}%></p>
 
 							</div> <%-- Div Mail --%>
-							<div class="identite">
+							<div class="identite4">
 								<p class="content"><%if(usr.getMail() != null){%><%=usr.getMail()%><%}%></p>
 
 							</div>
-						</a>
+						
 
 
 						<%-- End Div Line / AlternativeLine --%>
@@ -190,7 +186,7 @@
 
 			<%-- Div Footer --%>
 			<div id="footer">
-			    <%if (request.getParameter("provenanceProjet") == "LPR") {%>
+			    <%if (provenanceProjet.equals("LPR")) {%>
 				<a class="backlink" href="./FindAllProjects">Retour Liste</a>
 				<%}else{%>
 		        <a class="backlink" href="./AccueilUser">Retour Liste</a>
