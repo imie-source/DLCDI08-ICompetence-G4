@@ -89,7 +89,8 @@
 				<p class="attributes">
 					<span class="attributesname">Nom : </span><%if(groupe.getNom() != null){%><%=groupe.getNom()%><%}%></p>
 				<p class="alternativeattributes">
-					<span class="attributesname">Chef de Projet : </span><%if(userCP.getNom() != null){%><%=userCP.getNom()%><%}%></p>
+					<span class="attributesname">Chef de Projet : </span><%if(userCP.getPrenom() != null){%><%=userCP.getPrenom()%><%}%>
+					<%if(userCP.getNom() != null){%><%=userCP.getNom()%><%}%></p>
 				<p class="attributes">
 					<span class="attributesname">Avancement : </span><%=groupe.getAvancement()%>%</p>
 				<p class="alternativeattributes">
