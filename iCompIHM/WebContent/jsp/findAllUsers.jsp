@@ -247,8 +247,8 @@
 						<%-- EST EN FORMATION --%>
 						<div class="formLibelle">En Formation :</div>
 						<div class="formInput">
-							<input type="radio" name="enFormation" value="true" checked />
-							Oui <input type="radio" name="enFormation" value="false" /> Non
+							<input type="radio" name="enFormation" value=1 checked />
+							Oui <input type="radio" name="enFormation" value=0 /> Non
 						</div>
 						<br />
 
