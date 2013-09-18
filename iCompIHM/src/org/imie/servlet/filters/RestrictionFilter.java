@@ -27,7 +27,7 @@ import fr.imie.transactionalFramework.TransactionalConnectionException;
 // urlPatterns = { "/RestrictionFilter" })
 public class RestrictionFilter implements Filter {
 
-	private static final String MSG_PAS_DE_ROLE = "Pas de role";
+	private static final String MSG_PAS_DE_ROLE = "Pas de role"; //$NON-NLS-1$
 	private static final String MSG_ERREUR_AUTHENTIFICATION = "Erreur d'accès à l'authentification"; //$NON-NLS-1$
 
 	private static final String PASSWORD = "password"; //$NON-NLS-1$
@@ -86,7 +86,7 @@ public class RestrictionFilter implements Filter {
 				userAuthorized = svcUser.IsAuthorized(user);
 				if (userAuthorized == null) {
 					request.setAttribute(ERROR_MESSAGE, user.getLogin()
-							+ env.getString("env.16")); //$NON-NLS-1$
+							+ " n'est pas un login valide"); //$NON-NLS-1$
 				} else {
 					List<Profil> profils = svc.getProfilsByUser(user);
 					session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
@@ -95,25 +95,25 @@ public class RestrictionFilter implements Filter {
 						if (profil.getNom() != null) {
 							session.setAttribute(SESSION_PROFIL,
 									profil.getNom());
-							session.setAttribute(SESSION_TITRE, env.getString("env.17") //$NON-NLS-1$
-									+ userAuthorized.getNom() + env.getString("env.18") //$NON-NLS-1$
-									+ userAuthorized.getPrenom() + env.getString("env.19") //$NON-NLS-1$
-									+ profil.getNom() + env.getString("env.20") + ENV + env.getString("env.21")); //$NON-NLS-1$ //$NON-NLS-2$
-							if (env.getString("env.22").equalsIgnoreCase(profil.getNom()) || env.getString("env.23").equalsIgnoreCase(profil.getNom())) { //$NON-NLS-1$ //$NON-NLS-2$
+							session.setAttribute(SESSION_TITRE, " - " //$NON-NLS-1$
+									+ userAuthorized.getNom() + " " //$NON-NLS-1$
+									+ userAuthorized.getPrenom() + " - " //$NON-NLS-1$
+									+ profil.getNom() + " [" + ENV + "]"); //$NON-NLS-1$ //$NON-NLS-2$
+							if ("Super Admin".equalsIgnoreCase(profil.getNom()) || "Admin".equalsIgnoreCase(profil.getNom())) { //$NON-NLS-1$ //$NON-NLS-2$
 								session.setAttribute(SESSION_ACCUEIL,ACCUEIL_ADM);
 							}
 						} else {
-							session.setAttribute(SESSION_TITRE, env.getString("env.24") //$NON-NLS-1$
-									+ userAuthorized.getNom() + env.getString("env.25") //$NON-NLS-1$
-									+ userAuthorized.getPrenom() + env.getString("env.26") //$NON-NLS-1$
-									+ MSG_PAS_DE_ROLE + env.getString("env.27") + ENV + env.getString("env.28")); //$NON-NLS-1$ //$NON-NLS-2$
+							session.setAttribute(SESSION_TITRE, " - " //$NON-NLS-1$
+									+ userAuthorized.getNom() + " " //$NON-NLS-1$
+									+ userAuthorized.getPrenom() + " - " //$NON-NLS-1$
+									+ MSG_PAS_DE_ROLE + " [" + ENV + "]"); //$NON-NLS-1$ //$NON-NLS-2$
 						}
 					}
 					if (profils == null) {
-						session.setAttribute(SESSION_TITRE, env.getString("env.29") //$NON-NLS-1$
-								+ userAuthorized.getNom() + env.getString("env.30") //$NON-NLS-1$
-								+ userAuthorized.getPrenom() + env.getString("env.31") //$NON-NLS-1$
-								+ MSG_PAS_DE_ROLE + env.getString("env.32") + ENV + env.getString("env.33")); //$NON-NLS-1$ //$NON-NLS-2$
+						session.setAttribute(SESSION_TITRE, " - " //$NON-NLS-1$
+								+ userAuthorized.getNom() + " " //$NON-NLS-1$
+								+ userAuthorized.getPrenom() + " - " //$NON-NLS-1$
+								+ MSG_PAS_DE_ROLE + " [" + ENV + "]"); //$NON-NLS-1$ //$NON-NLS-2$
 					}
 					session.setAttribute(SESSION_USER, userAuthorized);
 				}

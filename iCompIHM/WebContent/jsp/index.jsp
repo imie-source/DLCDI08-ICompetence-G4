@@ -24,7 +24,6 @@
 <TITLE>Authentification</TITLE>
 <%
 	session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
-	session.removeAttribute(SESSION_USER);
 %>
 </head>
 <body>
