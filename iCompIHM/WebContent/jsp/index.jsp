@@ -23,8 +23,6 @@
 
 <TITLE>Authentification</TITLE>
 <%
-	final String ACCUEIL_USER = "AccueilUser";
-	
 	session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
 	session.removeAttribute(SESSION_USER);
 %>

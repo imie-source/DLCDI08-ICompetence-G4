@@ -27,19 +27,22 @@ import fr.imie.transactionalFramework.TransactionalConnectionException;
 // urlPatterns = { "/RestrictionFilter" })
 public class RestrictionFilter implements Filter {
 
-	private static final String PASSWORD = "password";
-	private static final String LOGIN = "login";
-	private static final String MSG_ERREUR_AUTHENTIFICATION = "Erreur d'accès à l'authentification";
-	private static final String ACCUEIL_USER = "AccueilUser";
-	private static final String ACCUEIL_ADM = "Administration";
+	private static final String MSG_PAS_DE_ROLE = "Pas de role";
+	private static final String MSG_ERREUR_AUTHENTIFICATION = "Erreur d'accès à l'authentification"; //$NON-NLS-1$
+
+	private static final String PASSWORD = "password"; //$NON-NLS-1$
+	private static final String LOGIN = "login"; //$NON-NLS-1$
+	private static final String ACCUEIL_USER = "AccueilUser"; //$NON-NLS-1$
+	private static final String ACCUEIL_ADM = "Administration"; //$NON-NLS-1$
 	
-	private static final String ACCES_CONNEXION = "./jsp/index.jsp";
-	private static final String ERROR_MESSAGE = "errorMessage";
-	private static final String SESSION_USER = "user";
-	private static final String SESSION_PROFIL = "profil";
-	private static final String SESSION_TITRE = "titre";
-	private static final String SESSION_ACCUEIL = "accueil";	// par défaut
-	private static final String ENV = "dev";
+	private static final String ACCES_CONNEXION = "./jsp/index.jsp"; //$NON-NLS-1$
+	
+	private static final String ERROR_MESSAGE = "errorMessage"; //$NON-NLS-1$
+	private static final String SESSION_USER = "user"; //$NON-NLS-1$
+	private static final String SESSION_PROFIL = "profil"; //$NON-NLS-1$
+	private static final String SESSION_TITRE = "titre"; //$NON-NLS-1$
+	private static final String SESSION_ACCUEIL = "accueil";	// par défaut //$NON-NLS-1$
+	private static final String ENV = env.getString("env.env"); //$NON-NLS-1$
 	
 
 	private Utilisateur userAuthorized;
@@ -58,8 +61,8 @@ public class RestrictionFilter implements Filter {
 		/* Non-filtrage des ressources statiques */
 		String chemin = request.getRequestURI().substring(
 				request.getContextPath().length());
-		if (chemin.startsWith("/css") || chemin.startsWith("/img")
-				|| chemin.startsWith("/js")) {
+		if (chemin.startsWith("/css") || chemin.startsWith("/img") //$NON-NLS-1$ //$NON-NLS-2$
+				|| chemin.startsWith("/js")) { //$NON-NLS-1$
 			chain.doFilter(request, response);
 			return;
 		}
@@ -83,7 +86,7 @@ public class RestrictionFilter implements Filter {
 				userAuthorized = svcUser.IsAuthorized(user);
 				if (userAuthorized == null) {
 					request.setAttribute(ERROR_MESSAGE, user.getLogin()
-							+ " n'est pas un login valide");
+							+ env.getString("env.16")); //$NON-NLS-1$
 				} else {
 					List<Profil> profils = svc.getProfilsByUser(user);
 					session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
@@ -92,25 +95,25 @@ public class RestrictionFilter implements Filter {
 						if (profil.getNom() != null) {
 							session.setAttribute(SESSION_PROFIL,
 									profil.getNom());
-							session.setAttribute(SESSION_TITRE, " - "
-									+ userAuthorized.getNom() + " "
-									+ userAuthorized.getPrenom() + " - "
-									+ profil.getNom() + "[" + ENV + "]");
-							if ("Super Admin".equalsIgnoreCase(profil.getNom()) || "Admin".equalsIgnoreCase(profil.getNom())) {
+							session.setAttribute(SESSION_TITRE, env.getString("env.17") //$NON-NLS-1$
+									+ userAuthorized.getNom() + env.getString("env.18") //$NON-NLS-1$
+									+ userAuthorized.getPrenom() + env.getString("env.19") //$NON-NLS-1$
+									+ profil.getNom() + env.getString("env.20") + ENV + env.getString("env.21")); //$NON-NLS-1$ //$NON-NLS-2$
+							if (env.getString("env.22").equalsIgnoreCase(profil.getNom()) || env.getString("env.23").equalsIgnoreCase(profil.getNom())) { //$NON-NLS-1$ //$NON-NLS-2$
 								session.setAttribute(SESSION_ACCUEIL,ACCUEIL_ADM);
 							}
 						} else {
-							session.setAttribute(SESSION_TITRE, " - "
-									+ userAuthorized.getNom() + " "
-									+ userAuthorized.getPrenom() + " - "
-									+ "Pas de role" + "[" + ENV + "]");
+							session.setAttribute(SESSION_TITRE, env.getString("env.24") //$NON-NLS-1$
+									+ userAuthorized.getNom() + env.getString("env.25") //$NON-NLS-1$
+									+ userAuthorized.getPrenom() + env.getString("env.26") //$NON-NLS-1$
+									+ MSG_PAS_DE_ROLE + env.getString("env.27") + ENV + env.getString("env.28")); //$NON-NLS-1$ //$NON-NLS-2$
 						}
 					}
 					if (profils == null) {
-						session.setAttribute(SESSION_TITRE, " - "
-								+ userAuthorized.getNom() + " "
-								+ userAuthorized.getPrenom() + " - "
-								+ "Pas de role toto" + "[" + ENV + "]");
+						session.setAttribute(SESSION_TITRE, env.getString("env.29") //$NON-NLS-1$
+								+ userAuthorized.getNom() + env.getString("env.30") //$NON-NLS-1$
+								+ userAuthorized.getPrenom() + env.getString("env.31") //$NON-NLS-1$
+								+ MSG_PAS_DE_ROLE + env.getString("env.32") + ENV + env.getString("env.33")); //$NON-NLS-1$ //$NON-NLS-2$
 					}
 					session.setAttribute(SESSION_USER, userAuthorized);
 				}
