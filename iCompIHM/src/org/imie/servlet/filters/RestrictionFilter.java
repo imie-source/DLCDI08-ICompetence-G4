@@ -38,7 +38,7 @@ public class RestrictionFilter implements Filter {
 	private static final String SESSION_USER = "user";
 	private static final String SESSION_PROFIL = "profil";
 	private static final String SESSION_TITRE = "titre";
-	private static final String SESSION_ACCUEIL = "Accueil";	// par défaut
+	private static final String SESSION_ACCUEIL = "accueil";	// par défaut
 	private static final String ENV = "dev";
 	
 

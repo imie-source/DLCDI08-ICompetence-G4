@@ -6,7 +6,7 @@
 	final String SESSION_USER = "user";
 	final String SESSION_PROFIL = "profil";
 	final String SESSION_TITRE = "titre";
-	final String SESSION_ACCUEIL = "Accueil";
+	final String SESSION_ACCUEIL = "accueil";
 	final String CONNECTE = "connecte";
 %>
 
@@ -20,6 +20,9 @@
 
 <TITLE>Authentification</TITLE>
 <%
+	final String ACCUEIL_USER = "AccueilUser";
+	
+	session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
 	session.removeAttribute(SESSION_USER);
 %>
 </head>
