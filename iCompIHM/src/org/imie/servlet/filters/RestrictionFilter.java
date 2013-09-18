@@ -23,15 +23,24 @@ import fr.imie.transactionalFramework.TransactionalConnectionException;
 /**
  * Servlet Filter implementation class RestrictionFilter
  */
-// @WebFilter(description = "restriction liée au login mot de passe",
+// @WebFilter(description = "restriction liée au login mot de passe",
 // urlPatterns = { "/RestrictionFilter" })
 public class RestrictionFilter implements Filter {
 
+	private static final String PASSWORD = "password";
+	private static final String LOGIN = "login";
+	private static final String MSG_ERREUR_AUTHENTIFICATION = "Erreur d'accès à l'authentification";
+	private static final String ACCUEIL_USER = "AccueilUser";
+	private static final String ACCUEIL_ADM = "Administration";
+	
 	private static final String ACCES_CONNEXION = "./jsp/index.jsp";
 	private static final String ERROR_MESSAGE = "errorMessage";
 	private static final String SESSION_USER = "user";
 	private static final String SESSION_PROFIL = "profil";
 	private static final String SESSION_TITRE = "titre";
+	private static final String SESSION_ACCUEIL = "Accueil";	// par défaut
+	private static final String ENV = "dev";
+	
 
 	private Utilisateur userAuthorized;
 
@@ -58,12 +67,12 @@ public class RestrictionFilter implements Filter {
 		/* Récupération de la session depuis la requête */
 		HttpSession session = request.getSession();
 
-		if ((request.getParameter("login") != null)
-				|| (request.getParameter("password") != null)) {
+		if ((request.getParameter(LOGIN) != null)
+				|| (request.getParameter(PASSWORD) != null)) {
 
 			Utilisateur user = new Utilisateur();
-			user.setLogin(request.getParameter("login"));
-			user.setPass(request.getParameter("password"));
+			user.setLogin(request.getParameter(LOGIN));
+			user.setPass(request.getParameter(PASSWORD));
 
 			try {
 				IUserService svcUser = Factory.getInstance().createUserService(
@@ -77,35 +86,41 @@ public class RestrictionFilter implements Filter {
 							+ " n'est pas un login valide");
 				} else {
 					List<Profil> profils = svc.getProfilsByUser(user);
-					System.out.println("Login : " + userAuthorized.getLogin());
+					session.setAttribute(SESSION_ACCUEIL,ACCUEIL_USER);
+					
 					for (Profil profil : profils) {
 						if (profil.getNom() != null) {
-							System.out.println("profil :" + profil.getNom());
-							session.setAttribute(SESSION_PROFIL, profil.getNom());
+							session.setAttribute(SESSION_PROFIL,
+									profil.getNom());
 							session.setAttribute(SESSION_TITRE, " - "
 									+ userAuthorized.getNom() + " "
-									+ userAuthorized.getPrenom() + " - " + profil.getNom());
+									+ userAuthorized.getPrenom() + " - "
+									+ profil.getNom() + "[" + ENV + "]");
+							if ("Super Admin".equalsIgnoreCase(profil.getNom()) || "Admin".equalsIgnoreCase(profil.getNom())) {
+								session.setAttribute(SESSION_ACCUEIL,ACCUEIL_ADM);
+							}
 						} else {
 							session.setAttribute(SESSION_TITRE, " - "
 									+ userAuthorized.getNom() + " "
 									+ userAuthorized.getPrenom() + " - "
-									+ "Pas de role");
+									+ "Pas de role" + "[" + ENV + "]");
 						}
 					}
 					if (profils == null) {
 						session.setAttribute(SESSION_TITRE, " - "
 								+ userAuthorized.getNom() + " "
-								+ userAuthorized.getPrenom() + " - " + "Pas de role toto");
+								+ userAuthorized.getPrenom() + " - "
+								+ "Pas de role toto" + "[" + ENV + "]");
 					}
 					session.setAttribute(SESSION_USER, userAuthorized);
 				}
 			} catch (TransactionalConnectionException e) {
 				request.setAttribute(ERROR_MESSAGE,
-						"Erreur d'accès à l'authentification");
+						MSG_ERREUR_AUTHENTIFICATION);
 			}
 		} else {
 			request.setAttribute(ERROR_MESSAGE,
-					"Erreur d'accès à l'authentification");
+					MSG_ERREUR_AUTHENTIFICATION);
 		}
 
 		/**
