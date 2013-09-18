@@ -52,11 +52,11 @@
 		</div>
 
 
-		<div id="mesinfos">
+		<%-- <div id="mesinfos">
 			<!-- bloc Mes Infos-->
 			<h3>Infos utilisateur :</h3>
 			<h5>Ne pas afficher</h5>
-		</div>
+		</div> --%>
 
 		<div id="projet">
 			<div id="projetleft">
