@@ -102,7 +102,7 @@
 
 			    	<%-- Div Nom --%>
 					<div class="age">
-						<p class="content"><%if(grp.getAvancement() != 0){%><%=grp.getAvancement() %><%}%></p>
+						<p class="content"><%if(grp.getAvancement() != 0){%><%=grp.getAvancement() %>%<%}%></p>
 						
 					</div>
 				
@@ -114,7 +114,7 @@
 				</div>								
 								
 				<div class="edit">
-					<a href="./FindProject?id=<%=grp.getId()%>"><img src=img/edit.png alt="Edit" title="Edit" /></a>
+					<a href="./FindProject?id=<%=grp.getId()%>&provenanceProjet=LPR"><img src=img/edit.png alt="Edit" title="Edit" /></a>
 				</div>
 	
 	
