@@ -102,7 +102,7 @@
 
 			    	<%-- Div Nom --%>
 					<div class="age">
-						<p class="content"><%if(grp.getAvancement() != 0){%><%=grp.getAvancement() %>%<%}%></p>
+						<p class="content"><%=grp.getAvancement() %>%</p>
 						
 					</div>
 				
