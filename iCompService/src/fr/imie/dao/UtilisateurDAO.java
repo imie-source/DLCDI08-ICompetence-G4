@@ -359,6 +359,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 		// Batch Delete User
 		String QUERY_DELETE_FROM_GRP_USER = "DELETE FROM GRP_USER WHERE USR_ID = ";
 		String QUERY_DELETE_FROM_COM_USER = "DELETE FROM COM_USER WHERE USR_ID = ";
+		String QUERY_DELETE_FROM_PRO_USER = "DELETE FROM PRO_USER WHERE USR_ID = ";
 		String QUERY_DELETE_FROM_INVITATION = "DELETE FROM INVITATION WHERE USR_ID = ";
 		String QUERY_UPDATE_GROUPE = "UPDATE GROUPE SET USR_ID = null WHERE USR_ID = ";
 		String QUERY_DELETE_FROM_UTILISATEUR = "DELETE FROM UTILISATEUR WHERE USR_ID = ";
@@ -372,6 +373,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 
 			stmt.addBatch(QUERY_DELETE_FROM_GRP_USER + user.getId());
 			stmt.addBatch(QUERY_DELETE_FROM_COM_USER + user.getId());
+			stmt.addBatch(QUERY_DELETE_FROM_PRO_USER + user.getId());
 			stmt.addBatch(QUERY_DELETE_FROM_INVITATION + user.getId());
 			stmt.addBatch(QUERY_UPDATE_GROUPE + user.getId());
 			stmt.addBatch(QUERY_DELETE_FROM_UTILISATEUR + user.getId());
@@ -381,6 +383,7 @@ public class UtilisateurDAO extends ATransactional implements IUtilisateurDAO {
 			System.out.println(user.getId());
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
+			e.getNextException().printStackTrace();
 		} finally {
 			// libération des ressources
 			try {
